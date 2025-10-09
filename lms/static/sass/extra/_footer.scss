@@ -1,42 +1,61 @@
+// ===== Footer variables (override in your theme if needed)
+$cusc-orange: #ff8800 !default;
+$footer-bg: #0f172a !default; // from index.html
+$footer-text: #d1d5db !default; // from index.html
+$footer-border-d: #1e293b !default; // footer bottom border (dark-ish)
+
 // Include custom Footer
 .wrapper-footer {
+    background: $footer-bg;
     padding: 25px 0;
     border-top: 1px solid $gray-light;
     @include media-breakpoint-up(md) {
         padding: 45px 0;
     }
 }
+
 footer.tutor-container {
     margin: 0 auto;
     padding: 0 15px;
     max-width: 1600px;
     text-align: center;
     box-sizing: border-box;
+
+    // Ported from index.html
+    color: $footer-text;
+
     @include media-breakpoint-up(lg) {
         text-align: left;
     }
+
     .footer-top {
         margin: 0 0 15px;
+
         &:after {
             clear: both;
             display: block;
             content: "";
         }
+
         .powered-area {
             margin: 0 0 10px;
+
             @include media-breakpoint-up(md) {
                 margin: 0 0 15px;
             }
+
             @include media-breakpoint-up(lg) {
                 float: left;
             }
         }
     }
+
     .logo-list {
         list-style: none;
         margin: 0;
         padding: 0;
-        letter-spacing: -.3em;
+        letter-spacing: -0.3em;
+
         li {
             display: inline-block;
             vertical-align: middle;
@@ -46,11 +65,14 @@ footer.tutor-container {
             font-size: 12px;
             line-height: 18px;
             color: #515661;
+
             &:first-child {
                 padding-left: 0;
             }
+
             &:last-child {
                 padding-left: 20px;
+
                 &:after {
                     position: absolute;
                     left: 5px;
@@ -59,30 +81,36 @@ footer.tutor-container {
                     width: 1px;
                     height: 29px;
                     margin: -14px 0 0;
-                    background: #515661;;
+                    background: #515661;
                 }
             }
         }
     }
+
     .nav-colophon {
         display: block;
         overflow: hidden;
+
         ol {
             text-align: center;
+
             li {
                 display: inline-block;
                 vertical-align: top;
                 padding: 0 8px;
                 font-size: 14px;
                 line-height: 20px;
+
                 @include media-breakpoint-up(md) {
                     padding: 0 12px;
                     font-size: 16px;
                     line-height: 24px;
                 }
+
                 a {
                     color: $light-dark;
                     text-decoration: none;
+
                     &:hover {
                         color: $dark;
                         text-decoration: none;
@@ -91,23 +119,70 @@ footer.tutor-container {
             }
         }
     }
+
     .copyright-site {
         display: block;
         font-size: 12px;
         line-height: 16px;
         color: $light-dark;
     }
+
+    // ====== Ported from index.html: custom block styles
+    .footer-grid {
+        max-width: 1200px;
+        margin: 2rem auto 0; // keep spacing as in index.html
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .footer-col {
+        h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        p,
+        a {
+            color: $footer-text; // #d1d5db
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        a:hover {
+            color: $cusc-orange; // var(--cusc-orange) in index.html
+            text-decoration: none;
+        }
+    }
+
+    // Optional: if you keep a .footer-bottom wrapper like in index.html
+    .footer-bottom {
+        text-align: center;
+        margin-top: 2rem;
+        border-top: 1px solid $footer-border-d; // #1e293b
+        padding-top: 1rem;
+        font-size: 0.9rem;
+    }
 }
 
+// ===== Dark theme adjustments (Indigo)
 body.indigo-dark-theme {
     .wrapper-footer {
         border-top: 1px solid $border-color-d;
         background: $body-bg-d;
     }
+
     footer.tutor-container {
+        background: $body-bg-d;
+        color: $text-color-primary;
+
         .logo-list {
             li {
                 color: $text-color-primary;
+
                 &:last-child {
                     &:after {
                         background: $text-color-primary;
@@ -115,11 +190,13 @@ body.indigo-dark-theme {
                 }
             }
         }
+
         .nav-colophon {
             ol {
                 li {
                     a {
-                        color:$text-color-primary;
+                        color: $text-color-primary;
+
                         &:hover {
                             color: $text-color-d;
                         }
@@ -127,9 +204,27 @@ body.indigo-dark-theme {
                 }
             }
         }
+
         .copyright-site {
             color: $text-color-primary;
         }
 
+        // Dark adjustments for ported footer block
+        .footer-col {
+            h4 {
+                color: $text-color-d;
+            }
+            p,
+            a {
+                color: $text-color-primary;
+            }
+            a:hover {
+                color: $cusc-orange;
+            }
+        }
+
+        .footer-bottom {
+            border-top-color: $border-color-d;
+        }
     }
 }

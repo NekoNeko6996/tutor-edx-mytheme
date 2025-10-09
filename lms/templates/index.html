@@ -1,80 +1,217 @@
 <%page expression_filter="h"/>
 <%inherit file="main.html" />
 <%namespace name='static' file='static_content.html'/>
+
 <%!
 from django.utils.translation import gettext as _
-from django.urls import reverse
-
+from django.urls import reverse, NoReverseMatch
 from openedx.core.djangolib.markup import HTML, Text
 %>
 
-<main id="main" aria-label="Content" tabindex="-1">
-    <section class="home style-logout">
-      <header>
-        <div class="outer-wrapper">
-          <div class="title">
-            <div class="heading-group">
-              % if homepage_overlay_html:
-                ${homepage_overlay_html | n, decode.utf8}
-              % else:
-                <%include file="index_overlay.html" />
-              % endif
-            </div>
-            % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
-              <div class="course-search">
-                <form method="get" action="/courses">
-                  <!-- UPDATE IN INDIGO2.1 - Change the structure for search bar  -->
-                  <div class="search-field-wrapper">
-                    <label class="input-holder"><span class="sr">${_("Search for a course")}</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z" fill="#9CA3AF"></path>
-                        </svg>
-                      <input class="search-input" name="search_query" type="text" placeholder="${_("Search for a course")}"></input>
-                    </label>
-                    <div class="button-holder">
-                      <button class="search-button" type="submit">
-                        ${_("Search")}
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            % endif
+<!-- ====== Styles cho phần BODY (hero + search + sections). Có thể tách ra static/css sau ====== -->
+<style>
+:root{
+  --brand:#0056A1; --accent:#10B981;
+  --bg:#ffffff; --ink:#111827; --muted:#6b7280;
+  --card:#ffffff; --line:#e5e7eb;
+}
+#theme:checked~.page{ /* nếu bạn giữ dark toggle ở nav */
+  --bg:#0f172a; --ink:#e5e7eb; --muted:#9aa3b2; --card:#0b1220; --line:#243355;
+}
 
-          </div>
+/* layout helpers */
+.container{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+.section-gap{padding:2.5rem 0}
 
-          <%include file="index_promo_video.html" />
+/* ===== HERO ===== */
+.hero{
+  background:
+    radial-gradient(900px 420px at 80% -10%, rgba(16,185,129,.18), transparent 60%),
+    radial-gradient(900px 420px at -10% 20%, rgba(0,86,161,.20), transparent 60%),
+    linear-gradient(135deg, #0c62ad, #12b07f);
+  color:#fff;
+}
+.hero-title{font-size:2.25rem;font-weight:800;line-height:1.2;color:#fff}
+.hero .inner{padding:3.5rem 0 2.25rem;text-align:center}
+.hero .badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.4rem .75rem;border-radius:999px;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+  font-weight:700
+}
+.hero h1{font-size:clamp(1.8rem,2.6vw,2.6rem);margin:.9rem 0 .3rem}
+.hero p.lead{max-width:820px;margin:0 auto;color:rgba(255,255,255,.95)}
+
+/* Search bar */
+.hero .search-wrap{max-width:980px;margin:1.25rem auto 0}
+.searchbar{
+  display:flex;gap:.6rem;align-items:center;
+  background:rgba(255,255,255,.18);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.55);padding:.5rem;border-radius:16px;
+}
+.searchbar .icon{
+  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:#fff;color:#374151;border:1px solid var(--line);flex:0 0 auto
+}
+.searchbar .input{
+  flex:1 1 auto;min-width:200px;
+  display:flex;align-items:center;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:.15rem .4rem
+}
+.searchbar input[type="search"]{
+  width:100%;border:0;outline:none;background:transparent;
+  padding:.7rem .6rem;font-size:1rem;color:#111827
+}
+.searchbar select{
+  flex:0 0 170px;background:#fff;color:#111827;border:1px solid var(--line);
+  border-radius:12px;padding:.7rem .9rem
+}
+.searchbar button{
+  flex:0 0 auto;background:#0a4b8a;border:1px solid #0a4b8a;color:#fff;
+  border-radius:12px;padding:.85rem 1.1rem;font-weight:800;cursor:pointer
+}
+.searchbar button:focus-visible{outline:3px solid rgba(255,255,255,.6);outline-offset:2px}
+
+/* hero CTAs */
+.hero .ctas{display:flex;gap:.7rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.75rem 1rem;border-radius:12px;font-weight:800;
+  border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;text-decoration:none
+}
+.btn.primary{background:#fff;color:#0f172a;border-color:#fff}
+.btn:hover{filter:brightness(.97)}
+
+/* ===== SECTION TITLE ===== */
+.section-title{display:flex;align-items:center;gap:.6rem}
+.section-title h2{margin:0;color:var(--ink);font-size:1.35rem}
+.section-title .emoji{font-size:1.15rem}
+
+/* Ensure course list from edX sits nicely */
+.courses-host{margin-top:.75rem}
+.courses-host .courses-container{ /* wrapper around the included list */
+  background:transparent;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px){
+  .searchbar{flex-wrap:wrap}
+  .searchbar .icon{display:none}
+  .searchbar select{flex:1 1 45%}
+  .searchbar button{flex:1 1 45%}
+}
+</style>
+
+<!-- Toggle Dark mode checkbox có ở nav; nhưng nếu nav ở file khác, giữ input#theme trong nav. -->
+
+<div class="page">
+
+  <!-- ===== MAIN BODY ===== -->
+  <main id="main" aria-label="${_('Content')}" tabindex="-1">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container inner">
+        <div class="badge">${_('For learners & instructors')}</div>
+
+        <div class="heading-group" style="margin-top:.6rem">
+          % if homepage_overlay_html:
+            ${homepage_overlay_html | n, decode.utf8}
+          % else:
+            <h1 class="hero-title">${_('Discover courses')}</h1>
+            <p class="lead">
+              ${_('Learn programming, data, design and more with clear paths and high-quality resources.')}
+            </p>
+          % endif
         </div>
 
-      </header>
-      <%include file="${courses_list}" />
-      <h1 style="color: red">TEST INDEX V@</h1>
+        % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+        <form class="search-wrap" role="search" aria-label="${_('Search courses')}" method="get" action="/courses">
+          <div class="searchbar" role="group">
+            <div class="icon" aria-hidden="true">🔎</div>
 
+            <!-- khối input có icon ở bên trái -->
+            <div class="input">
+              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 20 20" style="margin-left:.4rem">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M8 4C5.79 4 4 5.79 4 8s1.79 4 4 4 4-1.79 4-4S10.21 4 8 4Zm-6 4a6 6 0 1 1 10.89 3.48l4.82 4.82a1 1 0 0 1-1.42 1.42l-4.82-4.82A6 6 0 0 1 2 8Z"
+                  fill="#9CA3AF"/>
+              </svg>
+              <input name="search_query" type="search"
+                     placeholder="${_('Search for a course')}"
+                     aria-label="${_('Search for a course')}"/>
+            </div>
+
+            <!-- bộ lọc UI-only (không ảnh hưởng backend), để giống demo -->
+            <select aria-label="${_('Filter')}">
+              <option value="all">${_('All')}</option>
+              <option value="courses">${_('Courses')}</option>
+            </select>
+
+            <button type="submit">${_('Search')}</button>
+          </div>
+        </form>
+        % endif
+
+        <div class="ctas">
+          <a class="btn primary" href="/courses">${_('Start learning')}</a>
+          <a class="btn" href="/dashboard">${_('My dashboard')}</a>
+        </div>
+      </div>
     </section>
-</main>
 
-% if show_homepage_promo_video:
-  <section id="video-modal" class="modal home-page-video-modal video-modal">
-    <div class="inner-wrapper">
-      <iframe title="YouTube Video" width="640" height="360" src="//www.youtube.com/embed/${homepage_promo_video_youtube_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-% endif
+    <!-- Promo video (giữ nguyên cơ chế) -->
+    % if show_homepage_promo_video:
+      <section class="section-gap">
+        <div class="container">
+          <%include file="index_promo_video.html" />
+        </div>
+      </section>
+    % endif
 
+    <!-- COURSES LIST -->
+    <section class="section-gap">
+      <div class="container">
+        <div class="section-title">
+          <span class="emoji">📚</span>
+          <h2>${_('Featured courses')}</h2>
+        </div>
+
+        <!-- Gói wrapper để danh sách khóa học gốc align đẹp -->
+        <div class="courses-host">
+          <div class="courses-container">
+            <%include file="${courses_list}" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- Giữ vendor/segment loader từ core nếu có -->
+  % if include_dependencies:
+    <%static:js group='base_vendor'/>
+    <%static:css group='style-vendor'/>
+    <%include file="widgets/segment-io.html" />
+    <%include file="widgets/segment-io-footer.html" />
+  % endif
+  % if footer_css_urls:
+    % for url in footer_css_urls:
+      <link rel="stylesheet" type="text/css" href="${url}"/>
+    % endfor
+  % endif
+</div>
+
+<!-- Hooks JS giữ nguyên -->
 <%block name="js_extra">
-   <script type="text/javascript">
-      $(window).load(function() {
-         if(getParameterByName('next')) {
-              $('#login').trigger("click");
-         }
-      })
-   </script>
+  <script type="text/javascript">
+    $(window).load(function() {
+      if (getParameterByName('next')) { $('#login').trigger("click"); }
+    });
+  </script>
 </%block>
 
 % if show_signup_immediately is not UNDEFINED:
-  ## NOTE: This won't work in production, because anonymous views are cached, so it will
-  ## show either with or without this extra js for 3 minutes at a time.
 <script type="text/javascript">
-  $(window).load(function() {$('#signup_action').trigger("click");});
+  $(window).load(function(){ $('#signup_action').trigger("click"); });
 </script>
 % endif
