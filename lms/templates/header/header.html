@@ -45,7 +45,21 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 
 <%block name="js_extra">
   <script src="${static.url('js/responsive-nav.js')}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('header.global-header');
+      if (!header) return;
+
+      // Toggle blur khi cuộn
+      const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 4);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    });
+  </script>
 </%block>
+
+
+
 
 <header class="global-header ${'slim' if course else ''}">
     <div class="header-container">
@@ -73,6 +87,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
     <div class="mobile-menu hidden" aria-label=${_("More Options")} role="menu" id="mobile-menu"></div>
     </div>
 </header>
+
 
 % if course:
 <!--[if lte IE 9]>
