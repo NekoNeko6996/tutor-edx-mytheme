@@ -16,7 +16,9 @@ from django.urls import reverse
       <h2 class="course-name">
         <span class="course-code">${course.display_number_with_default}</span>
         <span class="course-title">${course.display_name_with_default}</span>
-        <span class="course-organization">${course.display_org_with_default}</span>
+        <span class="course-organization">${course.display_org_with_default}
+        </span>
+      
       </h2>
       <!-- NEW IN INDIGO Learn more button is displayed under the course image instead of the hover functionality. -->
       <a  href="${reverse('about_course', args=[str(course.id)])}" class="learn-more" aria-hidden="true">${_("Learn More")}</a>

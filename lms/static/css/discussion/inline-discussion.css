@@ -3120,6 +3120,7 @@ a.text-darkest:hover, a.text-darkest:focus {
   --shadow-l1: rgba(0, 0, 0, 0.1);
   --sidebar-color: #f6f6f6;
   --small-font-size: 80%;
+  --static-path: "..";
   --submitted: #15376D;
   --success: #008100;
   --tmg-f2: 0.25s;
