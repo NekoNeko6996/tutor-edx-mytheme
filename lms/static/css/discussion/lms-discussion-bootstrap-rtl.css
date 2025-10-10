@@ -4860,7 +4860,7 @@ tbody.collapse.show {
 
 @keyframes progress-bar-stripes {
   from {
-    background-position: right 1rem top 0; }
+    background-position: 1rem 0; }
   to {
     background-position: 100% 0; } }
 

@@ -7,6 +7,12 @@
         margin-top: 64px !important;
     }
 }
+#main{
+    margin: 0;
+    @include media-breakpoint-up(md) {
+        margin: 0 150px;
+    }
+}
 .course-heading-area {
     margin: 0 0 20px;
     font-size: 14px;
@@ -17,7 +23,7 @@
         line-height: 20px;
     }
     h2 {
-        color: #111827;
+        color: #515661;
         font-size: 20px;
         font-weight: 700;
         line-height: 30px;
@@ -537,4 +543,181 @@ body.indigo-dark-theme {
             }
         }
     }
+}
+/* === Enhancement: Modern round search bar & filter alignment === */
+/* giữ nguyên mọi style cũ, chỉ thêm hiệu ứng bo tròn, gradient và căn giữa */
+.saerch-bar-discover {
+  gap: 12px;
+  // Filter button tinh chỉnh nhẹ cho giống hình
+  .filter-block {
+    padding: 6px;
+    > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f3f4f6;
+      color: #374151;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 8px;
+      padding: 8px 14px;
+      transition: background 0.2s ease;
+      border: 1px solid #e5e7eb;
+
+      &:hover {
+        background-color: #e5e7eb;
+      }
+
+      svg {
+        stroke: #9ca3af;
+        width: 18px;
+        height: 18px;
+      }
+
+      .arrow {
+        fill: #9ca3af;
+      }
+    }
+  }
+
+  // Thanh search chỉnh giống bản mockup
+  .discover-search {
+    .wrapper-search-context {
+      .wrapper-search-input {
+        align-items: center;
+        border: 1px solid #e5e7eb;
+        border-radius: 9999px; // full bo tròn
+        overflow: hidden; // giúp nút search liền khối
+        background: #fff;
+        height: 46px;
+        padding: 0;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.2s ease;
+
+        &:focus-within {
+          border-color: #10b981;
+          box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+        }
+
+        // Icon + input
+        .input-holder {
+          flex-grow: 1;
+          position: relative;
+          background: none;
+          border: none;
+
+          svg {
+            position: absolute;
+            top: 50%;
+            left: 14px;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            path {
+              fill: #9ca3af;
+            }
+          }
+
+          input {
+            width: 100%;
+            height: 46px;
+            border: none;
+            background: transparent;
+            outline: none;
+            padding: 0 12px 0 42px;
+            font-size: 15px;
+            color: #111827;
+            font-family: "Inter", "Segoe UI", sans-serif;
+
+            &::placeholder {
+              color: #9ca3af;
+              font-weight: 400;
+            }
+          }
+        }
+
+        // Nút Search gradient tròn
+        .button-holder {
+          flex-shrink: 0;
+          margin: 0 !important;
+
+          button {
+            border: none;
+            border-radius: 9999px;
+            height: 46px;
+            padding: 0 26px;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 46px;
+            color: #fff;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #10b981, #0056a1);
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+              opacity: 0.9;
+              transform: translateY(-1px);
+            }
+            &:active {
+              transform: translateY(0);
+            }
+          }
+        }
+      }
+
+      // Dòng "Viewing X course(s)"
+      .search-status-label {
+        text-align: center;
+        color: #6b7280;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+/* === Dark mode support (không thay màu cũ, chỉ tinh chỉnh ánh sáng) === */
+body.indigo-dark-theme {
+  .saerch-bar-discover {
+    .filter-block > a {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+
+      &:hover {
+        background: #334155;
+      }
+
+      svg {
+        stroke: #94a3b8;
+      }
+      .arrow {
+        fill: #94a3b8;
+      }
+    }
+
+    .discover-search {
+      .wrapper-search-input {
+        background: #1e293b;
+        border-color: #334155;
+
+        input {
+          color: #e2e8f0;
+          &::placeholder {
+            color: #94a3b8;
+          }
+        }
+
+        svg path {
+          fill: #94a3b8;
+        }
+
+        button {
+          background: linear-gradient(135deg, #10b981, #0284c7);
+          color: #fff;
+        }
+      }
+    }
+  }
 }

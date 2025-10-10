@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700");
 /*
@@ -62,6 +63,7 @@
   --shadow-l1: rgba(0, 0, 0, 0.1);
   --sidebar-color: #f6f6f6;
   --small-font-size: 80%;
+  --static-path: "..";
   --submitted: #15376D;
   --success: #008100;
   --tmg-f2: 0.25s;
@@ -3745,57 +3747,65 @@ body.indigo-dark-theme {
       margin-top: 64px !important; } }
 
 /* line 10, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+#main {
+  margin: 0; }
+  @media (min-width: 768px) {
+    /* line 10, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    #main {
+      margin: 0 150px; } }
+
+/* line 16, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 .course-heading-area {
   margin: 0 0 20px;
   font-size: 14px;
   color: #515661; }
   @media (min-width: 768px) {
-    /* line 10, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 16, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .course-heading-area {
       margin: 0 0 30px;
       font-size: 16px;
       line-height: 20px; } }
-  /* line 19, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 25, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .course-heading-area h2 {
-    color: #111827;
+    color: #515661;
     font-size: 20px;
     font-weight: 700;
     line-height: 30px;
     margin: 0 0 8px; }
     @media (min-width: 768px) {
-      /* line 19, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 25, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .course-heading-area h2 {
         font-size: 24px;
         font-weight: 700;
         margin: 0 0 12px; } }
-  /* line 31, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 37, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .course-heading-area p {
     margin: 0; }
 
-/* line 35, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 41, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 .find-courses {
   padding-bottom: 0 !important; }
-  /* line 37, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 43, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .find-courses .courses-container {
     padding: 25px 0; }
     @media (min-width: 768px) {
-      /* line 37, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 43, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .find-courses .courses-container {
         padding: 30px 0; } }
-  /* line 43, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 49, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .find-courses .course-holder {
     width: 100% !important;
     float: none !important; }
 
-/* line 50, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 56, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 .courses-container .courses .courses-listing {
   letter-spacing: -.32em;
   margin: 0 -2.5%; }
   @media only screen and (min-width: 1200px) {
-    /* line 50, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 56, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .courses-container .courses .courses-listing {
       margin: 0 -1.5%; } }
-  /* line 56, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 62, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .courses-container .courses .courses-listing li {
     letter-spacing: normal;
     float: none !important;
@@ -3805,19 +3815,19 @@ body.indigo-dark-theme {
     margin: 0 2.5% 25px !important;
     max-height: unset !important; }
     @media (min-width: 576px) {
-      /* line 56, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 62, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .courses-container .courses .courses-listing li {
         width: 45% !important; } }
     @media (min-width: 768px) {
-      /* line 56, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 62, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .courses-container .courses .courses-listing li {
         width: 28.33% !important; } }
     @media only screen and (min-width: 1200px) {
-      /* line 56, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 62, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .courses-container .courses .courses-listing li {
         width: calc(25% - 3%) !important;
         margin: 0 1.5% 25px !important; } }
-    /* line 74, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 80, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .courses-container .courses .courses-listing li .course {
       margin: 0;
       border: none;
@@ -3825,30 +3835,30 @@ body.indigo-dark-theme {
       border-radius: 8px;
       overflow: hidden;
       background: #fff; }
-      /* line 82, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 88, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .courses-container .courses .courses-listing li .course .course-image .cover-image {
         height: 162px; }
-        /* line 84, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 90, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-image .cover-image:before {
           display: none; }
-        /* line 87, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 93, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-image .cover-image img {
           object-fit: cover;
           object-position: center;
           height: 100%; }
-      /* line 94, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 100, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .courses-container .courses .courses-listing li .course .course-info {
         height: auto;
         font-family: "Inter", sans-serif;
         padding: 10px 20px 0; }
-        /* line 98, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 104, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-info .course-code {
           display: none; }
-        /* line 101, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 107, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-info h2 {
           font-family: "Inter", sans-serif;
           height: 72px; }
-        /* line 105, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 111, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-info .course-title {
           color: #292C2E;
           font-size: 16px;
@@ -3862,7 +3872,7 @@ body.indigo-dark-theme {
           display: -webkit-box !important;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical; }
-        /* line 119, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 125, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-info .course-organization {
           color: #6c7885;
           font-size: 14px;
@@ -3874,7 +3884,7 @@ body.indigo-dark-theme {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis; }
-        /* line 131, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 137, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-info .learn-more {
           display: block;
           border-radius: 6px;
@@ -3886,10 +3896,10 @@ body.indigo-dark-theme {
           line-height: 20px;
           margin: 0 0 30px;
           color: #fff; }
-          /* line 142, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+          /* line 148, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
           .courses-container .courses .courses-listing li .course .course-info .learn-more:hover {
             opacity: .8; }
-        /* line 146, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 152, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .courses-container .courses .courses-listing li .course .course-info .course-date {
           border-top: 1px solid #ECF0F4;
           padding: 10px 20px;
@@ -3897,37 +3907,37 @@ body.indigo-dark-theme {
           color: #515661;
           font-size: 14px;
           line-height: 20px; }
-          /* line 153, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+          /* line 159, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
           .courses-container .courses .courses-listing li .course .course-info .course-date svg {
             display: inline-block;
             margin: -4px 10px 0 0;
             vertical-align: middle; }
 
-/* line 165, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 171, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 .saerch-bar-discover {
   margin: 0 0 25px;
   display: flex; }
   @media (min-width: 768px) {
-    /* line 165, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 171, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .saerch-bar-discover {
       margin: 0 0 30px; } }
-  /* line 171, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 177, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .saerch-bar-discover:after {
     display: block;
     clear: both;
     content: ""; }
-  /* line 177, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 183, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .saerch-bar-discover .filters .filters-inner {
     border: none; }
-    /* line 179, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 185, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .saerch-bar-discover .filters .filters-inner .clear-filters {
       display: none; }
-    /* line 183, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 189, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .saerch-bar-discover .filters .filters-inner ul li {
       padding: 0;
       margin: 0 7px 5px 0;
       background: none; }
-      /* line 187, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 193, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .saerch-bar-discover .filters .filters-inner ul li button {
         padding: 2px 10px;
         border-radius: 12px;
@@ -3935,24 +3945,24 @@ body.indigo-dark-theme {
         color: #fff;
         font-size: 14px;
         line-height: 20px; }
-  /* line 199, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 205, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .saerch-bar-discover .discover-search {
     width: 100%; }
-    /* line 202, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 208, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input {
       float: none;
       display: flex;
       margin: 0;
       width: auto; }
-      /* line 207, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 213, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input:after {
         display: block;
         clear: both;
         content: ""; }
-      /* line 212, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 218, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder {
         float: right; }
-        /* line 214, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 220, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button {
           position: static;
           margin: 0 0 0 16px;
@@ -3970,30 +3980,30 @@ body.indigo-dark-theme {
           border: none;
           box-shadow: none !important; }
           @media (min-width: 576px) {
-            /* line 214, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+            /* line 220, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
             .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button {
               min-width: 100px; } }
-          /* line 233, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+          /* line 239, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
           .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button:hover {
             background: #15376D;
             opacity: .8; }
-      /* line 239, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 245, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder {
         flex-grow: 1;
         border-radius: 6px;
         background: #F2F7F8;
         padding: 0 0 0 33px;
         position: relative; }
-        /* line 245, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 251, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder svg {
           position: absolute;
           left: 12px;
           font-size: 20px;
           top: 10px; }
-          /* line 251, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+          /* line 257, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
           .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder svg path {
             fill: #4a5564; }
-        /* line 255, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 261, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder input {
           border: none;
           box-shadow: none;
@@ -4004,10 +4014,10 @@ body.indigo-dark-theme {
           font-size: 14px;
           line-height: 20px;
           padding: 9px 10px; }
-          /* line 266, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+          /* line 272, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
           .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder input::placeholder {
             color: #4a5564; }
-    /* line 273, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 279, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .saerch-bar-discover .discover-search .search-status-label {
       font-size: 14px;
       line-height: 20px;
@@ -4018,19 +4028,19 @@ body.indigo-dark-theme {
       float: none;
       color: #515661; }
 
-/* line 285, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 291, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 .filter-block {
   flex: 0 0 80px;
   position: relative;
   z-index: 9; }
   @media (min-width: 576px) {
-    /* line 285, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 291, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .filter-block {
       flex: 0 0 130px; } }
-  /* line 293, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 299, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .filter-block.show .dropdown-menu {
     display: block; }
-  /* line 297, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 303, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .filter-block > a {
     display: block;
     background-color: #F2F7F8;
@@ -4042,23 +4052,23 @@ body.indigo-dark-theme {
     padding: 8px 10px;
     border-radius: 6px;
     color: #4B5563; }
-    /* line 308, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 314, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .filter-block > a:hover {
       text-decoration: none;
       color: #4B5563; }
-    /* line 312, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 318, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .filter-block > a svg {
       display: inline-block;
       vertical-align: middle; }
-    /* line 316, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 322, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .filter-block > a span {
       padding: 0 3px;
       display: none; }
       @media (min-width: 576px) {
-        /* line 316, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 322, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .filter-block > a span {
           display: inline; } }
-  /* line 324, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 330, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .filter-block .dropdown-menu {
     display: none;
     width: 200px;
@@ -4069,17 +4079,17 @@ body.indigo-dark-theme {
     background: #F2F7F8;
     padding: 10px 10px 0;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.1); }
-  /* line 335, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 341, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   .filter-block .search-facets {
     float: none;
     width: 100%;
     margin: 0;
     box-shadow: none;
     background: none; }
-    /* line 341, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 347, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .filter-block .search-facets h2 {
       display: none; }
-    /* line 345, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 351, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .filter-block .search-facets .search-facets-lists h3 {
       border: none;
       padding: 0;
@@ -4087,16 +4097,16 @@ body.indigo-dark-theme {
       color: #191B23;
       font-size: 14px;
       font-weight: 700; }
-    /* line 353, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 359, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     .filter-block .search-facets .search-facets-lists ul.facet-list {
       padding: 0 0 0 25px;
       max-height: 100px;
       overflow-y: auto; }
-      /* line 357, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      /* line 363, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
       .filter-block .search-facets .search-facets-lists ul.facet-list li {
         height: auto;
         margin: 0 0 10px; }
-        /* line 360, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        /* line 366, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
         .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option {
           position: relative;
           float: none;
@@ -4106,11 +4116,11 @@ body.indigo-dark-theme {
           font-size: 14px;
           line-height: 20px;
           color: #191B23; }
-          /* line 370, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+          /* line 376, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
           .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option.selected .count {
             background: #15376D;
             border-color: #15376D; }
-            /* line 373, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+            /* line 379, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
             .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option.selected .count:before {
               content: "\f00c";
               width: auto;
@@ -4120,7 +4130,7 @@ body.indigo-dark-theme {
               font-size: 10px;
               line-height: 14px;
               color: #fff; }
-          /* line 385, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+          /* line 391, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
           .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option .count {
             position: absolute;
             left: 0;
@@ -4131,107 +4141,252 @@ body.indigo-dark-theme {
             border-radius: 4px;
             border: 1px solid #C4C7CF;
             background: #fff; }
-            /* line 395, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+            /* line 401, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
             .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option .count .count-number {
               display: none; }
 
-/* line 407, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 413, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .course-heading-area {
   color: #DDDFE2; }
-  /* line 409, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 415, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .course-heading-area h2 {
     color: #F8F8F8; }
 
-/* line 418, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 424, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .filters .filters-inner ul li button {
   background: #AEC7F6 !important;
   color: #112F6B; }
 
-/* line 430, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 436, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button {
   background: #AEC7F6;
   color: #112F6B; }
-  /* line 433, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 439, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button:hover {
     background: #AEC7F6;
     color: #112F6B; }
 
-/* line 439, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 445, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder {
   background: #292A2C; }
-  /* line 442, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 448, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder svg path {
     color: #F8F8F8; }
-  /* line 446, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 452, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder input {
     color: #F8F8F8; }
 
-/* line 452, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 458, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .discover-search .search-status-label {
   color: #DDDFE2; }
 
-/* line 458, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 464, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .filter-block > a {
   background-color: #292A2C;
   color: #F8F8F8; }
-  /* line 461, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 467, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .saerch-bar-discover .filter-block > a:hover {
     color: #F8F8F8; }
-  /* line 464, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 470, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .saerch-bar-discover .filter-block > a svg {
     fill: transparent;
     stroke: #F8F8F8; }
-    /* line 467, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 473, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     body.indigo-dark-theme .saerch-bar-discover .filter-block > a svg.arrow {
       fill: #F8F8F8;
       stroke: none; }
 
-/* line 473, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 479, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .filter-block .dropdown-menu {
   background: #292A2C; }
 
-/* line 478, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 484, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .filter-block .search-facets .search-facets-lists h3 {
   color: #F8F8F8; }
 
-/* line 483, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 489, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .saerch-bar-discover .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option {
   color: #F8F8F8; }
-  /* line 486, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 492, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .saerch-bar-discover .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option.selected .count {
     background: #AEC7F6;
     border-color: #AEC7F6; }
-    /* line 489, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 495, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     body.indigo-dark-theme .saerch-bar-discover .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option.selected .count:before {
       color: #112F6B; }
-  /* line 494, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 500, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .saerch-bar-discover .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option .count {
     border: 1px solid #F8F8F8;
     background: #F8F8F8; }
 
-/* line 509, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+/* line 515, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
 body.indigo-dark-theme .courses-container .courses .courses-listing li .course {
   box-shadow: none;
   border: 1px solid #777792;
   background: #292A2C; }
-  /* line 514, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 520, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .courses-container .courses .courses-listing li .course .course-info .course-title {
     color: #F8F8F8; }
-  /* line 517, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 523, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .courses-container .courses .courses-listing li .course .course-info .course-organization {
     color: #DDDFE2; }
-  /* line 520, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 526, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .courses-container .courses .courses-listing li .course .course-info .learn-more {
     background: #AEC7F6;
     color: #112F6B; }
-  /* line 524, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  /* line 530, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
   body.indigo-dark-theme .courses-container .courses .courses-listing li .course .course-info .course-date {
     border-top: 1px solid #777792;
     color: #DDDFE2;
     background: #36383B; }
-    /* line 529, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    /* line 535, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
     body.indigo-dark-theme .courses-container .courses .courses-listing li .course .course-info .course-date svg path {
       fill: #DDDFE2; }
+
+/* === Enhancement: Modern round search bar & filter alignment === */
+/* giữ nguyên mọi style cũ, chỉ thêm hiệu ứng bo tròn, gradient và căn giữa */
+/* line 549, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+.saerch-bar-discover {
+  gap: 12px; }
+  /* line 552, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  .saerch-bar-discover .filter-block {
+    padding: 6px; }
+    /* line 554, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    .saerch-bar-discover .filter-block > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f3f4f6;
+      color: #374151;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 8px;
+      padding: 8px 14px;
+      transition: background 0.2s ease;
+      border: 1px solid #e5e7eb; }
+      /* line 567, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      .saerch-bar-discover .filter-block > a:hover {
+        background-color: #e5e7eb; }
+      /* line 571, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      .saerch-bar-discover .filter-block > a svg {
+        stroke: #9ca3af;
+        width: 18px;
+        height: 18px; }
+      /* line 577, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      .saerch-bar-discover .filter-block > a .arrow {
+        fill: #9ca3af; }
+  /* line 586, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input {
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 9999px;
+    overflow: hidden;
+    background: #fff;
+    height: 46px;
+    padding: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease; }
+    /* line 597, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input:focus-within {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
+    /* line 603, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder {
+      flex-grow: 1;
+      position: relative;
+      background: none;
+      border: none; }
+      /* line 609, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder svg {
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px; }
+        /* line 616, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder svg path {
+          fill: #9ca3af; }
+      /* line 621, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder input {
+        width: 100%;
+        height: 46px;
+        border: none;
+        background: transparent;
+        outline: none;
+        padding: 0 12px 0 42px;
+        font-size: 15px;
+        color: #111827;
+        font-family: "Inter", "Segoe UI", sans-serif; }
+        /* line 632, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .input-holder input::placeholder {
+          color: #9ca3af;
+          font-weight: 400; }
+    /* line 640, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder {
+      flex-shrink: 0;
+      margin: 0 !important; }
+      /* line 644, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+      .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button {
+        border: none;
+        border-radius: 9999px;
+        height: 46px;
+        padding: 0 26px;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 46px;
+        color: #fff;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #10b981, #0056a1);
+        cursor: pointer;
+        transition: all 0.2s ease; }
+        /* line 658, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button:hover {
+          opacity: 0.9;
+          transform: translateY(-1px); }
+        /* line 662, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+        .saerch-bar-discover .discover-search .wrapper-search-context .wrapper-search-input .button-holder button:active {
+          transform: translateY(0); }
+  /* line 670, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  .saerch-bar-discover .discover-search .wrapper-search-context .search-status-label {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 10px; }
+
+/* === Dark mode support (không thay màu cũ, chỉ tinh chỉnh ánh sáng) === */
+/* line 683, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+body.indigo-dark-theme .saerch-bar-discover .filter-block > a {
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155; }
+  /* line 688, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  body.indigo-dark-theme .saerch-bar-discover .filter-block > a:hover {
+    background: #334155; }
+  /* line 692, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  body.indigo-dark-theme .saerch-bar-discover .filter-block > a svg {
+    stroke: #94a3b8; }
+  /* line 695, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  body.indigo-dark-theme .saerch-bar-discover .filter-block > a .arrow {
+    fill: #94a3b8; }
+
+/* line 701, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-input {
+  background: #1e293b;
+  border-color: #334155; }
+  /* line 705, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-input input {
+    color: #e2e8f0; }
+    /* line 707, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+    body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-input input::placeholder {
+      color: #94a3b8; }
+  /* line 712, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-input svg path {
+    fill: #94a3b8; }
+  /* line 716, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_discover.scss */
+  body.indigo-dark-theme .saerch-bar-discover .discover-search .wrapper-search-input button {
+    background: linear-gradient(135deg, #10b981, #0284c7);
+    color: #fff; }
 
 /* line 3, /openedx/themes/tutor-edx-mytheme/lms/static/sass/courseware/_about.scss */
 .course-info.about.container {
