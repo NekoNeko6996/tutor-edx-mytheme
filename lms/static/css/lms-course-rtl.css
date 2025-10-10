@@ -3120,6 +3120,7 @@ a.text-darkest:hover, a.text-darkest:focus {
   --shadow-l1: rgba(0, 0, 0, 0.1);
   --sidebar-color: #f6f6f6;
   --small-font-size: 80%;
+  --static-path: "..";
   --submitted: #15376D;
   --success: #008100;
   --tmg-f2: 0.25s;
@@ -16431,3 +16432,141 @@ body.view-in-course {
 .settings-language-form {
   float: right;
   padding: 10px; }
+
+/* line 1, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+.verification-sock {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  margin: 20px auto 0;
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  -o-transition: all 0.4s ease-out;
+  -ms-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out; }
+  /* line 13, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+  .verification-sock .action-toggle-verification-sock {
+    left: 50%;
+    margin-left: -150px;
+    position: absolute;
+    top: -20px;
+    width: 300px;
+    color: #fff;
+    background-color: #008100;
+    border-color: #008100;
+    background-image: none;
+    box-shadow: none;
+    -webkit-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+    cursor: pointer; }
+    /* line 29, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+    .verification-sock .action-toggle-verification-sock.active, .verification-sock .action-toggle-verification-sock:focus, .verification-sock .action-toggle-verification-sock:hover {
+      color: #008100;
+      background-color: #fff;
+      border-color: #008100;
+      background-image: none;
+      box-shadow: none; }
+  /* line 40, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+  .verification-sock .verification-main-panel {
+    display: none;
+    overflow: hidden;
+    border-top: 1px solid #e7e7e7;
+    padding: 50px 40px;
+    -webkit-transition: height ease-out;
+    transition: height ease-out; }
+    /* line 48, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+    .verification-sock .verification-main-panel .verification-desc-panel {
+      color: rgba(0, 0, 0, 0.75);
+      position: relative; }
+      /* line 52, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+      .verification-sock .verification-main-panel .verification-desc-panel h2 {
+        font-size: 1.5rem;
+        font-weight: 700; }
+      /* line 57, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+      .verification-sock .verification-main-panel .verification-desc-panel h3 {
+        font-size: 1.25rem; }
+      @media (max-width: 960px) {
+        /* line 62, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+        .verification-sock .verification-main-panel .verification-desc-panel .mini-cert {
+          display: none;
+          border: 1px solid rgba(0, 0, 0, 0.125); } }
+      /* line 68, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+      .verification-sock .verification-main-panel .verification-desc-panel .mini-cert {
+        right: 20px;
+        position: absolute;
+        top: 20px;
+        width: 260px; }
+      /* line 76, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+      .verification-sock .verification-main-panel .verification-desc-panel .learner-story-container {
+        display: flex;
+        max-width: 630px; }
+        /* line 80, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+        .verification-sock .verification-main-panel .verification-desc-panel .learner-story-container .student-image {
+          margin: 5px 20px 0 0;
+          height: 50px;
+          width: 50px; }
+        /* line 86, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+        .verification-sock .verification-main-panel .verification-desc-panel .learner-story-container .story-quote > .author {
+          display: block;
+          margin-top: 5px;
+          font-weight: 600; }
+        /* line 92, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+        .verification-sock .verification-main-panel .verification-desc-panel .learner-story-container:not(:first-child) {
+          margin-top: 40px; }
+      /* line 97, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+      .verification-sock .verification-main-panel .verification-desc-panel .action-upgrade-certificate {
+        position: absolute;
+        right: 20px;
+        background-color: #008100;
+        border-color: #008100;
+        color: #fff;
+        background-image: none;
+        box-shadow: none;
+        cursor: pointer; }
+        /* line 107, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+        .verification-sock .verification-main-panel .verification-desc-panel .action-upgrade-certificate:hover {
+          background-color: #fff;
+          color: #008100; }
+        @media (max-width: 960px) {
+          /* line 113, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+          .verification-sock .verification-main-panel .verification-desc-panel .action-upgrade-certificate {
+            position: relative;
+            margin-top: 40px; } }
+        @media (min-width: 960px) {
+          /* line 120, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+          .verification-sock .verification-main-panel .verification-desc-panel .action-upgrade-certificate.stuck-top {
+            bottom: auto;
+            top: 208px; }
+          /* line 125, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+          .verification-sock .verification-main-panel .verification-desc-panel .action-upgrade-certificate.stuck-bottom {
+            top: auto;
+            bottom: -30px; }
+          /* line 130, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+          .verification-sock .verification-main-panel .verification-desc-panel .action-upgrade-certificate.attached {
+            right: 20px;
+            position: fixed;
+            bottom: 20px;
+            top: auto; } }
+
+/* line 145, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+.view-courseware .verification-sock {
+  margin-top: 0;
+  border-top: none;
+  border-bottom: none; }
+  /* line 150, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+  .view-courseware .verification-sock .action-toggle-verification-sock {
+    top: -25px; }
+    /* line 153, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+    .view-courseware .verification-sock .action-toggle-verification-sock:not(.active) {
+      color: #fff;
+      background-color: #008100;
+      box-shadow: none;
+      border: 1px solid #008100; }
+      /* line 159, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+      .view-courseware .verification-sock .action-toggle-verification-sock:not(.active):hover {
+        background-color: #003500; }
+  /* line 165, /openedx/edx-platform/lms/static/sass/features/_course-sock.scss */
+  .view-courseware .verification-sock .verification-main-panel {
+    border-top: 0;
+    border-bottom: 1px solid #e7e7e7; }

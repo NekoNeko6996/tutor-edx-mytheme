@@ -14285,44 +14285,41 @@ body.picker-open {
 
 /* line 586, /openedx/edx-platform/cms/static/sass/views/_container.scss */
 .modal-add-component-picker {
-  top: 10%;
-  padding: 0px !important; }
-  /* line 589, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+  top: 10%; }
+  /* line 588, /openedx/edx-platform/cms/static/sass/views/_container.scss */
   .modal-add-component-picker .modal-content {
-    padding: 0 !important;
-    border-radius: 4px; }
-    /* line 593, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+    padding: 0 !important; }
+    /* line 591, /openedx/edx-platform/cms/static/sass/views/_container.scss */
     .modal-add-component-picker .modal-content > iframe {
       width: 100%;
       min-height: 80vh;
-      background: url("../images/spinner.gif") center center no-repeat;
-      border-radius: 4px; }
+      background: url("../images/spinner.gif") center center no-repeat; }
 
-/* line 602, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+/* line 599, /openedx/edx-platform/cms/static/sass/views/_container.scss */
 .modal-alert {
   display: flex;
   align-items: center;
   padding: 20px;
   margin-bottom: 20px; }
-  /* line 608, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+  /* line 605, /openedx/edx-platform/cms/static/sass/views/_container.scss */
   .modal-alert.warning {
     background-color: #fcf8e3; }
-    /* line 611, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+    /* line 608, /openedx/edx-platform/cms/static/sass/views/_container.scss */
     .modal-alert.warning .fa-warning {
       color: #fd7e14;
       margin-right: 20px; }
-  /* line 617, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+  /* line 614, /openedx/edx-platform/cms/static/sass/views/_container.scss */
   .modal-alert .action-btn {
     text-wrap: nowrap;
     background-color: #000;
     color: #fff;
     margin-left: auto;
     padding: 10px; }
-    /* line 624, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+    /* line 621, /openedx/edx-platform/cms/static/sass/views/_container.scss */
     .modal-alert .action-btn .fa {
       margin-left: 5px;
       color: #fff; }
-    /* line 629, /openedx/edx-platform/cms/static/sass/views/_container.scss */
+    /* line 626, /openedx/edx-platform/cms/static/sass/views/_container.scss */
     .modal-alert .action-btn:hover, .modal-alert .action-btn:focus, .modal-alert .action-btn:active {
       background-color: #333333; }
 
