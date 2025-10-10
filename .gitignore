@@ -1,0 +1,7 @@
+# Built by watchthemes / webpack / sass
+lms/static/css/
+cms/static/css/
+lms/static/sass-compiled/
+cms/static/sass-compiled/
+**/*.css.map
+**/*.hot-update.*
