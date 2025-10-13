@@ -6,17 +6,151 @@
 <%block name="pagetitle">${_("Contact Us")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Contact")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/contact.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/contact-dark.svg')}" alt="Runs on Tutor" />
+  <section class="container about contact-page">
+    <h1 class="contact-title">
+      <%block name="pageheader">${page_header or _("Contact")}</%block>
+    </h1>
+
+    <p class="contact-intro">
+      <%block name="pagecontent">
+        ${page_content or _("Got a question or need support? Reach out using the form below or via the contact details on the right.")}
+      </%block>
+    </p>
+
+    <!-- Layout: two columns on desktop, one column on mobile -->
+    <div class="contact-grid">
+      <!-- LEFT: Contact form -->
+      <div class="contact-form-card" role="region" aria-labelledby="contact-form-title">
+        <h2 id="contact-form-title" class="section-title">${_("Send us a message")}</h2>
+
+        <!--
+          NOTE:
+          - Mặc định dùng mailto để không cần backend/csrf.
+          - Nếu bạn có endpoint xử lý server-side, đổi action="/contact/submit" method="post"
+            và bỏ mailto. Đừng quên CSRF và xử lý xác thực.
+        -->
+        <form class="contact-form"
+              action="mailto:info@cusc.vn"  <!-- TODO: đổi email nhận -->
+              method="post"
+              enctype="text/plain">
+          <div class="field">
+            <label for="cf-name">${_("Full name")}</label>
+            <input id="cf-name" name="name" type="text" placeholder="${_('Your name')}" required />
+          </div>
+
+          <div class="field">
+            <label for="cf-email">${_("Email")}</label>
+            <input id="cf-email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="cf-subject">${_("Subject")}</label>
+            <input id="cf-subject" name="subject" type="text" placeholder="${_('What is this about?')}" />
+          </div>
+
+          <div class="field">
+            <label for="cf-message">${_("Message")}</label>
+            <textarea id="cf-message" name="message" rows="6" placeholder="${_('Write your message here...')}" required></textarea>
+          </div>
+
+          <button type="submit" class="btn primary">${_("Send message")}</button>
+          <p class="form-hint">${_("By sending this message, you agree to be contacted at the email you provided.")}</p>
+        </form>
+      </div>
+
+      <!-- RIGHT: Contact info -->
+      <aside class="contact-info-card" role="complementary" aria-labelledby="contact-info-title">
+        <h2 id="contact-info-title" class="section-title">${_("Contact information")}</h2>
+
+        <ul class="contact-list" aria-label="${_('Contact details')}">
+          <li>
+            <span class="ci-label">${_("Email")}:</span>
+            <a href="mailto:info@cusc.vn">info@cusc.vn</a> <!-- TODO: thay -->
+          </li>
+          <li>
+            <span class="ci-label">${_("Phone")}:</span>
+            <a href="tel:+842922835579">+84 292 2835 579</a> <!-- TODO: thay -->
+          </li>
+          <li>
+            <span class="ci-label">${_("Address")}:</span>
+            ${_("1 Ly Tu Trong St, Ninh Kieu, Can Tho, Vietnam")} <!-- TODO: thay -->
+          </li>
+          <li>
+            <span class="ci-label">${_("Office hours")}:</span>
+            ${_("Mon–Fri, 08:00–17:00 (GMT+7)")}
+          </li>
+        </ul>
+
+        <!-- Optional: social links -->
+        <div class="contact-social">
+          <a href="#" aria-label="${_('Facebook')}" class="social-link">Facebook</a>
+          <a href="#" aria-label="${_('YouTube')}" class="social-link">YouTube</a>
+          <a href="#" aria-label="${_('Zalo')}" class="social-link">Zalo</a>
         </div>
-    </section>
+      </aside>
+    </div>
+
+    <!-- Map -->
+    <div class="contact-map" role="region" aria-label="${_('Location map')}">
+      <!-- TODO: thay src bằng map của bạn (Google Maps embed). -->
+      <iframe
+        title="${_('CUSC location map')}"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Can+Tho+University+Software+Center&output=embed">
+      </iframe>
+    </div>
+
+    <!-- Illustration kept from Indigo -->
+    <div class="graphic-img">
+      <img src="${static.url('images/contact.svg')}" alt="${_('Illustration')}" />
+      <img class="dark" src="${static.url('images/contact-dark.svg')}" alt="${_('Illustration (dark)')}" />
+    </div>
+  </section>
 </main>
+
+<!-- Minimal scoped styles to fit with Open edX theme -->
+<style>
+  .contact-page { margin-top: 1rem; }
+  .contact-title { margin-bottom: .5rem; }
+  .contact-intro { margin-bottom: 1.5rem; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 992px) {
+    .contact-grid {
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .contact-form-card, .contact-info-card {
+    background: var(--body-bg, #fff);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  }
+
+  .section-title { margin-top: 0; margin-bottom: .75rem; }
+
+  .contact-form .field { margin-bottom: .75rem; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; padding: .625rem .75rem; border-radius: 8px; border: 1px solid #ced4da;
+    background: transparent;
+  }
+  .contact-form .btn.primary {
+    display: inline-block; padding: .6rem 1rem; border-radius: 10px; border: 0; cursor: pointer;
+  }
+
+  .contact-list { list-style: none; padding: 0; margin: 0 0 .75rem 0; }
+  .contact-list li { margin: .4rem 0; }
+  .ci-label { font-weight: 600; margin-right: .25rem; }
+
+  .contact-social .social-link { margin-right: .75rem; text-decoration: underline; }
+  .contact-map { margin-top: 1.25rem; border-radius: 12px; overflow: hidden; }
+  .contact-map iframe { width: 100%; height: 340px; border: 0; }
+</style>
