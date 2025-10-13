@@ -5,18 +5,25 @@
 
 <%block name="pagetitle">${_("About")}</%block>
 
-<main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("About")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/about.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/about-dark.svg')}" alt="Runs on Tutor" />
-        </div>
-    </section>
+<main id="main" aria-label="Content" tabindex="-1" style="font-family: 'Segoe UI', sans-serif; background-color: #f8fafc; padding: 40px 0;">
+  <section class="container about" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px; max-width: 1200px; margin: 0 auto;">
+    
+    <!-- Khung giới thiệu -->
+    <div class="about-text" style="flex: 1; min-width: 300px; background-color: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+      <h1 style="font-size: 32px; font-weight: bold; color: #1e40af; margin-bottom: 20px;">
+        <%block name="pageheader">${page_header or _("Giới thiệu về nền tảng CUSC E-Learning")}</%block>
+      </h1>
+      <p style="font-size: 17px; line-height: 1.6; color: #374151; text-align: justify;">
+        <%block name="pagecontent">
+          ${page_content or _("CUSC E-Learning là nền tảng học tập trực tuyến được phát triển dựa trên công nghệ Open edX, cung cấp môi trường học hiện đại, thân thiện và linh hoạt cho sinh viên và giảng viên. Hệ thống hỗ trợ học mọi lúc mọi nơi, giúp tối ưu hóa trải nghiệm học tập trực tuyến.")}
+        </%block>
+      </p>
+    </div>
+
+    <!-- Khung hình ảnh -->
+    <div class="about-image" style="flex: 1; min-width: 300px; text-align: center;">
+      <img src="${static.url('images/cusc-logo.png')}" alt="Giới thiệu CUSC E-Learning" style="width: 100%; max-width: 450px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <img class="dark" src="${static.url('images/about-dark.svg')}" alt="Giới thiệu CUSC E-Learning" style="display: none;">
+    </div>
+  </section>
 </main>
