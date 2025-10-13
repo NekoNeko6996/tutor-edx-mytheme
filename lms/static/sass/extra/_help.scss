@@ -25,6 +25,7 @@
         font-size: 1.1rem;
         opacity: 0.9;
         margin-bottom: 1.5rem;
+        color: #fff !important;
       }
 
       .help-buttons {
@@ -39,7 +40,7 @@
 
           &.primary {
             background: #fff;
-            color: var(--cusc-blue);
+            color: var(--cusc-blue) !important;
             &:hover {
               background: rgba(255,255,255,0.9);
             }
