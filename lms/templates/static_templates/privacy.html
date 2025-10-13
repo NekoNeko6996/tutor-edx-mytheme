@@ -1,24 +1,122 @@
 <%namespace name='static' file='../static_content.html'/>
 <%page expression_filter="h"/>
 <%! from django.utils.translation import gettext as _ %>
-
-
 <%inherit file="../main.html" />
 
 <%block name="pagetitle">${_("Privacy Policy")}</%block>
 
-<main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Privacy Policy")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/privacy.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/privacy-dark.svg')}" alt="Runs on Tutor" />
+<main id="main" class="privacy-page" aria-label="Content" tabindex="-1">
+    <section class="container about privacy-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <%block name="pageheader">${page_header or _("Privacy Policy")}</%block>
+                </h1>
+                <p class="lead">
+                    <%block name="pagecontent">${page_content or _("Your privacy is important to us. This policy explains how CUSC Learning collects, uses, and protects your information when you use our platform.")}</%block>
+                </p>
+            </div>
+            <div class="hero-graphic">
+                <img src="${static.url('images/privacy.svg')}" alt="Privacy illustration" />
+                <img class="dark" src="${static.url('images/privacy-dark.svg')}" alt="Privacy illustration dark" />
+            </div>
+        </div>
+    </section>
+
+    <section class="container privacy-content">
+        <div class="policy-section">
+            <h2>1. Information We Collect</h2>
+            <p>
+                We collect personal information that you voluntarily provide to us when you register on the platform,
+                enroll in a course, or contact us for support. This may include your name, email address, profile photo,
+                phone number, and any other details you share in your profile.
+            </p>
+            <p>
+                Additionally, we automatically collect some technical information such as your IP address, browser type,
+                device information, and usage data to help us improve system performance and security.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>2. How We Use Your Information</h2>
+            <ul>
+                <li>To create and manage your learning account.</li>
+                <li>To deliver courses, assessments, and certificates.</li>
+                <li>To personalize your learning experience and recommend relevant content.</li>
+                <li>To communicate important updates, newsletters, or promotional offers (you can opt out anytime).</li>
+                <li>To maintain security and prevent unauthorized access.</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>3. Data Protection and Security</h2>
+            <p>
+                We implement appropriate administrative, technical, and physical safeguards to protect your personal
+                data against unauthorized access, modification, disclosure, or destruction.
+            </p>
+            <p>
+                All sensitive data, such as passwords, are encrypted using industry-standard technologies.
+                Access to your data is restricted to authorized personnel only.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>4. Cookies and Tracking Technologies</h2>
+            <p>
+                We use cookies to enhance your browsing experience, remember your preferences, and analyze site traffic.
+                You can control or disable cookies through your browser settings, but some parts of the site may not function properly without them.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>5. Third-Party Services</h2>
+            <p>
+                Our platform may contain links to third-party websites or services, such as payment gateways or analytics tools.
+                Please note that we are not responsible for the privacy practices of these external services.
+                We encourage you to review their respective privacy policies.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>6. Data Retention</h2>
+            <p>
+                We retain your personal data for as long as your account is active or as needed to provide services.
+                If you choose to close your account, we will delete your personal information within a reasonable timeframe,
+                except when retention is required by law.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>7. Your Rights</h2>
+            <p>
+                You have the right to access, update, or delete your personal data. You may also request that we limit or stop processing your data.
+                To exercise these rights, please contact our support team at
+                <a href="mailto:support@cusc.vn">support@cusc.vn</a>.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>8. Changes to This Policy</h2>
+            <p>
+                We may update this Privacy Policy periodically to reflect changes in our practices or for other operational,
+                legal, or regulatory reasons. Updates will be posted on this page with the effective date clearly indicated.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>9. Contact Us</h2>
+            <p>
+                If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:
+            </p>
+            <ul>
+                <li>Email: <a href="mailto:support@cusc.vn">info@cusc.vn</a></li>
+                <li>Phone: +84 292 3835 579</li>
+                <li>Address: 1 Ly Tu Trong St, Ninh Kieu, Can Tho, Vietnam</li>
+            </ul>
+        </div>
+
+        <div class="policy-last-update">
+            <p><strong>Last Updated:</strong> September 1, 2025</p>
         </div>
     </section>
 </main>

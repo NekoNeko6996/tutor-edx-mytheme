@@ -1,0 +1,92 @@
+    .privacy-page {
+  padding: 3rem 0;
+
+  .privacy-hero {
+    background: linear-gradient(135deg, var(--cusc-blue), var(--accent));
+    border-radius: 20px;
+    color: #fff;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+
+      h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .lead {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+    }
+
+    .hero-graphic {
+      flex: 1 1 350px;
+      text-align: center;
+
+      img {
+        max-width: 80%;
+        transition: transform 0.3s;
+      }
+
+      img.dark {
+        display: none;
+      }
+
+      body.dark & {
+        img.dark {
+          display: block;
+        }
+        img:not(.dark) {
+          display: none;
+        }
+      }
+
+      &:hover img {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+  .privacy-content {
+    .policy-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line, #e5e7eb);
+
+      h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        color: var(--cusc-blue);
+      }
+
+      p {
+        font-size: 1rem;
+        color: var(--txt, #374151);
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--accent);
+        font-weight: 600;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
