@@ -1,10 +1,10 @@
-    .privacy-page {
+.terms-page {
   padding: 3rem 0;
 
-  .privacy-hero {
+  .terms-hero {
     background: linear-gradient(135deg, var(--cusc-blue), var(--accent));
     border-radius: 20px;
-    color: #fff !important;
+    color: #fff;
     padding: 3rem 2rem;
     margin-bottom: 3rem;
 
@@ -61,8 +61,8 @@
     }
   }
 
-  .privacy-content {
-    .policy-section {
+  .terms-content {
+    .terms-section {
       margin-bottom: 2.5rem;
       padding-bottom: 2rem;
       border-bottom: 1px solid var(--line, #e5e7eb);
@@ -74,10 +74,18 @@
         color: var(--cusc-blue);
       }
 
-      p {
+      p, li {
         font-size: 1rem;
         color: var(--txt, #374151);
         line-height: 1.6;
+      }
+
+      ul {
+        margin-left: 1.5rem;
+        li {
+          list-style-type: disc;
+          margin-bottom: 0.3rem;
+        }
       }
 
       a {
@@ -88,6 +96,13 @@
           text-decoration: underline;
         }
       }
+    }
+
+    .terms-last-update {
+      text-align: right;
+      font-style: italic;
+      color: var(--sub, #6b7280);
+      margin-top: 2rem;
     }
   }
 }
