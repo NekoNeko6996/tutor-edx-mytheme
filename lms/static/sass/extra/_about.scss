@@ -1,0 +1,433 @@
+/* =============================
+   About page – theme-aware (light & dark)
+   ============================= */
+
+/* ===== Đồng bộ token với theme toàn site ===== */
+:root {
+    --about-bg: var(--bg);
+    --about-surface: var(--card);
+    --about-card: var(--card);
+    --about-text: var(--txt);
+    --about-sub: var(--sub);
+    --about-line: var(--line);
+    --about-primary: var(--cusc-blue);
+    --about-primary-2: var(--cusc-blue-hover);
+    --about-accent: var(--accent);
+}
+
+html.dark,
+.theme-dark,
+[data-theme="dark"] {
+    --about-bg: var(--bg-dark, var(--bg));
+    --about-surface: var(--card-dark, var(--card));
+    --about-card: var(--card-dark, var(--card));
+    --about-text: var(--txt-dark, var(--txt));
+    --about-sub: var(--sub-dark, var(--sub));
+    --about-line: var(--line-dark, var(--line));
+    --about-primary: var(--cusc-blue-200, var(--cusc-blue));
+    --about-primary-2: var(--cusc-blue-300, var(--cusc-blue-hover));
+    --about-accent: var(--accent-dark, var(--accent));
+}
+
+/* =============================
+   Page Base
+   ============================= */
+.about-page {
+    background:
+        radial-gradient(1200px 800px at 50% -10%,
+            color-mix(in oklab, var(--about-primary) 8%, transparent), transparent 70%),
+        var(--about-bg);
+    color: var(--about-text);
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout & type */
+.container {
+    max-width: 1120px;
+    margin-inline: auto;
+    padding: 72px 24px;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+h1 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 800;
+    color: var(--about-text);
+}
+
+h2 {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-weight: 700;
+    color: var(--about-text);
+}
+
+.lead {
+    font-size: 1.1rem;
+    color: var(--about-sub);
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+/* =============================
+   Buttons – đồng bộ trắng chữ, nền xanh (sáng rõ & sang hơn)
+   ============================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
+    color: #fff !important;
+}
+
+/* =============================
+   PRIMARY BUTTON – gradient xanh chính thương hiệu
+   ============================= */
+.btn--primary {
+    background: linear-gradient(145deg,
+            color-mix(in oklab, var(--about-primary) 95%, #ffffff 5%),
+            color-mix(in oklab, var(--about-primary-2) 90%, #000000 10%));
+    border: 1px solid color-mix(in oklab, var(--about-primary-2) 65%, var(--about-primary) 35%);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    box-shadow:
+        0 4px 12px color-mix(in oklab, var(--about-primary) 45%, transparent),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+    &:hover {
+        background: linear-gradient(145deg,
+                color-mix(in oklab, var(--about-primary-2) 95%, #ffffff 5%),
+                color-mix(in oklab, var(--about-primary) 85%, #000000 15%));
+        transform: translateY(-3px);
+        box-shadow:
+            0 8px 22px color-mix(in oklab, var(--about-primary) 50%, transparent),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        filter: brightness(1.05);
+    }
+
+    &:active {
+        transform: translateY(0);
+        filter: brightness(0.95);
+    }
+}
+
+/* =============================
+   GHOST BUTTON – cùng tone xanh, sáng hơn 1 cấp (chữ trắng)
+   ============================= */
+.btn--ghost {
+    background: linear-gradient(145deg,
+            color-mix(in oklab, var(--about-primary) 80%, #ffffff 20%),
+            color-mix(in oklab, var(--about-primary-2) 70%, #000000 10%));
+    border: 1px solid color-mix(in oklab, var(--about-primary) 70%, #ffffff 20%);
+    box-shadow:
+        0 3px 10px color-mix(in oklab, var(--about-primary) 35%, transparent),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        background: linear-gradient(145deg,
+                color-mix(in oklab, var(--about-primary-2) 85%, #ffffff 15%),
+                color-mix(in oklab, var(--about-primary) 75%, #000000 15%));
+        transform: translateY(-3px);
+        box-shadow:
+            0 8px 20px color-mix(in oklab, var(--about-primary) 50%, transparent),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+        filter: brightness(1.08);
+    }
+
+    &:active {
+        transform: translateY(0);
+        filter: brightness(0.9);
+    }
+}
+
+/* Cải thiện hiệu ứng khi focus bằng bàn phím */
+.btn:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--about-primary) 70%, #ffffff 30%);
+    outline-offset: 3px;
+}
+
+//Icon test
+.about--values .value__icon {
+    background: linear-gradient(135deg, var(--about-primary), var(--about-primary-2));
+    box-shadow: 0 8px 20px color-mix(in oklab, var(--about-primary) 30%, transparent);
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+
+.about--values .value__icon svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+    /* bảo đảm trắng luôn */
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.about--values .value__icon:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 26px color-mix(in oklab, var(--about-primary) 50%, transparent);
+    filter: brightness(1.1);
+}
+
+
+/* =============================
+   Hero
+   ============================= */
+.about__hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    border-radius: 20px;
+    padding: 64px 48px;
+    background:
+        linear-gradient(135deg,
+            color-mix(in oklab, var(--about-primary) 3%, var(--about-card)),
+            var(--about-card));
+    border: 1px solid var(--about-line);
+    box-shadow: 0 10px 36px color-mix(in oklab, #000 12%, transparent);
+
+    h1 {
+        color: color-mix(in oklab, var(--about-primary) 65%, var(--about-text));
+        margin-bottom: 16px;
+        text-shadow: 0 1px 2px color-mix(in oklab, #000 12%, transparent);
+    }
+
+    .lead {
+        color: color-mix(in oklab, var(--about-text) 88%, var(--about-sub) 12%);
+        margin-bottom: 28px;
+    }
+
+    .about__cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hero-illu img {
+        width: 100%;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 8px 26px color-mix(in oklab, var(--about-primary) 20%, transparent);
+    }
+}
+
+/* =============================
+   Divider
+   ============================= */
+.about__divider {
+    height: 1px;
+    margin: 48px auto;
+    max-width: 1120px;
+    background: linear-gradient(90deg, transparent,
+            color-mix(in oklab, var(--about-primary) 40%, transparent), transparent);
+    opacity: .5;
+}
+
+/* =============================
+   Card Base
+   ============================= */
+.card {
+    background: var(--about-card);
+    border: 1px solid var(--about-line);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 6px 18px color-mix(in oklab, #000 8%, transparent);
+    transition: transform .2s ease, box-shadow .2s ease;
+
+    &--hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px color-mix(in oklab, #000 14%, transparent);
+    }
+}
+
+/* =============================
+   Mission
+   ============================= */
+.about--mission h2 {
+    color: var(--about-primary);
+    margin-bottom: 12px;
+}
+
+.about--mission p {
+    color: color-mix(in oklab, var(--about-text) 80%, var(--about-sub) 20%);
+}
+
+/* =============================
+   Stats
+   ============================= */
+.about--stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+
+    .stat {
+        text-align: center;
+        padding: 28px;
+        transition: all .25s ease;
+    }
+
+    .stat__num {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--about-primary);
+        text-shadow: 0 1px 2px color-mix(in oklab, var(--about-primary) 30%, transparent);
+    }
+
+    .stat__label {
+        margin-top: 8px;
+        color: color-mix(in oklab, var(--about-text) 75%, var(--about-sub) 25%);
+        font-weight: 600;
+    }
+
+    .stat:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 22px color-mix(in oklab, var(--about-primary) 25%, transparent);
+    }
+}
+
+/* =============================
+   Values
+   ============================= */
+.about--values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+
+    .value__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 12px;
+        background: linear-gradient(135deg, var(--about-primary), var(--about-primary-2));
+        box-shadow: 0 6px 12px color-mix(in oklab, var(--about-primary) 25%, transparent);
+
+        svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff;
+        }
+    }
+
+    h3 {
+        color: color-mix(in oklab, var(--about-text) 90%, var(--about-primary) 10%);
+        margin-bottom: 4px;
+    }
+
+    p {
+        color: color-mix(in oklab, var(--about-text) 80%, var(--about-sub) 20%);
+    }
+}
+
+/* =============================
+   Story
+   ============================= */
+.about--story {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 40px;
+    align-items: center;
+
+    .story__media img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 8px 26px color-mix(in oklab, var(--about-primary) 20%, transparent);
+    }
+
+    .story__text h2 {
+        color: var(--about-primary);
+        margin-bottom: 12px;
+    }
+
+    .story__text p {
+        color: color-mix(in oklab, var(--about-text) 80%, var(--about-sub) 20%);
+        margin-bottom: 12px;
+    }
+
+    .bullets {
+        list-style: disc;
+        padding-left: 22px;
+        color: var(--about-text);
+    }
+}
+
+/* =============================
+   Dark-mode image swap
+   ============================= */
+.hero-illu img.dark,
+.story__media img.dark {
+    display: none;
+}
+
+:where(html.dark, .theme-dark, [data-theme="dark"]) .hero-illu img.dark,
+:where(html.dark, .theme-dark, [data-theme="dark"]) .story__media img.dark {
+    display: block;
+}
+
+:where(html.dark, .theme-dark, [data-theme="dark"]) .hero-illu img:not(.dark),
+:where(html.dark, .theme-dark, [data-theme="dark"]) .story__media img:not(.dark) {
+    display: none;
+}
+
+/* =============================
+   Animations
+   ============================= */
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+[data-animate="rise"] {
+    animation: rise .6s ease both;
+}
+
+[data-animate="fade"] {
+    animation: fade .7s ease .05s both;
+}
+
+/* =============================
+   Responsive
+   ============================= */
+@media (max-width:1024px) {
+
+    .about__hero,
+    .about--story {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about__hero-media {
+        order: -1;
+    }
+}

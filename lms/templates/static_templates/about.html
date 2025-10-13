@@ -5,25 +5,125 @@
 
 <%block name="pagetitle">${_("About")}</%block>
 
-<main id="main" aria-label="Content" tabindex="-1" style="font-family: 'Segoe UI', sans-serif; background-color: #f8fafc; padding: 40px 0;">
-  <section class="container about" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px; max-width: 1200px; margin: 0 auto;">
-    
-    <!-- Khung giới thiệu -->
-    <div class="about-text" style="flex: 1; min-width: 300px; background-color: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-      <h1 style="font-size: 32px; font-weight: bold; color: #1e40af; margin-bottom: 20px;">
-        <%block name="pageheader">${page_header or _("Giới thiệu về nền tảng CUSC E-Learning")}</%block>
+<main id="main" aria-label="Content" tabindex="-1" class="about-page">
+  <!-- Hero -->
+  <section class="container about about__hero" data-animate="rise">
+    <div class="about__hero-text">
+      <h1>
+        <%block name="pageheader">${page_header or _("Learning that moves you forward")}</%block>
       </h1>
-      <p style="font-size: 17px; line-height: 1.6; color: #374151; text-align: justify;">
-        <%block name="pagecontent">
-          ${page_content or _("CUSC E-Learning là nền tảng học tập trực tuyến được phát triển dựa trên công nghệ Open edX, cung cấp môi trường học hiện đại, thân thiện và linh hoạt cho sinh viên và giảng viên. Hệ thống hỗ trợ học mọi lúc mọi nơi, giúp tối ưu hóa trải nghiệm học tập trực tuyến.")}
-        </%block>
+      <p class="lead">
+        <%block name="pagecontent">${page_content or _("We bring high-quality, flexible learning to everyone—gain real-world skills, earn credentials, and unlock new opportunities.")}</%block>
       </p>
+      <div class="about__cta">
+        <a class="btn btn--primary" href="/courses">${_("Browse courses")}</a>
+        <a class="btn btn--ghost" href="/register">${_("Join for free")}</a>
+      </div>
     </div>
 
-    <!-- Khung hình ảnh -->
-    <div class="about-image" style="flex: 1; min-width: 300px; text-align: center;">
-      <img src="${static.url('images/cusc-logo.png')}" alt="Giới thiệu CUSC E-Learning" style="width: 100%; max-width: 450px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-      <img class="dark" src="${static.url('images/about-dark.svg')}" alt="Giới thiệu CUSC E-Learning" style="display: none;">
+    <div class="about__hero-media">
+      <div class="hero-illu">
+        <img src="${static.url('images/about.svg')}" alt="Learning platform illustration" />
+        <img class="dark" src="${static.url('images/about-dark.svg')}" alt="Learning platform illustration (dark)" />
+      </div>
+      <div class="sparkles" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="about__divider"></div>
+
+  <!-- Mission -->
+  <section class="container about about--mission" data-animate="fade">
+    <div class="card card--elev">
+      <h2>Our mission</h2>
+      <p>To expand access to world-class education and help learners build job-ready skills—anytime, anywhere.</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="container about about--stats" aria-label="Key numbers" data-animate="fade">
+    <div class="stat card card--glass">
+      <div class="stat__num">120k+</div>
+      <div class="stat__label">Active learners</div>
+    </div>
+    <div class="stat card card--glass">
+      <div class="stat__num">850+</div>
+      <div class="stat__label">Courses & projects</div>
+    </div>
+    <div class="stat card card--glass">
+      <div class="stat__num">70+</div>
+      <div class="stat__label">Partners</div>
+    </div>
+    <div class="stat card card--glass">
+      <div class="stat__num">94%</div>
+      <div class="stat__label">Learner satisfaction</div>
+    </div>
+  </section>
+
+  <!-- Value props -->
+<section class="container about about--values" aria-label="Why learn with us" data-animate="rise">
+ <article class="value card card--hover">
+  <div class="value__icon">
+    <!-- Learn from experts – Graduation Cap Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">
+      <path d="M12 3L1 9l11 6 9-4.91V14h2V9L12 3Zm0 8.75L5.62 9 12 5.25 18.38 9 12 11.75ZM4 11v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3l-8 4L4 11Z"/>
+    </svg>
+  </div>
+  <h3>Learn from experts</h3>
+  <p>Faculty and industry professionals ensure content is current and credible.</p>
+</article>
+
+
+  <article class="value card card--hover">
+    <div class="value__icon">
+      <!-- Hands-on learning -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">
+        <path d="M20 7H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h8v-2H4V9h16v4h2V9c0-1.1-.9-2-2-2Zm-6 6h8v9h-8v-9Zm2 7h4v-5h-4v5Z"/>
+      </svg>
+    </div>
+    <h3>Hands-on learning</h3>
+    <p>Practice with real projects and assessments to prove your skills.</p>
+  </article>
+
+  <article class="value card card--hover">
+    <div class="value__icon">
+      <!-- Flexible schedules -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">
+        <path d="M12 1a11 11 0 1 0 0 22a11 11 0 0 0 0-22Zm0 2a9 9 0 1 1 0 18a9 9 0 0 1 0-18Zm1 4h-2v6l5 3l1-1.7l-4-2.3V7Z"/>
+      </svg>
+    </div>
+    <h3>Flexible schedules</h3>
+    <p>Learn at your pace with mobile-friendly, bite-sized lessons.</p>
+  </article>
+
+  <article class="value card card--hover">
+    <div class="value__icon">
+      <!-- Recognized certificates -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">
+        <path d="M12 2L4 5v6c0 5 3.4 9.8 8 11c4.6-1.2 8-6 8-11V5l-8-3Zm0 2.2l6 2.3V11c0 4.3-2.7 8.3-6 9.6c-3.3-1.3-6-5.3-6-9.6V6.5l6-2.3ZM10 8v6l5-3l-5-3Z"/>
+      </svg>
+    </div>
+    <h3>Recognized certificates</h3>
+    <p>Earn shareable credentials that impress employers.</p>
+  </article>
+</section>
+
+
+  <!-- Story -->
+  <section class="container about about--story" data-animate="fade">
+    <div class="story__media">
+      <img src="${static.url('images/about.svg')}" alt="Platform experience" />
+      <img class="dark" src="${static.url('images/about-dark.svg')}" alt="Platform experience (dark)" />
+    </div>
+    <div class="story__text">
+      <h2>From first course to new career</h2>
+      <p>Follow a guided path from fundamentals to job-ready proficiency—with community and career support at every step.</p>
+      <ul class="bullets bullets--check">
+        <li>Clear progression from beginner to advanced</li>
+        <li>Career insights, interview prep & portfolios</li>
+        <li>Supportive global learning community</li>
+      </ul>
     </div>
   </section>
 </main>
