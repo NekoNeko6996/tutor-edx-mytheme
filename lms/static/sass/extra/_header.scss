@@ -1,150 +1,314 @@
 // Include custom header
 .nav-skip {
-    &:focus {
-        z-index: 9999;
-    }
+  &:focus {
+    z-index: 9999;
+  }
 }
+
 header.global-header {
-    border: none;
-    padding: 0;
-    overflow: visible;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10);
-    &:after {
-        content: "";
-        clear: both;
-        display: block;
-    }
-    .main-header {
-        display: flex;
-        align-items: center;
-        height: 50px;
+  border: none;
+  padding: 0;
+  overflow: visible;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10);
 
-        @include media-breakpoint-up(lg) {
-            display: unset;
-            height: auto;
-        }
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+  .main-header {
+    display: flex;
+    align-items: center;
+    height: 50px;
+
+    @include media-breakpoint-up(lg) {
+      display: unset;
+      height: auto;
     }
-    .header-logo {
+  }
+
+  .header-logo {
+    margin: 0;
+
+    a {
+      margin: 15px 0 15px 35px;
+      height: auto;
+
+      @include media-breakpoint-up(lg) {
         margin: 0;
-        a {
-            margin: 15px 0 15px 35px;
-            height: auto;
-            @include media-breakpoint-up(lg) {
-                margin: 0;
-                margin: 20px 0 0;
-            }
-            .logo {
-                height: 24px;
-                margin: 0;
-            }
-        }
-        .course-header {
-            display: none;
-        }
-    }
-    .nav-links {
-        width: 100%;
-        .main {
-            margin: 0 0 0 38px;
-            .nav-tab {
-                a {
-                    font-size: 14px;
-                    font-weight: 500;
-                    line-height: 22px;
-                    padding: 20px 0;
-                    color: $light-dark;
-                    margin: 0 16px 0 0;
-                    border-bottom: 2px solid transparent;
-                    &.active, &:hover {
-                        color: $dark;
-                        border-bottom: 2px solid $primary;
-                    }
-                }
-            }
-        }
-        .secondary {
-            margin: 0;
-            position: relative;
-            justify-content: end;
-            .toggle-user-dropdown {
-                padding: 9px 15px;
-                background: $primary-light;
-                color: $primary;
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 20px;
-                border-radius: 6px;
-                margin: 12px 0;
-                &:after {
-                    margin: 4px 0 0 4px;
-                    border: 2px solid #15376D;
-                    border-width: 2px 2px 0 0;
-                    transform: rotate(135deg);
-                    content: "";
-                    height: 5px;
-                    position: relative;
-                    top: -3px;
-                    width: 5px;
-                    display: inline-block;
-                    vertical-align: top;
-                }
-                .username {
-                    font: -webkit-control;
-                }
-            }
-            .dropdown-user-menu {
-                position: absolute;
-                right: 0;
-                top: 60px;
-                width: 224px;
-                border-radius: 6px;
-                box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
-                border: none;
-                overflow: hidden;
-                .dropdown-item {
-                    border: none !important;
-                    &.hide-desktop {
-                        @include media-breakpoint-up(lg) {
-                            display: none;
-                        }
-                    }
-                    a {
-                        box-sizing: border-box;
-                        padding: 10px;
-                        font-size: 14px;
-                        line-height: 20px;
-                        color: $light-dark;
-                        &:hover {
-                            background: $primary-light;
-                            color: $dark;                         ;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .hamburger-menu {
-        height: 17px;
-        width: 20px;
-        left: 15px;
-        top: 18px;
-        background: none;
-        border: 0;
-        padding: 0;
-        box-shadow: none;
+        margin: 20px 0 0;
+      }
 
-        .line {
-            height: 2px;
-            &:nth-child(2), &:nth-child(3) {
-                top: 6px;
-            }
-            &:nth-child(4) {
-                top: 12px;
-            }
-        }
+      .logo {
+        height: 24px;
+        margin: 0;
+      }
     }
+
+    .course-header {
+      display: none;
+    }
+  }
+
+  .nav-links {
+    width: 100%;
+
+    .main {
+      margin: 0 0 0 38px;
+
+      .nav-tab {
+        a {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 22px;
+          padding: 20px 0;
+          color: $light-dark;
+          margin: 0 16px 0 0;
+          border-bottom: 2px solid transparent;
+
+          &.active,
+          &:hover {
+            color: $dark;
+            border-bottom: 2px solid $primary;
+          }
+        }
+      }
+    }
+
+    .secondary {
+      margin: 0;
+      position: relative;
+      justify-content: end;
+
+      .toggle-user-dropdown {
+        padding: 9px 15px;
+        background: $primary-light;
+        color: $primary;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        border-radius: 6px;
+        margin: 12px 0;
+
+        &:after {
+          margin: 4px 0 0 4px;
+          border: 2px solid #15376D;
+          border-width: 2px 2px 0 0;
+          transform: rotate(135deg);
+          content: "";
+          height: 5px;
+          position: relative;
+          top: -3px;
+          width: 5px;
+          display: inline-block;
+          vertical-align: top;
+        }
+
+        .username {
+          font: -webkit-control;
+        }
+      }
+
+      .dropdown-user-menu {
+        position: absolute;
+        right: 0;
+        top: 60px;
+        width: 224px;
+        border-radius: 6px;
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
+        border: none;
+        overflow: hidden;
+
+        .dropdown-item {
+          border: none !important;
+
+          &.hide-desktop {
+            @include media-breakpoint-up(lg) {
+              display: none;
+            }
+          }
+
+          a {
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 20px;
+            color: $light-dark;
+
+            &:hover {
+              background: $primary-light;
+              color: $dark;
+              ;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .hamburger-menu {
+    height: 17px;
+    width: 20px;
+    left: 15px;
+    top: 18px;
+    background: none;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+
+    .line {
+      height: 2px;
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        top: 6px;
+      }
+
+      &:nth-child(4) {
+        top: 12px;
+      }
+    }
+  }
 }
+
 .mobile-menu {
+  position: absolute;
+  left: 0;
+  top: 54px;
+  z-index: 9999;
+  margin: 0;
+  border: none;
+  border-bottom: 2px solid $primary;
+  width: 100%;
+
+  .mobile-nav-link {
+    a {
+      font-weight: normal;
+      padding: 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $light-dark;
+      border: none;
+
+      &:hover,
+      &.active {
+        background: $primary-light;
+        color: $dark;
+      }
+    }
+  }
+}
+
+.header-container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1600px;
+  box-sizing: border-box;
+
+  &:after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+.theme-toggle-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 0 !important;
+
+  @include media-breakpoint-up(lg) {
+    margin-right: 1.5rem !important;
+  }
+
+  .light-theme-icon,
+  .dark-theme-icon {
+    width: 18px;
+    height: 1.5rem;
+    color: $primary;
+
+    & svg {
+      width: inherit;
+      height: inherit;
+    }
+  }
+
+  #toggle-switch {
+    display: flex;
+    margin: 0 5px;
+
+    label {
+      margin: 0;
+    }
+
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 45px;
+      height: 24px;
+
+      /* Hide default HTML checkbox */
+      input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:focus {
+          ~.slider {
+            outline: 2px solid $primary;
+            outline-offset: 1px;
+          }
+        }
+      }
+
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $light-theme-switch-bg-color;
+        transition: .4s;
+
+        &::before {
+          position: absolute;
+          content: "";
+          height: 20px;
+          width: 20px;
+          left: 3px;
+          bottom: 2px;
+          background-color: white;
+          transition: .4s;
+        }
+
+        &.round {
+          border-radius: 34px;
+
+          &::before {
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+body.indigo-dark-theme {
+  background: $body-bg-d !important;
+  color: $text-color-d !important;
+
+  .window-wrap {
+    background: $body-bg-d;
+  }
+
+  .mobile-menu {
     position: absolute;
     left: 0;
     top: 54px;
@@ -153,214 +317,107 @@ header.global-header {
     border: none;
     border-bottom: 2px solid $primary;
     width: 100%;
+
     .mobile-nav-link {
-        a {
-            font-weight: normal;
-            padding: 16px;
-            font-size: 14px;
-            line-height: 20px;
-            color: $light-dark;
-            border: none;
-            &:hover, &.active {
-                background: $primary-light;
-                color: $dark;
+      a {
+        background: #454545;
+        color: $text-color-d;
+
+        &:hover,
+        &.active {
+          background: #323232;
+          color: $text-color-d;
+        }
+      }
+    }
+  }
+
+  header.global-header {
+    background: $body-bg-d;
+    box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.8), 0px 1px 3px 0px rgba(255, 255, 255, 0.1);
+
+    .nav-links {
+      .main {
+        .nav-tab {
+          a {
+            color: $text-color-d;
+
+            &.active,
+            &:hover {
+              color: $text-color-d;
+              border-bottom: 2px solid $text-color-d;
             }
+          }
         }
-    }
-}
-.header-container {
-    margin: 0 auto;
-    padding: 0 15px;
-    max-width: 1600px;
-    box-sizing: border-box;
-    &:after {
-        display: block;
-        clear: both;
-        content: "";
-    }
-}
+      }
 
-.theme-toggle-button{
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-right: 0 !important;
+      .secondary {
+        .toggle-user-dropdown {
+          background: $primary-d;
+          color: $btn-color-d;
 
-    @include media-breakpoint-up(lg) {
-        margin-right: 1.5rem !important;
-    }
-
-    .light-theme-icon, .dark-theme-icon{
-        width: 18px;
-        height: 1.5rem;
-        color: $primary;
-        & svg {
-            width: inherit;
-            height: inherit;
+          &:after {
+            border-color: $btn-color-d;
+          }
         }
+
+        .dropdown-user-menu {
+          background: $light-overlay-d;
+          box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.8), 0px 4px 6px -2px rgba(255, 255, 255, 0.05), 0px 10px 15px -3px rgba(255, 255, 255, 0.1);
+
+          .dropdown-item {
+            a {
+              color: $text-color-primary;
+              background: none;
+
+              &:hover {
+                background: $body-bg-d;
+                color: $text-color-d;
+                ;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .hamburger-menu {
+      .line {
+        background: $text-color-d;
+      }
+    }
+  }
+
+  // theme toggle switch
+  .theme-toggle-button {
+
+    .light-theme-icon,
+    .dark-theme-icon {
+      color: $text-color-primary;
     }
 
     #toggle-switch {
-        display: flex;
-        margin: 0 5px;
-
-        label {
-            margin: 0;
+      .switch {
+        input {
+          &:focus {
+            ~.slider {
+              outline-color: $primary-d;
+            }
+          }
         }
 
-/* The switch - the box around the slider */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 45px;
-            height: 24px;
+        /* The slider */
+        .slider {
+          background-color: $dark-theme-switch-bg-color;
 
-            /* Hide default HTML checkbox */
-            input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-
-              &:focus {
-                ~ .slider {
-                  outline: 2px solid $primary;
-                  outline-offset: 1px;
-                }
-              }
-            }
-
-            /* The slider */
-            .slider {
-                position: absolute;
-                cursor: pointer;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: $light-theme-switch-bg-color;
-                transition: .4s;
-
-                &::before{
-                    position: absolute;
-                    content: "";
-                    height: 20px;
-                    width: 20px;
-                    left: 3px;
-                    bottom: 2px;
-                    background-color: white;
-                    transition: .4s;
-                }
-
-                &.round{
-                    border-radius: 34px;
-                    &::before{
-                        border-radius: 50%;
-                    }
-                }
-            }
+          &::before {
+            transform: translateX(19px);
+            box-shadow: 0 0 1px $primary-d;
+          }
         }
+      }
     }
-}
-
-
-
-body.indigo-dark-theme {
-    background: $body-bg-d !important;
-    color: $text-color-d !important;
-    .window-wrap {
-        background: $body-bg-d;
-    }
-    .mobile-menu {
-        position: absolute;
-        left: 0;
-        top: 54px;
-        z-index: 9999;
-        margin: 0;
-        border: none;
-        border-bottom: 2px solid $primary;
-        width: 100%;
-        .mobile-nav-link {
-            a {
-                background: #454545;
-                color: $text-color-d;
-                &:hover, &.active {
-                    background: #323232;
-                    color: $text-color-d;
-                }
-            }
-        }
-    }
-    header.global-header {
-        background: $body-bg-d;
-        box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.8), 0px 1px 3px 0px rgba(255, 255, 255, 0.1);
-        .nav-links {
-            .main {
-                .nav-tab {
-                    a {
-                        color: $text-color-d;
-                        &.active, &:hover {
-                            color: $text-color-d;
-                            border-bottom: 2px solid $text-color-d;
-                        }
-                    }
-                }
-            }
-            .secondary {
-                .toggle-user-dropdown {
-                    background: $primary-d;
-                    color: $btn-color-d;
-                    &:after {
-                        border-color: $btn-color-d;
-                    }
-                }
-                .dropdown-user-menu {
-                    background: $light-overlay-d;
-                    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.8), 0px 4px 6px -2px rgba(255, 255, 255, 0.05), 0px 10px 15px -3px rgba(255, 255, 255, 0.1);
-                    .dropdown-item {
-                        a {
-                            color: $text-color-primary;
-                            background: none;
-                            &:hover {
-                                background: $body-bg-d;
-                                color: $text-color-d;                         ;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .hamburger-menu {
-            .line {
-                background: $text-color-d;
-            }
-        }
-    }
-
-// theme toggle switch
-  .theme-toggle-button{
-        .light-theme-icon, .dark-theme-icon{
-            color: $text-color-primary;
-        }
-        #toggle-switch {
-            .switch {
-                input {
-                  &:focus {
-                    ~ .slider {
-                      outline-color: $primary-d;
-                    }
-                  }
-                }
-                /* The slider */
-                .slider {
-                    background-color: $dark-theme-switch-bg-color;
-                    &::before{
-                        transform: translateX(19px);
-                        box-shadow: 0 0 1px $primary-d;
-                    }
-                }
-            }
-        }
-    }
+  }
 }
 
 /* =========================
@@ -390,14 +447,16 @@ body.indigo-dark-theme {
 header.global-header {
   background: #fff;
   border-bottom: 0 !important;
-  box-shadow: 0 6px 20px rgba(0,0,0,.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .03);
 }
+
 header.global-header .header-container {
   width: 100%;
   max-width: none;
   padding: 0;
   margin: 0;
 }
+
 header.global-header .main-header {
   display: flex;
   align-items: center;
@@ -408,7 +467,7 @@ header.global-header .main-header {
   background: transparent;
 }
 
-/* = Logo block (trái) */
+/* = Logo block */
 header.global-header .header-logo {
   margin: 0;
   display: flex !important;
@@ -416,6 +475,7 @@ header.global-header .header-logo {
   justify-content: flex-start;
   gap: 30px !important;
 }
+
 header.global-header .header-logo a {
   display: flex !important;
   align-items: center !important;
@@ -424,12 +484,14 @@ header.global-header .header-logo a {
   color: inherit;
   margin: 0;
 }
+
 header.global-header .header-logo .logo {
   height: 28px;
   width: auto;
   display: block;
   flex: 0 0 auto;
 }
+
 header.global-header .header-logo .brand-text {
   font-weight: 800;
   font-size: 1.15rem;
@@ -440,10 +502,11 @@ header.global-header .header-logo .brand-text {
   letter-spacing: .2px;
   transition: color .25s ease, transform .2s ease, text-shadow .25s ease;
 }
+
 header.global-header .header-logo .brand-link:hover .brand-text {
   color: var(--cusc-blue-hover);
   transform: translateY(-1px);
-  text-shadow: 0 2px 6px rgba(0,86,161,.25);
+  text-shadow: 0 2px 6px rgba(0, 86, 161, .25);
 }
 
 /* = Right cluster (Register • Sign In) */
@@ -469,8 +532,17 @@ header.global-header .btn-auth {
   cursor: pointer;
   transition: filter .15s ease, background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .25s ease, transform .25s ease;
 }
-header.global-header .btn-auth svg { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
-header.global-header .btn-auth span { line-height: 1; }
+
+header.global-header .btn-auth svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  display: block;
+}
+
+header.global-header .btn-auth span {
+  line-height: 1;
+}
 
 /* = Register button (outline green) */
 header.global-header .btn-register {
@@ -480,16 +552,18 @@ header.global-header .btn-register {
   font-weight: 800;
   font-size: 15px;
 }
+
 header.global-header .btn-register:hover {
   background: #ECFDF5;
   border-color: var(--accent-strong);
   color: var(--accent-strong);
-  box-shadow: 0 4px 10px rgba(16,185,129,.25);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, .25);
   transform: translateY(-2px);
 }
+
 header.global-header .btn-register:active {
   transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(16,185,129,.2);
+  box-shadow: 0 2px 5px rgba(16, 185, 129, .2);
 }
 
 /* = Sign in button (solid blue) */
@@ -500,46 +574,56 @@ header.global-header .btn-signin {
   font-weight: 800;
   font-size: 15px;
 }
+
 header.global-header .btn-signin:hover {
   background: var(--cusc-blue-hover);
   border-color: var(--cusc-blue-hover);
-  box-shadow: 0 4px 10px rgba(0,86,161,.3);
+  box-shadow: 0 4px 10px rgba(0, 86, 161, .3);
   transform: translateY(-2px);
 }
+
 header.global-header .btn-signin:active {
   transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0,86,161,.25);
+  box-shadow: 0 2px 5px rgba(0, 86, 161, .25);
   background: #00498C;
 }
+
 header.global-header .btn-signin:focus-visible {
-  outline: 2px solid rgba(0,86,161,.5);
+  outline: 2px solid rgba(0, 86, 161, .5);
   outline-offset: 2px;
 }
 
 /* = Optional: sr-only utility */
-.sr-only, .sr {
+.sr-only,
+.sr {
   position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0);
-  white-space: nowrap; border: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* === Discover Courses tab (center → both sides + shimmer + active) === */
 header.global-header .nav-discover {
-  margin-left: 1.5rem; /* tách vừa mắt khỏi 'CUSC Learning' */
+  margin-left: 1.5rem;
   font-weight: 600;
   color: var(--txt);
   text-decoration: none;
   font-size: 15px;
   position: relative;
-  display: inline-block;          /* để transform/width ổn định */
+  display: inline-block;
   transition: color .2s ease, transform .2s ease;
 }
+
 header.global-header .nav-discover:hover {
   color: var(--cusc-blue);
   transform: translateY(-1px);
 }
+
 header.global-header .nav-discover::after {
   content: "";
   position: absolute;
@@ -550,47 +634,61 @@ header.global-header .nav-discover::after {
   background: linear-gradient(90deg, var(--cusc-blue), var(--accent), var(--cusc-blue));
   background-size: 200% 100%;
   opacity: 0;
-  transform: translateX(-50%) scaleX(0);  /* scale từ giữa */
-  transform-origin: center;               /* từ giữa ra 2 bên */
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
   transition: transform .3s ease, opacity .25s ease;
 }
+
 header.global-header .nav-discover:hover::after,
 header.global-header .nav-discover.active::after {
   opacity: 1;
-  transform: translateX(-50%) scaleX(1); /* mở ra hai bên */
-  animation: shimmer 1.5s linear infinite;
+  transform: translateX(-50%) scaleX(1);
+  // animation: shimmer 1.5s linear infinite;
 }
+
 header.global-header .nav-discover.active {
   color: var(--cusc-blue);
   font-weight: 700;
 }
+
 @keyframes shimmer {
-  0%   { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: 0% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* ==== FINAL: Solid at top, glass on scroll ==== */
-header.global-header{
+header.global-header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   background: #fff !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  box-shadow: 0 6px 20px rgba(0,0,0,.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .03);
   border-bottom: 0;
   transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease;
 }
-header.global-header.scrolled{
-  background: rgba(255,255,255,0.72) !important;
+
+header.global-header.scrolled {
+  background: rgba(255, 255, 255, 0.72) !important;
   backdrop-filter: saturate(160%) blur(12px) !important;
   -webkit-backdrop-filter: saturate(160%) blur(12px) !important;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }
+
 header.global-header.scrolled::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 2px;
   pointer-events: none;
   background: linear-gradient(90deg, #0F59C9, #10B981);
@@ -600,135 +698,213 @@ header.global-header.scrolled::after {
 
 
 
-/* ==== Discover (đã đăng nhập) — giữ hiệu ứng riêng, tránh đè header guest ==== */
 /* =========================
-   AUTH HEADER ONLY (clean)
+   AUTH HEADER ONLY
    ========================= */
 
-/* Layout khối link khi đã đăng nhập */
-header.global-header .nav-links{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-}
-header.global-header .nav-links .main{
-  display:flex; align-items:center; gap:18px;
-}
-header.global-header .nav-links .secondary{
-  margin-left:auto; display:flex; align-items:center; gap:8px;
+header.global-header .nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-/* Reset “viền/gạch mặc định” của tab trong khu auth (tránh đè Discover) */
+header.global-header .nav-links .main {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+header.global-header .nav-links .secondary {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 header.global-header .nav-links .nav-tab,
-header.global-header .nav-links .nav-tab a{
-  border:0 !important; box-shadow:none !important; background-image:none !important;
+header.global-header .nav-links .nav-tab a {
+  border: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
 }
+
 header.global-header .nav-links .nav-tab::before,
-header.global-header .nav-links .nav-tab::after{ display:none !important; }
-
-/* Discover ở trạng thái đăng nhập (nếu bạn dùng class riêng) */
-header.global-header .nav-discover-auth{
-  position:relative; display:inline-flex; align-items:center;
-  margin-left:1.5rem; padding:10px 0;
-  font-size:15px; font-weight:600; line-height:1; color:var(--txt);
-  text-decoration:none; transition:color .2s ease;
+header.global-header .nav-links .nav-tab::after {
+  display: none !important;
 }
-header.global-header .nav-discover-auth:hover{ color:var(--cusc-blue); }
 
-/* Underline từ giữa ra hai bên + shimmer (active/hover) */
-header.global-header .nav-discover-auth::after{
-  content:""; position:absolute; left:50%; bottom:-6px; height:2px; width:100%;
-  background:linear-gradient(90deg,var(--cusc-blue),var(--accent),var(--cusc-blue));
-  background-size:200% 100%;
-  opacity:0; transform:translateX(-50%) scaleX(0); transform-origin:center;
-  border-radius:999px; transition:transform .28s ease, opacity .22s ease;
+
+header.global-header .nav-discover-auth {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 1.5rem;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--txt);
+  text-decoration: none;
+  transition: color .2s ease;
 }
+
+header.global-header .nav-discover-auth:hover {
+  color: var(--cusc-blue);
+}
+
+
+header.global-header .nav-discover-auth::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--cusc-blue), var(--accent), var(--cusc-blue));
+  background-size: 200% 100%;
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  border-radius: 999px;
+  transition: transform .28s ease, opacity .22s ease;
+}
+
 header.global-header .nav-discover-auth:hover::after,
-header.global-header .nav-discover-auth.active::after{
-  opacity:1; transform:translateX(-50%) scaleX(1); animation:shimmer 1.5s linear infinite;
+header.global-header .nav-discover-auth.active::after {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1);
+  animation: shimmer 1.5s linear infinite;
 }
-@keyframes shimmer{0%{background-position:0% 0}100%{background-position:200% 0}}
 
-/* User pill (nút hiển thị username) */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0
+  }
+
+  100% {
+    background-position: 200% 0
+  }
+}
+
+/* User pill */
 header.global-header .toggle-user-dropdown,
-header.global-header .nav-links .secondary > a:first-child,
-header.global-header .nav-links .secondary > button:first-child{
-  height:36px; padding:0 12px; display:inline-flex; align-items:center; justify-content:center;
-  gap:6px; border-radius:8px; border:1.3px solid var(--line,#e5e7eb);
-  background:#F8FBFF; color:var(--cusc-blue,#0056A1);
-  font-size:14px; font-weight:700; line-height:1; box-shadow:none;
+header.global-header .nav-links .secondary>a:first-child,
+header.global-header .nav-links .secondary>button:first-child {
+  height: 36px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 8px;
+  border: 1.3px solid var(--line, #e5e7eb);
+  background: #F8FBFF;
+  color: var(--cusc-blue, #0056A1);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: none;
 }
+
 header.global-header .toggle-user-dropdown::before,
-header.global-header .nav-links .secondary > a:first-child::before,
-header.global-header .nav-links .secondary > button:first-child::before{
-  content:""; width:15px; height:15px; display:inline-block; background:currentColor;
-  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-3.33 0-10 1.34-10 4v2h20v-2c0-2.66-6.67-4-10-4'/></svg>") no-repeat center/contain;
-          mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-3.33 0-10 1.34-10 4v2h20v-2c0-2.66-6.67-4-10-4'/></svg>") no-repeat center/contain;
+header.global-header .nav-links .secondary>a:first-child::before,
+header.global-header .nav-links .secondary>button:first-child::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-3.33 0-10 1.34-10 4v2h20v-2c0-2.66-6.67-4-10-4'/></svg>") no-repeat center/contain;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-3.33 0-10 1.34-10 4v2h20v-2c0-2.66-6.67-4-10-4'/></svg>") no-repeat center/contain;
 }
+
 header.global-header .toggle-user-dropdown:hover,
-header.global-header .nav-links .secondary > a:first-child:hover,
-header.global-header .nav-links .secondary > button:first-child:hover{
-  transform:translateY(-1px); box-shadow:0 3px 8px rgba(0,86,161,.1);
+header.global-header .nav-links .secondary>a:first-child:hover,
+header.global-header .nav-links .secondary>button:first-child:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 86, 161, .1);
 }
+
 header.global-header .toggle-user-dropdown:active,
-header.global-header .nav-links .secondary > a:first-child:active,
-header.global-header .nav-links .secondary > button:first-child:active{
-  transform:translateY(0); box-shadow:0 2px 6px rgba(0,86,161,.1);
+header.global-header .nav-links .secondary>a:first-child:active,
+header.global-header .nav-links .secondary>button:first-child:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 86, 161, .1);
 }
+
 header.global-header .toggle-user-dropdown:focus-visible,
-header.global-header .nav-links .secondary > a:first-child:focus-visible,
-header.global-header .nav-links .secondary > button:first-child:focus-visible{
-  outline:2px solid rgba(0,86,161,.35); outline-offset:2px;
+header.global-header .nav-links .secondary>a:first-child:focus-visible,
+header.global-header .nav-links .secondary>button:first-child:focus-visible {
+  outline: 2px solid rgba(0, 86, 161, .35);
+  outline-offset: 2px;
 }
 
 /* Dropdown user */
-header.global-header .dropdown-user-menu{
-  margin-top:8px; border:1px solid var(--line,#e5e7eb); border-radius:12px;
-  box-shadow:0 20px 40px rgba(0,0,0,.12); overflow:hidden;
-}
-header.global-header .dropdown-user-menu .dropdown-item a{
-  display:block; padding:10px 14px; color:var(--txt);
-}
-header.global-header .dropdown-user-menu .dropdown-item a:hover{
-  background:#F3F6FB; color:var(--cusc-blue);
+header.global-header .dropdown-user-menu {
+  margin-top: 8px;
+  border: 1px solid var(--line, #e5e7eb);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .12);
+  overflow: hidden;
 }
 
-/* Responsive nhỏ gọn */
-@media (max-width:1200px){
-  header.global-header .nav-links .main{ gap:14px; }
+header.global-header .dropdown-user-menu .dropdown-item a {
+  display: block;
+  padding: 10px 14px;
+  color: var(--txt);
 }
-@media (max-width:992px){
-  header.global-header .nav-discover-auth{ margin-left:.875rem; font-size:14px; }
+
+header.global-header .dropdown-user-menu .dropdown-item a:hover {
+  background: #F3F6FB;
+  color: var(--cusc-blue);
+}
+
+/* Responsive */
+@media (max-width:1200px) {
+  header.global-header .nav-links .main {
+    gap: 14px;
+  }
+}
+
+@media (max-width:992px) {
+  header.global-header .nav-discover-auth {
+    margin-left: .875rem;
+    font-size: 14px;
+  }
 }
 
 
-/* ==== Auth: khiến Discover giống hệt guest (chỉ tác động tab Discover) ==== */
-header.global-header .nav-tab--discover{
+header.global-header .nav-tab--discover {
   border: 0 !important;
   box-shadow: none !important;
   padding: 0 !important;
   margin: 0 !important;
   background: transparent !important;
 }
+
 header.global-header .nav-tab--discover::before,
-header.global-header .nav-tab--discover::after{ display:none !important; }
-header.global-header .nav-tab--discover > a{
+header.global-header .nav-tab--discover::after {
+  display: none !important;
+}
+
+header.global-header .nav-tab--discover>a {
   border: 0 !important;
   box-shadow: none !important;
   background-image: none !important;
 }
 
-/* Optional: đảm bảo metrics của .nav-discover khớp y chang guest */
-header.global-header .nav-tab--discover .nav-discover{
-  margin-left: 1.5rem;     /* cùng guest */
-  font-size: 15px;         /* cùng guest */
-  line-height: 1;          /* tránh đội hàng */
-  padding: 0;              /* để ::after bám chuẩn bottom:-4px của bạn */
+header.global-header .nav-tab--discover .nav-discover {
+  margin-left: 1.5rem;
+  font-size: 15px;
+  line-height: 1;
+  padding: 0;
 }
 
 
 /* ---------- AUTH HEADER: tighten height, brand, user ---------- */
 
-/* 1) Khung header: đúng 60px, không đội chiều cao */
-header.global-header .main-header{
+header.global-header .main-header {
   min-height: 60px !important;
   height: 60px !important;
   padding-top: 0 !important;
@@ -736,44 +912,48 @@ header.global-header .main-header{
   gap: 12px !important;
 }
 
-/* 2) Logo + brand: không xuống dòng, line-height gọn */
-header.global-header .header-logo{ gap: 20px !important; }
-header.global-header .header-logo a{ white-space: nowrap !important; }
-header.global-header .header-logo .brand-text{
-  line-height: 1.15 !important;   /* trước là 2 -> gây cao và dễ wrap */
+
+header.global-header .header-logo {
+  gap: 20px !important;
+}
+
+header.global-header .header-logo a {
+  white-space: nowrap !important;
+}
+
+header.global-header .header-logo .brand-text {
+  line-height: 1.15 !important;
   display: inline-flex !important;
   align-items: center !important;
 }
 
-/* 3) Discover (auth) cùng baseline & không kéo cao hàng */
-header.global-header .nav-tab--discover .nav-discover{
+header.global-header .nav-tab--discover .nav-discover {
   line-height: 1 !important;
   padding: 10px 0 !important;
   font-size: 15px !important;
   margin-left: 1.5rem !important;
 }
-header.global-header .nav-tab--discover .nav-discover::after{
-  bottom: 2px !important;        /* chỉnh baseline cho thẳng hàng */
+
+header.global-header .nav-tab--discover .nav-discover::after {
+  bottom: 2px !important;
 }
 
-/* 4) Cụm bên phải + user pill: thu lại */
-header.global-header .nav-links .secondary{
+header.global-header .nav-links .secondary {
   margin-left: auto !important;
   gap: 8px !important;
 }
 
-/* User pill (username) gọn, không làm header “phồng” */
 header.global-header .toggle-user-dropdown,
-header.global-header .nav-links .secondary > a:first-child,
-header.global-header .nav-links .secondary > button:first-child{
-  height: 34px !important;        /* 34–36px là đẹp, chọn 34 để gọn */
+header.global-header .nav-links .secondary>a:first-child,
+header.global-header .nav-links .secondary>button:first-child {
+  height: 34px !important;
   padding: 0 10px !important;
   font-size: 14px !important;
   line-height: 1 !important;
   border-radius: 8px !important;
-  border: 1.3px solid var(--line,#e5e7eb) !important;
+  border: 1.3px solid var(--line, #e5e7eb) !important;
   background: #F5F9FF !important;
-  color: var(--cusc-blue,#0056A1) !important;
+  color: var(--cusc-blue, #0056A1) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -781,62 +961,58 @@ header.global-header .nav-links .secondary > button:first-child{
   box-shadow: none !important;
 }
 
-/* Icon trước username nhỏ lại xíu cho cân */
 header.global-header .toggle-user-dropdown::before,
-header.global-header .nav-links .secondary > a:first-child::before,
-header.global-header .nav-links .secondary > button:first-child::before{
+header.global-header .nav-links .secondary>a:first-child::before,
+header.global-header .nav-links .secondary>button:first-child::before {
   width: 15px !important;
   height: 15px !important;
 }
 
-/* 5) Loại mọi underline/border tab mặc định để không “đè” Discover */
 header.global-header .nav-links .nav-tab,
-header.global-header .nav-links .nav-tab > a{
+header.global-header .nav-links .nav-tab>a {
   border: 0 !important;
   box-shadow: none !important;
   background-image: none !important;
 }
-header.global-header .nav-links .nav-tab::before,
-header.global-header .nav-links .nav-tab::after{ display: none !important; }
 
-/* 6) Full-bleed hợp lý nhưng vẫn chừa biên nhỏ hai bên */
-header.global-header .main-header{
+header.global-header .nav-links .nav-tab::before,
+header.global-header .nav-links .nav-tab::after {
+  display: none !important;
+}
+
+header.global-header .main-header {
   padding-left: 24px !important;
   padding-right: 24px !important;
 }
-@media (max-width: 992px){
-  header.global-header .main-header{
+
+@media (max-width: 992px) {
+  header.global-header .main-header {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
 }
 
 
+/* ==== Discover active (auth header) ==== */
 
-/* ==== Discover active (auth header) same as guest ==== */
-
-/* Chữ xanh + đậm khi đang active */
 header.global-header .nav-tab--discover .nav-discover.active {
   color: var(--cusc-blue) !important;
   font-weight: 700 !important;
 }
 
-/* Giữ underline hiện cố định (từ giữa ra 2 bên, không shimmer loop) */
 header.global-header .nav-tab--discover .nav-discover.active::after {
-  opacity: 1 !important;  
+  opacity: 1 !important;
   transform: translateX(-50%) scaleX(1) !important;
-  animation: none !important; /* tắt shimmer liên tục */
+  animation: none !important;
   background: linear-gradient(90deg, var(--cusc-blue), var(--accent)) !important;
 }
 
-
 /* === Unified spacing: brand ↔ Discover (guest + auth) === */
-:root{
-  /* chỉnh giá trị này tới khi bạn thấy khớp tuyệt đối */
-  --discover-gap: 54px;  
+:root {
+  --discover-gap: 54px;
 }
 
 /* Guest */
-header.global-header .nav-discover{
+header.global-header .nav-discover {
   margin-left: var(--discover-gap) !important;
 }
