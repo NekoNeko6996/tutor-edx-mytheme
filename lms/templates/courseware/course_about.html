@@ -25,6 +25,7 @@ from openedx.core.lib.courses import course_image_url
   position: relative;
   z-index: 1;
   --bg-card: rgba(255,255,255,0.95);
+  
 }
 
 .course-profile .info-profile {
@@ -275,7 +276,7 @@ from openedx.core.lib.courses import course_image_url
         % if get_course_about_section(request, course, "video"):
         <a href="#video-modal" class="media" rel="leanModal">
           <div class="hero">
-            <img src="${course_image_urls['large']}" alt="" aria-hidden="true" />
+            <img  src="${course_image_urls['large']}" alt="" aria-hidden="true" />
             <div class="play-intro"></div>
           </div>
         </a>
@@ -291,6 +292,7 @@ from openedx.core.lib.courses import course_image_url
           <h1>
             ${course.display_name_with_default}
           </h1>
+          
           <span class="org">${course.display_org_with_default}</span>
         </div>
       </div>
