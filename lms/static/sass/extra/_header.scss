@@ -381,7 +381,7 @@ body.indigo-dark-theme {
   --h-pad-md: 12px;
   --h-pad-lg: 16px;
 
-  --ctrl-h: 40px;        /* chiều cao control: Dark, Register, Sign In */
+  --ctrl-h: 40px;
   --ctrl-radius: 10px;
   --gap: 12px;
 }
@@ -389,68 +389,64 @@ body.indigo-dark-theme {
 /* = Header shell */
 header.global-header {
   background: #fff;
-  border-bottom: 0 !important; /* ❌ xóa vạch mảnh bên dưới */
-  box-shadow: 0 6px 20px rgba(0,0,0,.03); /* bóng mềm, không tạo vạch */
-
-  .header-container {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .main-header {
-    display: flex;
-    align-items: center;           /* căn giữa dọc tuyệt đối */
-    justify-content: space-between;
-    gap: var(--gap);
-    min-height: 60px;
-    padding: 0 var(--h-pad-lg);
-    background: transparent;
-  }
-
+  border-bottom: 0 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.03);
 }
-
+header.global-header .header-container {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+header.global-header .main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  min-height: 60px;
+  padding: 0 var(--h-pad-lg);
+  background: transparent;
+}
 
 /* = Logo block (trái) */
 header.global-header .header-logo {
   margin: 0;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start;
+  gap: 30px !important;
+}
+header.global-header .header-logo a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+}
+header.global-header .header-logo .logo {
+  height: 28px;
+  width: auto;
+  display: block;
+  flex: 0 0 auto;
+}
+header.global-header .header-logo .brand-text {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--cusc-blue);
+  line-height: 2;
   display: flex;
   align-items: center;
-
-  .brand-link {
-    display: inline-flex;
-    align-items: center;
-    gap: .6rem;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .brand-link .logo {
-    height: 32px;
-    width: auto;
-    flex: 0 0 auto;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .brand-link .brand-text {
-    color: var(--cusc-blue);
-    font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: .2px;
-    line-height: 1;
-    transition: color .25s ease, transform .2s ease, text-shadow .25s ease;
-  }
-
-  .brand-link:hover .brand-text {
-    color: var(--cusc-blue-hover);
-    transform: translateY(-1px);
-    text-shadow: 0 2px 6px rgba(0,86,161,.25);
-  }
+  letter-spacing: .2px;
+  transition: color .25s ease, transform .2s ease, text-shadow .25s ease;
+}
+header.global-header .header-logo .brand-link:hover .brand-text {
+  color: var(--cusc-blue-hover);
+  transform: translateY(-1px);
+  text-shadow: 0 2px 6px rgba(0,86,161,.25);
 }
 
-/* = Right cluster (Dark • Register • Sign In) */
+/* = Right cluster (Register • Sign In) */
 header.global-header .nav-right {
   margin-left: auto;
   display: flex;
@@ -459,7 +455,6 @@ header.global-header .nav-right {
 }
 
 /* = Shared controls */
-header.global-header .theme-toggle .chip-toggle,
 header.global-header .btn-auth {
   display: inline-flex;
   align-items: center;
@@ -473,22 +468,9 @@ header.global-header .btn-auth {
   text-decoration: none;
   cursor: pointer;
   transition: filter .15s ease, background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .25s ease, transform .25s ease;
-
-  svg { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
-  span { line-height: 1; }
 }
-
-/* = Dark chip */
-header.global-header .theme-toggle {
-  #toggle-switch-input { position: absolute; left: -9999px; }
-
-  .chip-toggle {
-    border-color: var(--line);
-    background: #fff;
-    color: var(--sub);
-    border-radius: 999px; /* chip shape */
-  }
-}
+header.global-header .btn-auth svg { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
+header.global-header .btn-auth span { line-height: 1; }
 
 /* = Register button (outline green) */
 header.global-header .btn-register {
@@ -497,18 +479,17 @@ header.global-header .btn-register {
   color: var(--accent);
   font-weight: 800;
   font-size: 15px;
-
-  &:hover {
-    background: #ECFDF5;
-    border-color: var(--accent-strong);
-    color: var(--accent-strong);
-    box-shadow: 0 4px 10px rgba(16,185,129,.25);
-    transform: translateY(-2px);
-  }
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(16,185,129,.2);
-  }
+}
+header.global-header .btn-register:hover {
+  background: #ECFDF5;
+  border-color: var(--accent-strong);
+  color: var(--accent-strong);
+  box-shadow: 0 4px 10px rgba(16,185,129,.25);
+  transform: translateY(-2px);
+}
+header.global-header .btn-register:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(16,185,129,.2);
 }
 
 /* = Sign in button (solid blue) */
@@ -518,92 +499,94 @@ header.global-header .btn-signin {
   color: #fff;
   font-weight: 800;
   font-size: 15px;
-
-  &:hover {
-    background: var(--cusc-blue-hover);
-    border-color: var(--cusc-blue-hover);
-    box-shadow: 0 4px 10px rgba(0,86,161,.3);
-    transform: translateY(-2px);
-  }
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(0,86,161,.25);
-    background: #00498C;
-  }
-  &:focus-visible {
-    outline: 2px solid rgba(0,86,161,.5);
-    outline-offset: 2px;
-  }
+}
+header.global-header .btn-signin:hover {
+  background: var(--cusc-blue-hover);
+  border-color: var(--cusc-blue-hover);
+  box-shadow: 0 4px 10px rgba(0,86,161,.3);
+  transform: translateY(-2px);
+}
+header.global-header .btn-signin:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0,86,161,.25);
+  background: #00498C;
+}
+header.global-header .btn-signin:focus-visible {
+  outline: 2px solid rgba(0,86,161,.5);
+  outline-offset: 2px;
 }
 
 /* = Optional: sr-only utility */
-.sr-only, .sr { 
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+.sr-only, .sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
 }
 
-/* === Center logo + text vertically === */
-header.global-header .header-logo {
-  display: flex !important;
-  align-items: center !important;   /* căn giữa theo trục dọc */
-  justify-content: flex-start;      /* căn trái toàn khối logo */
-  gap: 10px !important;             /* khoảng cách logo – chữ */
-  margin: 0;
-
-  a {
-    display: flex !important;
-    align-items: center !important; /* logo và text cùng hàng */
-    gap: 10px;
-    text-decoration: none;
-    color: inherit;
-    margin: 0; 
-  }
-
-  .logo {
-    height: 28px;                   /* cao vừa chữ */
-    width: auto;
-    display: block;
-    flex: 0 0 auto;
-  }
-
-  .brand-text {
-    font-weight: 800;
-    font-size: 1.15rem;
-    color: #0056A1;
-    line-height: 2;
-    display: flex;
-    align-items: center;            /* chữ canh giữa theo logo */
-  }
+/* === Discover Courses tab (center → both sides + shimmer + active) === */
+header.global-header .nav-discover {
+  margin-left: 1.5rem; /* tách vừa mắt khỏi 'CUSC Learning' */
+  font-weight: 600;
+  color: var(--txt);
+  text-decoration: none;
+  font-size: 15px;
+  position: relative;
+  display: inline-block;          /* để transform/width ổn định */
+  transition: color .2s ease, transform .2s ease;
+}
+header.global-header .nav-discover:hover {
+  color: var(--cusc-blue);
+  transform: translateY(-1px);
+}
+header.global-header .nav-discover::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--cusc-blue), var(--accent), var(--cusc-blue));
+  background-size: 200% 100%;
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0);  /* scale từ giữa */
+  transform-origin: center;               /* từ giữa ra 2 bên */
+  transition: transform .3s ease, opacity .25s ease;
+}
+header.global-header .nav-discover:hover::after,
+header.global-header .nav-discover.active::after {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1); /* mở ra hai bên */
+  animation: shimmer 1.5s linear infinite;
+}
+header.global-header .nav-discover.active {
+  color: var(--cusc-blue);
+  font-weight: 700;
+}
+@keyframes shimmer {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
 }
 
-/* === Nudge Dark chip lên giữa hoàn hảo === */
-header.global-header .theme-toggle .chip-toggle {
-  position: relative !important;
-  top: 2.4px !important;   /* nếu chip nhìn thấp hơn các nút khác */
-}
-
-/* ==== Frosted blur header on scroll ==== */
-header.global-header {
-  position: sticky;    /* giữ header dính trên cùng */
-  top: 0;
+/* ==== FINAL: Solid at top, glass on scroll ==== */
+header.global-header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 1000;
-
-  /* trạng thái bình thường */
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  transition: background-color .25s ease, backdrop-filter .25s ease, box-shadow .25s ease, border-color .25s ease;
+  background: #fff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.03);
+  border-bottom: 0;
+  transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease;
 }
-
-/* khi lướt xuống sẽ có blur + trong suốt hơn + bóng nhẹ */
-header.global-header.scrolled {
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: saturate(160%) blur(12px);
-  -webkit-backdrop-filter: saturate(160%) blur(12px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  border-bottom-color: transparent;
+header.global-header.scrolled{
+  background: rgba(255,255,255,0.72) !important;
+  backdrop-filter: saturate(160%) blur(12px) !important;
+  -webkit-backdrop-filter: saturate(160%) blur(12px) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
 }
-
-/* viền gradient mảnh dưới header cho cảm giác “glow” như ảnh mẫu */
 header.global-header.scrolled::after {
   content: "";
   position: absolute;
@@ -615,31 +598,440 @@ header.global-header.scrolled::after {
 }
 
 
-/* Header fixed + blur */
-header.global-header{
-  position: fixed;           /* luôn dính trên cùng */
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  transition: background-color .25s ease, backdrop-filter .25s ease, box-shadow .25s ease;
-  border-bottom: 0;          /* tránh vạch mảnh */
+
+
+/* ==== Discover (đã đăng nhập) — giữ hiệu ứng riêng, tránh đè header guest ==== */
+/* =========================
+   AUTH HEADER ONLY (clean)
+   ========================= */
+
+/* Layout khối link khi đã đăng nhập */
+header.global-header .nav-links{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+header.global-header .nav-links .main{
+  display:flex; align-items:center; gap:18px;
+}
+header.global-header .nav-links .secondary{
+  margin-left:auto; display:flex; align-items:center; gap:8px;
 }
 
-/* Blur khi scroll */
-header.global-header.scrolled{
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: saturate(160%) blur(12px);
-  -webkit-backdrop-filter: saturate(160%) blur(12px);
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+/* Reset “viền/gạch mặc định” của tab trong khu auth (tránh đè Discover) */
+header.global-header .nav-links .nav-tab,
+header.global-header .nav-links .nav-tab a{
+  border:0 !important; box-shadow:none !important; background-image:none !important;
+}
+header.global-header .nav-links .nav-tab::before,
+header.global-header .nav-links .nav-tab::after{ display:none !important; }
+
+/* Discover ở trạng thái đăng nhập (nếu bạn dùng class riêng) */
+header.global-header .nav-discover-auth{
+  position:relative; display:inline-flex; align-items:center;
+  margin-left:1.5rem; padding:10px 0;
+  font-size:15px; font-weight:600; line-height:1; color:var(--txt);
+  text-decoration:none; transition:color .2s ease;
+}
+header.global-header .nav-discover-auth:hover{ color:var(--cusc-blue); }
+
+/* Underline từ giữa ra hai bên + shimmer (active/hover) */
+header.global-header .nav-discover-auth::after{
+  content:""; position:absolute; left:50%; bottom:-6px; height:2px; width:100%;
+  background:linear-gradient(90deg,var(--cusc-blue),var(--accent),var(--cusc-blue));
+  background-size:200% 100%;
+  opacity:0; transform:translateX(-50%) scaleX(0); transform-origin:center;
+  border-radius:999px; transition:transform .28s ease, opacity .22s ease;
+}
+header.global-header .nav-discover-auth:hover::after,
+header.global-header .nav-discover-auth.active::after{
+  opacity:1; transform:translateX(-50%) scaleX(1); animation:shimmer 1.5s linear infinite;
+}
+@keyframes shimmer{0%{background-position:0% 0}100%{background-position:200% 0}}
+
+/* User pill (nút hiển thị username) */
+header.global-header .toggle-user-dropdown,
+header.global-header .nav-links .secondary > a:first-child,
+header.global-header .nav-links .secondary > button:first-child{
+  height:36px; padding:0 12px; display:inline-flex; align-items:center; justify-content:center;
+  gap:6px; border-radius:8px; border:1.3px solid var(--line,#e5e7eb);
+  background:#F8FBFF; color:var(--cusc-blue,#0056A1);
+  font-size:14px; font-weight:700; line-height:1; box-shadow:none;
+}
+header.global-header .toggle-user-dropdown::before,
+header.global-header .nav-links .secondary > a:first-child::before,
+header.global-header .nav-links .secondary > button:first-child::before{
+  content:""; width:15px; height:15px; display:inline-block; background:currentColor;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-3.33 0-10 1.34-10 4v2h20v-2c0-2.66-6.67-4-10-4'/></svg>") no-repeat center/contain;
+          mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-3.33 0-10 1.34-10 4v2h20v-2c0-2.66-6.67-4-10-4'/></svg>") no-repeat center/contain;
+}
+header.global-header .toggle-user-dropdown:hover,
+header.global-header .nav-links .secondary > a:first-child:hover,
+header.global-header .nav-links .secondary > button:first-child:hover{
+  transform:translateY(-1px); box-shadow:0 3px 8px rgba(0,86,161,.1);
+}
+header.global-header .toggle-user-dropdown:active,
+header.global-header .nav-links .secondary > a:first-child:active,
+header.global-header .nav-links .secondary > button:first-child:active{
+  transform:translateY(0); box-shadow:0 2px 6px rgba(0,86,161,.1);
+}
+header.global-header .toggle-user-dropdown:focus-visible,
+header.global-header .nav-links .secondary > a:first-child:focus-visible,
+header.global-header .nav-links .secondary > button:first-child:focus-visible{
+  outline:2px solid rgba(0,86,161,.35); outline-offset:2px;
+}
+
+/* Dropdown user */
+header.global-header .dropdown-user-menu{
+  margin-top:8px; border:1px solid var(--line,#e5e7eb); border-radius:12px;
+  box-shadow:0 20px 40px rgba(0,0,0,.12); overflow:hidden;
+}
+header.global-header .dropdown-user-menu .dropdown-item a{
+  display:block; padding:10px 14px; color:var(--txt);
+}
+header.global-header .dropdown-user-menu .dropdown-item a:hover{
+  background:#F3F6FB; color:var(--cusc-blue);
+}
+
+/* Responsive nhỏ gọn */
+@media (max-width:1200px){
+  header.global-header .nav-links .main{ gap:14px; }
+}
+@media (max-width:992px){
+  header.global-header .nav-discover-auth{ margin-left:.875rem; font-size:14px; }
 }
 
 
+/* ==== Auth: khiến Discover giống hệt guest (chỉ tác động tab Discover) ==== */
+header.global-header .nav-tab--discover{
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+header.global-header .nav-tab--discover::before,
+header.global-header .nav-tab--discover::after{ display:none !important; }
+header.global-header .nav-tab--discover > a{
+  border: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
 
-/* chỉ khi có header “sticky” của theme này */
-html:has(header.global-header) {
-  @media (min-width: 992px) {
-    .window-wrap #content.content-wrapper { margin-top: 0 !important; }
+/* Optional: đảm bảo metrics của .nav-discover khớp y chang guest */
+header.global-header .nav-tab--discover .nav-discover{
+  margin-left: 1.5rem;     /* cùng guest */
+  font-size: 15px;         /* cùng guest */
+  line-height: 1;          /* tránh đội hàng */
+  padding: 0;              /* để ::after bám chuẩn bottom:-4px của bạn */
+}
+
+
+/* ---------- AUTH HEADER: tighten height, brand, user ---------- */
+
+/* 1) Khung header: đúng 60px, không đội chiều cao */
+header.global-header .main-header{
+  min-height: 60px !important;
+  height: 60px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  gap: 12px !important;
+}
+
+/* 2) Logo + brand: không xuống dòng, line-height gọn */
+header.global-header .header-logo{ gap: 20px !important; }
+header.global-header .header-logo a{ white-space: nowrap !important; }
+header.global-header .header-logo .brand-text{
+  line-height: 1.15 !important;   /* trước là 2 -> gây cao và dễ wrap */
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* 3) Discover (auth) cùng baseline & không kéo cao hàng */
+header.global-header .nav-tab--discover .nav-discover{
+  line-height: 1 !important;
+  padding: 10px 0 !important;
+  font-size: 15px !important;
+  margin-left: 1.5rem !important;
+}
+header.global-header .nav-tab--discover .nav-discover::after{
+  bottom: 2px !important;        /* chỉnh baseline cho thẳng hàng */
+}
+
+/* 4) Cụm bên phải + user pill: thu lại */
+header.global-header .nav-links .secondary{
+  margin-left: auto !important;
+  gap: 8px !important;
+}
+
+/* User pill (username) gọn, không làm header “phồng” */
+header.global-header .toggle-user-dropdown,
+header.global-header .nav-links .secondary > a:first-child,
+header.global-header .nav-links .secondary > button:first-child{
+  height: 34px !important;        /* 34–36px là đẹp, chọn 34 để gọn */
+  padding: 0 10px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  border-radius: 8px !important;
+  border: 1.3px solid var(--line,#e5e7eb) !important;
+  background: #F5F9FF !important;
+  color: var(--cusc-blue,#0056A1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  box-shadow: none !important;
+}
+
+/* Icon trước username nhỏ lại xíu cho cân */
+header.global-header .toggle-user-dropdown::before,
+header.global-header .nav-links .secondary > a:first-child::before,
+header.global-header .nav-links .secondary > button:first-child::before{
+  width: 15px !important;
+  height: 15px !important;
+}
+
+/* 5) Loại mọi underline/border tab mặc định để không “đè” Discover */
+header.global-header .nav-links .nav-tab,
+header.global-header .nav-links .nav-tab > a{
+  border: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+header.global-header .nav-links .nav-tab::before,
+header.global-header .nav-links .nav-tab::after{ display: none !important; }
+
+/* 6) Full-bleed hợp lý nhưng vẫn chừa biên nhỏ hai bên */
+header.global-header .main-header{
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+@media (max-width: 992px){
+  header.global-header .main-header{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
+}
+
+
+
+/* ==== Discover active (auth header) same as guest ==== */
+
+/* Chữ xanh + đậm khi đang active */
+header.global-header .nav-tab--discover .nav-discover.active {
+  color: var(--cusc-blue) !important;
+  font-weight: 700 !important;
+}
+
+/* Giữ underline hiện cố định (từ giữa ra 2 bên, không shimmer loop) */
+header.global-header .nav-tab--discover .nav-discover.active::after {
+  opacity: 1 !important;  
+  transform: translateX(-50%) scaleX(1) !important;
+  animation: none !important; /* tắt shimmer liên tục */
+  background: linear-gradient(90deg, var(--cusc-blue), var(--accent)) !important;
+}
+
+
+/* === Unified spacing: brand ↔ Discover (guest + auth) === */
+:root{
+  /* chỉnh giá trị này tới khi bạn thấy khớp tuyệt đối */
+  --discover-gap: 54px;  
+}
+
+/* Guest */
+header.global-header .nav-discover{
+  margin-left: var(--discover-gap) !important;
+}
+
+
+/* =========================================================
+   Mobile Responsive for Header
+   - Paste at the END of _header.scss
+   - No HTML changes required
+   ========================================================= */
+
+/* Helpers: toggle visibility */
+.hidden-mobile { display: none !important; }
+@media (min-width: 769px) {
+  .hidden-desktop { display: none !important; }
+  .hidden-mobile  { display: revert !important; }
+}
+
+@media (max-width: 768px) {
+  header.global-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* giữ style blur/đổ bóng hiện có; chỉ tối ưu spacing */
+    .main-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      padding: 0 12px;
+      gap: 8px;
+    }
+  }
+
+  /* Logo: giữ bên trái, tối ưu kích thước */
+  .header-logo {
+    margin: 0 !important;
+    a {
+      margin: 0 !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      .logo {
+        height: 22px !important;
+        width: auto;
+      }
+      .brand-text, .site-name, .brand__text {
+        font-size: 14px;
+        line-height: 1;
+        white-space: nowrap;
+        max-width: 160px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  /* Khu vực điều hướng: ẩn menu ngang lớn nếu có */
+  .nav-primary,
+  .nav-left,
+  .nav-center,
+  .nav-links,
+  .navbar-links,
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Khu vực user ở bên phải: giữ dropdown sẵn có, thu gọn icon */
+  .nav-right,
+  nav.nav-right,
+  .secondary.d-flex.align-items-center {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Nút auth: giữ icon, rút gọn text; touch target >=44px */
+  .btn-auth {
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    svg {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+    }
+  }
+
+  /* Nếu có 2 nút (Sign in / Register), tránh tràn */
+  .btn-auth + .btn-auth {
+    margin-left: 4px;
+  }
+
+  /* Icon-only buttons (ví dụ chuông, search, vv) */
+  .icon-btn,
+  .toggle-user-dropdown,
+  .nav-icon,
+  .avatar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;      /* touch target */
+    border-radius: 10px;
+    padding: 0;
+    outline: none;
+    border: 0;
+    background: transparent;
+  }
+
+  .toggle-user-dropdown[aria-expanded="true"],
+  .icon-btn:active {
+    transform: translateY(0.5px);
+  }
+
+  /* Dropdown user đã có sẵn: tối ưu vị trí + kích thước trên mobile */
+  .nav-item-dropdown,
+  .user-dropdown,
+  .user-menu {
+    position: relative;
+
+    .dropdown-menu,
+    #user-menu,
+    .menu {
+      position: absolute;
+      right: 8px;
+      top: calc(100% + 8px);
+      width: min(92vw, 360px);
+      max-height: calc(100vh - 100px);
+      overflow: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+      /* nếu header có blur/transparent, thêm backdrop cho menu */
+      backdrop-filter: saturate(1.2);
+    }
+
+    /* Hide label text cạnh avatar để gọn hơn */
+    .user-name,
+    .user-label,
+    .caret,
+    .dropdown-caret {
+      display: none !important;
+    }
+  }
+
+  /* Khoảng cách tổng thể phải gọn hơn */
+  .nav-right .btn-auth,
+  .secondary .btn-auth {
+    margin-right: 0;
+  }
+
+  /* Hạn chế tràn: chữ dài bị cắt gọn */
+  .btn-auth span,
+  .nav-right .text,
+  .secondary .text {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Siêu nhỏ (≤480px): ưu tiên icon, ẩn label để đỡ chật */
+@media (max-width: 480px) {
+  .header-logo a .brand-text,
+  .header-logo a .site-name,
+  .header-logo a .brand__text {
+    max-width: 120px;
+  }
+
+  .btn-auth span { display: none; } /* chỉ còn icon */
+  .btn-auth { padding: 0 8px; width: 40px; justify-content: center; }
+
+  /* Giảm thêm khoảng cách bên phải */
+  .nav-right,
+  .secondary.d-flex.align-items-center {
+    gap: 4px;
+  }
+
+  /* Dropdown full-bleed hơn cho dễ bấm */
+  .nav-item-dropdown .dropdown-menu,
+  .user-dropdown .menu,
+  .user-menu .menu {
+    right: 6px;
+    width: min(96vw, 360px);
+  }
+}
+
+/* Tùy chọn: nếu đã có lớp .hidden-mobile / .hidden-desktop trong HTML
+   thì khối dưới giúp tự động bật/tắt ở mobile */
+@media (max-width: 768px) {
+  .hidden-desktop { display: inline-flex !important; }
+  .hidden-mobile  { display: none !important; }
 }

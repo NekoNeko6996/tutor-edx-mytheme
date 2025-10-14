@@ -16,7 +16,7 @@ from django.utils.translation import gettext as _
 %>
 
 <nav class="nav-right" aria-label=${_("Account actions")}>
-  <%include file="./theme-toggle-button.html" />
+
 
   % if allows_login:
     % if allow_public_account_creation and not disable_register_button:
