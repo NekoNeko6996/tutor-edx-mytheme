@@ -6,17 +6,176 @@
 <%block name="pagetitle">${_("Blog")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Blog")}</%block>
-        </h1>
+  <section class="blog container">
+    <!-- Header -->
+    <header class="blog-header">
+      <h1 class="blog-title">${_("CUSC Learning – Leading the Digital Education Era")}</h1>
+      <p class="blog-subtitle">
+        ${_("Discover the journey of CUSC Learning – where knowledge, technology, and passion converge to redefine online education in Vietnam.")} 
+      </p>
+      <img src="${static.url('images/banner.jpg')}" alt="Students at CUSC Learning" class="blog-hero"/>
+    </header>
+
+    <article class="blog-body">
+      <!-- Introduction -->
+      <section class="intro">
+        <h2>${_("About CUSC Learning")}</h2>
         <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
+          ${_("Founded by the Can Tho University Software Center, CUSC Learning was established with a mission to transform knowledge into opportunities. We offer specialized courses in IT, Design, Business, and Communication to help learners develop comprehensive skills for the digital age.")}
         </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/blog.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/blog-dark.svg')}" alt="Runs on Tutor" />
+        <p>
+          ${_("Each course at CUSC Learning is designed by experienced instructors who combine theory with real-world practice, ensuring that learners can truly 'learn to achieve results'.")}
+        </p>
+      </section>
+
+      <!-- Mission & Vision -->
+      <section class="vision">
+        <h2>${_("Our Mission & Vision")}</h2>
+        <div class="vision-grid">
+          <div class="vision-item">
+            <h3>${_("Mission")}</h3>
+            <p>${_("To make quality education accessible to everyone, everywhere – through high-quality, practical, and flexible learning programs.")}</p>
+          </div>
+          <div class="vision-item">
+            <h3>${_("Vision")}</h3>
+            <p>${_("To become a leading e-learning platform in Southeast Asia, empowering a generation of creative, tech-driven, and globally competent professionals.")}</p>
+          </div>
         </div>
-    </section>
+      </section>
+
+      <!-- Development Journey -->
+      <section class="timeline">
+        <h2>${_("Our Development Journey")}</h2>
+        <div class="timeline-list">
+          <div class="timeline-item">
+            <span class="year">2019</span>
+            <p>${_("CUSC Learning was founded and launched its first 10 online courses in Programming and Graphic Design.")}</p>
+          </div>
+          <div class="timeline-item">
+            <span class="year">2021</span>
+            <p>${_("Expanded nationwide with over 50,000 learners participating in online training programs.")}</p>
+          </div>
+          <div class="timeline-item">
+            <span class="year">2023</span>
+            <p>${_("Introduced the AI Tutor system and mobile learning application for personalized learning experiences.")}</p>
+          </div>
+          <div class="timeline-item">
+            <span class="year">2025</span>
+            <p>${_("Recognized as one of the 'Top 5 Most Innovative Online Learning Platforms in Vietnam'.")}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Achievements & Statistics -->
+      <section class="stats">
+        <h2>${_("Key Achievements & Impact")}</h2>
+        <div class="stat-grid">
+          <div class="stat"><span>120+</span><p>${_("Instructors & Industry Experts")}</p></div>
+          <div class="stat"><span>800+</span><p>${_("High-quality Courses across Disciplines")}</p></div>
+          <div class="stat"><span>98%</span><p>${_("Learner Satisfaction Rate")}</p></div>
+          <div class="stat"><span>65+</span><p>${_("Partner Companies & Hiring Networks")}</p></div>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section class="team">
+        <h2>${_("Our Team of Experts & Instructors")}</h2>
+        <div class="team-slider">
+          <div class="team-track">
+            <!-- Instructor 1 -->
+            <div class="member">
+              <img src="${static.url('images/teacher1.jpg')}" alt="Instructor A"/>
+              <h4>Dr. Nguyen Minh Quan</h4>
+              <p>${_("AI Specialist – 10 years of experience at FPT Software")}</p>
+            </div>
+            <!-- Instructor 2 -->
+            <div class="member">
+              <img src="${static.url('images/teacher2.jpg')}" alt="Instructor B"/>
+              <h4>Ms. Tran Thi Phuong</h4>
+              <p>${_("Graphic Design Lecturer, Co-founder of CStudio Design Lab")}</p>
+            </div>
+            <!-- Instructor 3 -->
+            <div class="member">
+              <img src="${static.url('images/teacher3.jpg')}" alt="Instructor C"/>
+              <h4>Mr. Nguyen Duc Loc</h4>
+              <p>${_("Web Development Expert, CUSC Instructor since 2020")}</p>
+            </div>
+            <!-- Instructor 4 -->
+            <div class="member">
+              <img src="${static.url('images/teacher4.jpg')}" alt="Instructor D"/>
+              <h4>Ms. Le Phuong Linh</h4>
+              <p>${_("Digital Marketing Lecturer, Google Certified Professional")}</p>
+            </div>
+            <!-- Instructor 5 -->
+            <div class="member">
+              <img src="${static.url('images/teacher5.jpg')}" alt="Instructor E"/>
+              <h4>Mr. Nguyen Hoang Minh</h4>
+              <p>${_("Senior UI/UX Designer, Former Design Lead at Tiki.vn")}</p>
+            </div>
+            <!-- Instructor 6 -->
+            <div class="member">
+              <img src="${static.url('images/teacher6.jpg')}" alt="Instructor F"/>
+              <h4>Mr. Tran Ngoc Bao</h4>
+              <p>${_("Mobile App Instructor, Flutter Expert at CUSC")}</p>
+            </div>
+            <!-- Instructor 7 -->
+            <div class="member">
+              <img src="${static.url('images/teacher7.jpg')}" alt="Instructor G"/>
+              <h4>Mr. Vo Minh Tam</h4>
+              <p>${_("Machine Learning Specialist, Data Science Lecturer")}</p>
+            </div>
+            <!-- Instructor 8 -->
+            <div class="member">
+              <img src="${static.url('images/teacher8.jpg')}" alt="Instructor H"/>
+              <h4>Ms. Nguyen Thi Thu Trang</h4>
+              <p>${_("Python Programming & Data Analysis Lecturer")}</p>
+            </div>
+
+            <!-- Duplicate for seamless scrolling -->
+            <div class="member">
+              <img src="${static.url('images/teacher1.jpg')}" alt="Instructor A"/>
+              <h4>Dr. Nguyen Minh Quan</h4>
+              <p>${_("AI Specialist – 10 years of experience at FPT Software")}</p>
+            </div>
+            <div class="member">
+              <img src="${static.url('images/teacher2.jpg')}" alt="Instructor B"/>
+              <h4>Ms. Tran Thi Phuong</h4>
+              <p>${_("Graphic Design Lecturer, Co-founder of CStudio Design Lab")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonial">
+        <h2>${_("Learner Success Stories")}</h2>
+        <blockquote>
+          <p>“${_("Thanks to CUSC Learning, I confidently applied for a UI/UX Designer position. The courses here helped me understand the full process of real-world product design.")}”</p>
+          <footer>— <strong>Ngoc Han</strong>, ${_("Graduate of Professional UI/UX Design Course")}</footer>
+        </blockquote>
+        <blockquote>
+          <p>“${_("What impressed me most is the instructors' dedication. I not only learned the skills but also received valuable career guidance for my future.")}”</p>
+          <footer>— <strong>Minh Khoi</strong>, ${_("Front-End Developer, Ho Chi Minh City")}</footer>
+        </blockquote>
+      </section>
+
+      <!-- Learning Methodology -->
+      <section class="method">
+        <h2>${_("Teaching Methods & Technologies")}</h2>
+        <ul>
+          <li>${_("AI-driven learning path analysis and progress tracking.")}</li>
+          <li>${_("Hybrid model combining online lessons with real-world workshops.")}</li>
+          <li>${_("Blockchain-based certificate verification.")}</li>
+          <li>${_("Interactive real-time learning sessions with instructors.")}</li>
+        </ul>
+      </section>
+
+      <!-- Closing -->
+      <section class="closing">
+        <h2>${_("CUSC Learning – Learn to Go Further")}</h2>
+        <p>${_("Every learner’s journey is unique, and we are proud to walk alongside you. CUSC Learning is not just a place to learn — it’s where transformation begins.")}</p>
+        <p>${_("Thank you for trusting us. Together, we continue to shape the future of digital education in Vietnam.")}</p>
+      </section>
+    </article>
+  </section>
 </main>
