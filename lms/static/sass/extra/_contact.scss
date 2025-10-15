@@ -1,74 +1,82 @@
-// ===== Contact page SCSS =====
+// ===== Contact page SCSS (final sync font version) =====
 
 // ---- Variables ----
-$font-stack: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
 $radius-card: 14px;
 $radius-input: 10px;
 
-$primary-1: #1976d2;
-$primary-2: #2196f3;
-$focus: #1e88e5;
+/* Gradient của nút Search */
+$search-grad-start: #16c6b7;
+$search-grad-end:   #0f74ff;
+$search-solid:      $search-grad-end;
+
+/* Liên kết biến font global (có fallback) */
+$ff-global: var(--font-family, var(--font-sans, inherit));
+$fs-base:   var(--font-size-base, 1rem);
+$lh-base:   var(--line-height-base, 1.5);
+$fw-reg:    var(--font-weight-regular, 400);
+$fw-semi:   var(--font-weight-semibold, 600);
+$fw-bold:   var(--font-weight-bold, 700);
 
 $border: #ccc;
-$border-soft: rgba(0, 0, 0, .05);
-$shadow: 0 8px 24px rgba(0, 0, 0, .05);
+$border-soft: rgba(0,0,0,.05);
+$shadow: 0 8px 24px rgba(0,0,0,.05);
 
 $text-strong: #222;
-$text-muted: #7b8190;
+$text-muted:  #7b8190;
 $placeholder: #999;
 
 $input-bg: #fafafa;
-$success-bg: #e9f6ec;
-$success-border: #b7e0c0;
-$success-text: #1b5e20;
-
-$error-bg: #fdecea;
-$error-border: #f5c6cb;
-$error-text: #7f1d1d;
+$success-bg: #e9f6ec; $success-border: #b7e0c0; $success-text: #1b5e20;
+$error-bg:   #fdecea; $error-border:   #f5c6cb; $error-text:   #7f1d1d;
 
 // ---- Mixins ----
-@mixin focus-ring($color: $focus) {
+@mixin focus-ring($color: $search-solid) {
   outline: none;
   border-color: $color;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba($color, .2);
 }
 
-@mixin bp($w) {
-  @media (min-width: $w) { @content; }
+@mixin bp($w) { @media (min-width: $w) { @content; } }
+
+@mixin brand-gradient {
+  background-image: linear-gradient(90deg, $search-grad-start 0%, $search-grad-end 100%);
+  background-size: 200% 200%;
+  color: #fff;
+  border: 0;
+  transition: background-position .25s ease, box-shadow .2s ease, transform .05s ease, filter .2s ease;
+  &:hover   { background-position: 100% 0; filter: brightness(1.05); }
+  &:active  { transform: translateY(1px); }
+  &:disabled{ opacity: .6; cursor: not-allowed; }
 }
 
 // ---- Page layout ----
 .contact-page {
   margin-top: .75rem;
-  font-family: $font-stack;
+  font-family: $ff-global;
+  font-size: $fs-base;
+  line-height: $lh-base;
+  font-weight: $fw-reg;
 
   .contact-title {
     margin: 0 0 .25rem 0;
-    font-size: 1.6rem;
+    font-size: calc(#{$fs-base} * 1.6);
     line-height: 1.25;
-    font-weight: 700;
+    font-weight: $fw-bold;
   }
 
   .contact-intro {
     margin: .25rem 0 1.1rem 0;
-    font-size: .98rem;
+    font-size: calc(#{$fs-base} * .98);
     opacity: .9;
   }
 
   .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-
-    @include bp(992px) {
-      grid-template-columns: 2fr 1fr;
-    }
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+    @include bp(992px){ grid-template-columns: 2fr 1fr; }
   }
 
-  // Cards
-  .contact-form-card,
-  .contact-info-card {
+  .contact-form-card, .contact-info-card {
     background: var(--body-bg, #fff);
     border-radius: $radius-card;
     padding: 1.2rem;
@@ -77,60 +85,42 @@ $error-text: #7f1d1d;
   }
 
   .card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: .4rem;
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:.4rem;
 
-    .section-title {
-      margin: .1rem 0 .6rem 0;
-      font-size: 1.1rem;
-      font-weight: 700;
+    .section-title{
+      margin:.1rem 0 .6rem 0;
+      font-size: calc(#{$fs-base} * 1.1);
+      font-weight: $fw-semi;
     }
 
-    .badge {
-      font-size: .7rem;
-      background: linear-gradient(90deg, #0b60d1, #2c67f2);
-      color: #fff;
-      padding: .25rem .55rem;
-      border-radius: 999px;
-    }
+    .badge{ @include brand-gradient; font-size:.7rem; padding:.25rem .55rem; border-radius:999px; }
   }
 
   // ---- Form ----
   .contact-form {
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: .75rem;
 
-      @include bp(700px) {
-        grid-template-columns: 1fr 1fr;
-      }
+    .grid-2{
+      display:grid; grid-template-columns:1fr; gap:.75rem;
+      @include bp(700px){ grid-template-columns:1fr 1fr; }
     }
 
-    .field {
-      margin-bottom: .85rem;
+    .field{
+      margin-bottom:.85rem;
 
-      label {
-        display: block;
-        margin-bottom: .35rem;
-        font-size: .93rem;
-        font-weight: 600;
-        color: $text-strong;
+      label{
+        display:block; margin-bottom:.35rem;
+        font-size: calc(#{$fs-base} * .93);
+        font-weight: $fw-semi;
+        color:$text-strong;
 
-        &.required::after {
-          content: " *";
-          color: #d32f2f;
-        }
+        &.required::after{ content:" *"; color:#d32f2f; }
       }
 
-      .hint {
-        color: $text-muted;
-        font-size: .8rem;
-      }
+      .hint{ color:$text-muted; font-size:.8rem; }
     }
 
+    /* ==== Input & Textarea đồng bộ font toàn site ==== */
     input,
     textarea {
       width: 100%;
@@ -138,155 +128,125 @@ $error-text: #7f1d1d;
       border-radius: $radius-input;
       border: 1px solid $border;
       background-color: $input-bg;
-      font-size: .95rem;
-      font-family: $font-stack;
-      font-style: normal; // bỏ italic
+
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+
+      font-style: normal;
       transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
 
       &::placeholder {
         color: $placeholder;
-        font-style: normal; // bỏ italic
+        font-style: normal;
+        font-weight: inherit;
       }
 
-      &:focus {
-        @include focus-ring($focus);
-      }
+      &:focus { @include focus-ring($search-solid); }
 
       &.is-invalid {
         border-color: #e57373;
-        background: rgba(229, 115, 115, .05);
+        background: rgba(229,115,115,.05);
       }
     }
 
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
+    textarea { min-height: 140px; resize: vertical; }
 
     .meta-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: .25rem;
-
-      .count {
-        font-variant-numeric: tabular-nums;
-        opacity: .8;
-      }
+      display: flex; align-items: center; justify-content: space-between; margin-top: .25rem;
+      .count { font-variant-numeric: tabular-nums; opacity: .8; }
     }
 
-    // Button
+    /* ==== Nút Send message khớp Search ==== */
     .btn.primary {
       display: inline-flex;
+      justify-content: center;
       align-items: center;
-      gap: .5rem;
-      padding: .75rem 1.25rem;
-      border-radius: $radius-input;
-      border: 0;
+      padding: .8rem 2rem;
+      border-radius: 999px;
+      border: none;
       cursor: pointer;
-      background: linear-gradient(90deg, $primary-1, $primary-2);
-      color: #fff;
-      font-weight: 700;
-      letter-spacing: .3px;
-      transition: transform .12s ease, filter .2s ease;
+      @include brand-gradient;
 
-      &:hover { filter: brightness(1.05); }
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+
+      transition: transform .12s ease, filter .25s ease, box-shadow .2s ease;
+      &:hover { filter: brightness(1.07); box-shadow: 0 4px 12px rgba(15,116,255,.3); }
       &:active { transform: translateY(1px); }
       &[disabled] { opacity: .6; cursor: not-allowed; }
     }
 
-    .form-hint {
-      margin-top: .45rem;
-      font-size: .86rem;
-      opacity: .8;
-    }
+    .form-hint { margin-top: .45rem; font-size: .86rem; opacity: .8; }
 
-    // Alerts
     .alert {
       margin-top: .6rem;
       border-radius: 10px;
       padding: .6rem .75rem;
       border: 1px solid transparent;
       display: none;
-
       &.show { display: block; }
       &.success { color: $success-text; background: $success-bg; border-color: $success-border; }
-      &.error { color: $error-text; background: $error-bg; border-color: $error-border; }
+      &.error   { color: $error-text; background: $error-bg; border-color: $error-border; }
     }
   }
 
   // ---- Right card ----
   .contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 .7rem 0;
-
+    list-style: none; padding: 0; margin: 0 0 .7rem 0;
     li {
-      margin: .35rem 0;
-      line-height: 1.45;
-
-      .ci-label {
-        font-weight: 700;
-        margin-right: .25rem;
-        color: $text-strong;
-      }
+      margin: .35rem 0; line-height: 1.45;
+      .ci-label { font-weight: $fw-semi; margin-right: .25rem; color: $text-strong; }
     }
   }
 
   .chip {
-    display: inline-block;
-    padding: .4rem .75rem;
-    border-radius: 999px;
-    border: 1px solid #d8dbe1;
-    margin-right: .4rem;
-    font-size: .86rem;
-    font-weight: 500;
-    background-color: #f9f9f9;
+    display: inline-block; padding: .4rem .75rem; border-radius: 999px;
+    border: 1px solid #d8dbe1; margin-right: .4rem;
+    font-size: .86rem; font-weight: 500; background: #f9f9f9;
     transition: all .15s ease;
-
-    &:hover {
-      border-color: $focus;
-      color: $focus;
-    }
+    &:hover { border-color: $search-solid; color: $search-solid; }
   }
 
-  // ---- Map ----
   .contact-map {
-    margin-top: 1.1rem;
-    border-radius: 12px;
-    overflow: hidden;
-
-    iframe {
-      width: 100%;
-      height: 300px;
-      border: 0;
-      display: block;
-    }
+    margin-top: 1.1rem; border-radius: 12px; overflow: hidden;
+    iframe { width: 100%; height: 300px; border: 0; display: block; }
   }
 
   .graphic-img { margin-top: 1rem; }
 }
 
-// (Optional) Dark mode – nếu LMS có data-theme="dark"
+/* ---- Dark mode giữ nguyên ---- */
 [data-theme="dark"] {
   .contact-form-card, .contact-info-card {
     background: #14161a;
     border-color: rgba(255,255,255,.06);
     box-shadow: none;
   }
+
   .contact-form {
     input, textarea {
-      background-color: #1a1d23;
+      background: #1a1d23;
       border-color: #2b3038;
       color: #eaecef;
-
       &::placeholder { color: #8a90a0; }
-      &:focus { @include focus-ring(#5aa2ff); }
+      &:focus { @include focus-ring(lighten($search-solid,10%)); }
     }
+
     .form-hint, .hint { color: #a7adbb; }
     .alert.success { background: #15351c; border-color: #285a36; color: #b7e0c0; }
     .alert.error   { background: #3c1616; border-color: #753c3c; color: #ffd6d6; }
   }
-  .chip { background:#1a1d23; border-color:#2b3038; color:#cfd6e6; &:hover{ color:#5aa2ff; border-color:#5aa2ff; } }
-}
 
+  .chip {
+    background: #1a1d23;
+    border-color: #2b3038;
+    color: #cfd6e6;
+    &:hover { color: $search-solid; border-color: $search-solid; }
+  }
+}
