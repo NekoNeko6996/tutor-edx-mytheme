@@ -1,6 +1,6 @@
 <%page expression_filter="h"/>
-<%inherit file="main.html" />
-<%namespace name='static' file='static_content.html'/>
+<%inherit file="main.html"/>
+<%namespace name="static" file="static_content.html"/>
 
 <%!
 from django.utils.translation import gettext as _
@@ -8,14 +8,14 @@ from django.urls import reverse, NoReverseMatch
 from openedx.core.djangolib.markup import HTML, Text
 %>
 
-<!-- ====== Styles cho phần BODY (hero + search + sections). Có thể tách ra static/css sau ====== -->
+<!-- ====== Styles cho phần BODY (hero + search + sections) ====== -->
 <style>
 :root{
   --brand:#0056A1; --accent:#10B981;
   --bg:#ffffff; --ink:#111827; --muted:#6b7280;
   --card:#ffffff; --line:#e5e7eb;
 }
-#theme:checked~.page{ /* nếu bạn giữ dark toggle ở nav */
+#theme:checked~.page{
   --bg:#0f172a; --ink:#e5e7eb; --muted:#9aa3b2; --card:#0b1220; --line:#243355;
 }
 
@@ -32,7 +32,7 @@ from openedx.core.djangolib.markup import HTML, Text
   color:#fff;
 }
 .hero-title{font-size:2.25rem;font-weight:800;line-height:1.2;color:#fff}
-.hero .inner{padding:3.5rem 0 2.25rem;text-align:center}
+.hero .inner{padding:3.2rem 0 2rem;text-align:center}
 .hero .badge{
   display:inline-flex;align-items:center;gap:.5rem;
   padding:.4rem .75rem;border-radius:999px;
@@ -49,36 +49,16 @@ from openedx.core.djangolib.markup import HTML, Text
   background:rgba(255,255,255,.18);backdrop-filter:blur(6px);
   border:1px solid rgba(255,255,255,.55);padding:.5rem;border-radius:16px;
 }
-.searchbar .icon{
-  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-  background:#fff;color:#374151;border:1px solid var(--line);flex:0 0 auto
-}
-.searchbar .input{
-  flex:1 1 auto;min-width:200px;
-  display:flex;align-items:center;background:#fff;border:1px solid var(--line);
-  border-radius:12px;padding:.15rem .4rem
-}
-.searchbar input[type="search"]{
-  width:100%;border:0;outline:none;background:transparent;
-  padding:.7rem .6rem;font-size:1rem;color:#111827
-}
-.searchbar select{
-  flex:0 0 170px;background:#fff;color:#111827;border:1px solid var(--line);
-  border-radius:12px;padding:.7rem .9rem
-}
-.searchbar button{
-  flex:0 0 auto;background:#0a4b8a;border:1px solid #0a4b8a;color:#fff;
-  border-radius:12px;padding:.85rem 1.1rem;font-weight:800;cursor:pointer
-}
+.searchbar .icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#fff;color:#374151;border:1px solid var(--line);flex:0 0 auto}
+.searchbar .input{flex:1 1 auto;min-width:200px;display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.15rem .4rem}
+.searchbar input[type="search"]{width:100%;border:0;outline:none;background:transparent;padding:.7rem .6rem;font-size:1rem;color:#111827}
+.searchbar select{flex:0 0 170px;background:#fff;color:#111827;border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem}
+.searchbar button{flex:0 0 auto;background:#0a4b8a;border:1px solid #0a4b8a;color:#fff;border-radius:12px;padding:.85rem 1.1rem;font-weight:800;cursor:pointer}
 .searchbar button:focus-visible{outline:3px solid rgba(255,255,255,.6);outline-offset:2px}
 
 /* hero CTAs */
 .hero .ctas{display:flex;gap:.7rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;gap:.55rem;
-  padding:.75rem 1rem;border-radius:12px;font-weight:800;
-  border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;text-decoration:none
-}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.75rem 1rem;border-radius:12px;font-weight:800;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;text-decoration:none}
 .btn.primary{background:#fff;color:#0f172a;border-color:#fff}
 .btn:hover{filter:brightness(.97)}
 
@@ -87,13 +67,11 @@ from openedx.core.djangolib.markup import HTML, Text
 .section-title h2{margin:0;color:var(--ink);font-size:1.35rem}
 .section-title .emoji{font-size:1.15rem}
 
-/* Ensure course list from edX sits nicely */
+/* wrapper gốc của danh sách */
 .courses-host{margin-top:.75rem}
-.courses-host .courses-container{ /* wrapper around the included list */
-  background:transparent;
-}
+.courses-host .courses-container{background:transparent}
 
-/* ===== Responsive ===== */
+/* Responsive nhỏ */
 @media (max-width: 768px){
   .searchbar{flex-wrap:wrap}
   .searchbar .icon{display:none}
@@ -102,11 +80,7 @@ from openedx.core.djangolib.markup import HTML, Text
 }
 </style>
 
-<!-- Toggle Dark mode checkbox có ở nav; nhưng nếu nav ở file khác, giữ input#theme trong nav. -->
-
 <div class="page">
-
-  <!-- ===== MAIN BODY ===== -->
   <main id="main" aria-label="${_('Content')}" tabindex="-1">
 
     <!-- HERO -->
@@ -129,25 +103,18 @@ from openedx.core.djangolib.markup import HTML, Text
         <form class="search-wrap" role="search" aria-label="${_('Search courses')}" method="get" action="/courses">
           <div class="searchbar" role="group">
             <div class="icon" aria-hidden="true">🔎</div>
-
-            <!-- khối input có icon ở bên trái -->
             <div class="input">
               <svg aria-hidden="true" width="22" height="22" viewBox="0 0 20 20" style="margin-left:.4rem">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M8 4C5.79 4 4 5.79 4 8s1.79 4 4 4 4-1.79 4-4S10.21 4 8 4Zm-6 4a6 6 0 1 1 10.89 3.48l4.82 4.82a1 1 0 0 1-1.42 1.42l-4.82-4.82A6 6 0 0 1 2 8Z"
                   fill="#9CA3AF"/>
               </svg>
-              <input name="search_query" type="search"
-                     placeholder="${_('Search for a course')}"
-                     aria-label="${_('Search for a course')}"/>
+              <input name="search_query" type="search" placeholder="${_('Search for a course')}" aria-label="${_('Search for a course')}"/>
             </div>
-
-            <!-- bộ lọc UI-only (không ảnh hưởng backend), để giống demo -->
             <select aria-label="${_('Filter')}">
               <option value="all">${_('All')}</option>
               <option value="courses">${_('Courses')}</option>
             </select>
-
             <button type="submit">${_('Search')}</button>
           </div>
         </form>
@@ -160,7 +127,6 @@ from openedx.core.djangolib.markup import HTML, Text
       </div>
     </section>
 
-    <!-- Promo video (giữ nguyên cơ chế) -->
     % if show_homepage_promo_video:
       <section class="section-gap">
         <div class="container">
@@ -177,7 +143,6 @@ from openedx.core.djangolib.markup import HTML, Text
           <h2>${_('Featured courses')}</h2>
         </div>
 
-        <!-- Gói wrapper để danh sách khóa học gốc align đẹp -->
         <div class="courses-host">
           <div class="courses-container">
             <%include file="${courses_list}" />
@@ -187,31 +152,141 @@ from openedx.core.djangolib.markup import HTML, Text
     </section>
 
   </main>
-  <!-- Giữ vendor/segment loader từ core nếu có -->
+
   % if include_dependencies:
     <%static:js group='base_vendor'/>
     <%static:css group='style-vendor'/>
     <%include file="widgets/segment-io.html" />
     <%include file="widgets/segment-io-footer.html" />
   % endif
-  % if footer_css_urls:
+
+    % if footer_css_urls:
     % for url in footer_css_urls:
       <link rel="stylesheet" type="text/css" href="${url}"/>
     % endfor
   % endif
-</div>
 
-<!-- Hooks JS giữ nguyên -->
-<%block name="js_extra">
-  <script type="text/javascript">
-    $(window).load(function() {
-      if (getParameterByName('next')) { $('#login').trigger("click"); }
+<style>
+/* Lưới 1→2→3 cột */
+.courses-container .courses-listing{
+  list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(1,minmax(0,1fr));gap:24px;
+}
+@media (min-width:768px){ .courses-container .courses-listing{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (min-width:1200px){ .courses-container .courses-listing{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; } }
+.courses-container .courses-listing>li{ margin:0 !important; display:flex; }
+
+/* Card tối giản + hover */
+.courses-container .course{
+  background:#fff;border:1px solid #e5e7eb;border-radius:14px;
+  box-shadow:0 6px 14px rgba(16,24,40,.05);
+  display:flex;flex-direction:column;width:100%;overflow:hidden;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.courses-container .course:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(2,8,23,.12);
+  border-color:#cbd5e1;
+}
+
+/* === ẢNH: đè mọi rule cũ (aspect-ratio/padding-top) và tăng chiều cao === */
+.courses-host .courses-container .courses-listing li article.course > header.course-image{
+  aspect-ratio:auto !important;
+  padding-top:0 !important;
+  min-height:0 !important;
+  height: clamp(220px, 26vw, 360px) !important;   /* TO RÕ */
+  background-repeat:no-repeat !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-color:#0b1220 !important;
+  border-radius:14px 14px 0 0;
+  overflow:hidden !important;
+  display:block !important;
+}
+
+/* Nếu ảnh được set trên phần tử bất kỳ bằng inline style */
+.courses-container .course [style*="background-image"]{
+  aspect-ratio:auto !important;
+  padding-top:0 !important;
+  min-height:0 !important;
+  height: clamp(220px, 26vw, 360px) !important;
+  background-repeat:no-repeat !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  display:block !important;
+}
+
+.courses-container .course .course-info,
+.courses-container .course .course-overview,
+.courses-container .course .course-details,
+.courses-container .course .content,
+.courses-container .course .wrapper,
+.courses-container .course .course-about{
+  padding:16px 18px !important;background:#fff;flex:1 1 auto;
+}
+.courses-container .course .course-info::after{
+  content:"";display:block;height:1px;background:#eef2f7;margin:14px -18px 0 -18px;
+}
+
+.courses-container .course .course-footer,
+.courses-container .course .course-meta{
+  display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;
+  padding:12px 18px 16px;background:#fff;
+}
+
+.courses-container .course .btn,
+.courses-container .course a.button,
+.courses-container .course .button,
+.courses-container .course a[href*="course"]{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:38px;padding:.55rem 1rem;border-radius:10px;
+  font-weight:800;text-decoration:none;border:1px solid #0e4e96;
+  background:#134fa8;color:#fff !important;
+  transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+  box-shadow:0 3px 10px rgba(13,42,148,.16);
+}
+.courses-container .course .btn:hover,
+.courses-container .course a.button:hover,
+.courses-container .course .button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.04);
+  box-shadow:0 8px 18px rgba(13,42,148,.22);
+}
+
+/* Mobile */
+@media (max-width:576px){
+  .courses-host .courses-container .courses-listing li article.course > header.course-image,
+  .courses-container .course [style*="background-image"]{
+    height:200px !important;
+  }
+  .courses-container .courses-listing{ gap:20px; }
+}
+</style>
+
+<!-- ÉP INLINE HEIGHT (đề phòng CSS compiled vẫn ghi đè) -->
+<script>
+(function(){
+  const H_DESK = 360, H_TAB = 300, H_MOB = 200;
+  function targetHeight(){
+    const w = window.innerWidth;
+    return (w >= 1200) ? H_DESK : (w >= 768 ? H_TAB : H_MOB);
+  }
+  function apply(){
+    const h = targetHeight();
+    document.querySelectorAll(
+      '.courses-host .courses-container .courses-listing li article.course > header.course-image,'
+      + '.courses-container .course [style*="background-image"]'
+    ).forEach(function(el){
+      el.style.setProperty('aspect-ratio','auto','important');
+      el.style.setProperty('padding-top','0','important');
+      el.style.setProperty('min-height','0','important');
+      el.style.setProperty('height', h + 'px','important');
+      el.style.setProperty('backgroundSize','cover','important');
+      el.style.setProperty('backgroundPosition','center center','important');
+      el.style.setProperty('display','block','important');
     });
-  </script>
-</%block>
-
-% if show_signup_immediately is not UNDEFINED:
-<script type="text/javascript">
-  $(window).load(function(){ $('#signup_action').trigger("click"); });
+  }
+  document.addEventListener('DOMContentLoaded', apply);
+  window.addEventListener('resize', apply);
+})();
 </script>
-% endif
