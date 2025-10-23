@@ -55,9 +55,52 @@
       {% block body %}{% endblock %}
       {% block bodyextra %}{% endblock %}
     </div>
-    {% with course=request.course %}
-      {% include "footer.html"|microsite_template_path %}
-    {% endwith %}
+  {% with course=request.course %}
+  <div class="wrapper wrapper-footer">
+    <footer id="footer" class="tutor-container">
+      <div class="footer-top">
+        <div class="powered-area">
+          <ul class="logo-list">
+            <li>{% trans "Powered by:" %}</li>
+            <li>
+              <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
+                <img src="{% static 'images/cusc-logo.png' %}" alt="{% trans 'Runs on Tutor' %}" width="80"/>
+              </a>
+            </li>
+            <li>
+              <a href="https://ctu.edu.vn" rel="noopener" target="_blank">
+                <img src="{% static 'images/ctu-logo.png' %}" alt="CTU" width="79"/>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-grid" style="max-width:1200px;margin:2rem auto 0;display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));">
+          <div class="footer-col">
+            <h4>{% trans "About CUSC" %}</h4>
+            <p>{% trans "The Can Tho University Software Center provides online learning solutions and professional courses in programming, data science, and design." %}</p>
+          </div>
+          <div class="footer-col">
+            <h4>{% trans "Quick Links" %}</h4>
+            <a href="/courses">{% trans "Courses" %}</a>
+            <a href="/about">{% trans "About" %}</a>
+            <a href="/tos">{% trans "Terms" %}</a>
+            <a href="/privacy">{% trans "Privacy" %}</a>
+          </div>
+          <div class="footer-col">
+            <h4>{% trans "Contact" %}</h4>
+            <p>Email: info@cusc.vn</p>
+            <p>Phone: +84 292 3835 579</p>
+            <p>Address: 1 Ly Tu Trong St, Ninh Kieu, Can Tho, Vietnam</p>
+          </div>
+        </div>
+      </div>
+
+      <span class="copyright-site">Copyright ©{% now "Y" %}. {% trans "All Rights Reserved." %}</span>
+    </footer>
+  </div>
+{% endwith %}
+
 
   </div>
 
