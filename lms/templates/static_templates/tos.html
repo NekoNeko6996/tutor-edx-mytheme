@@ -3,7 +3,7 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Terms of Service")}</%block>
+<%block name="pagetitle">${_("Điều khoản sử dụng")}</%block>
 
 <link rel="stylesheet" href="${static.url('css/terms.css')}">
 
@@ -12,10 +12,10 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>
-                    <%block name="pageheader">${page_header or _("Terms of Service")}</%block>
+                    <%block name="pageheader">${page_header or _("Điều khoản sử dụng")}</%block>
                 </h1>
                 <p class="lead">
-                    <%block name="pagecontent">${page_content or _("Welcome to CUSC Learning! These Terms of Service explain how you can use our learning platform and services. Please read them carefully before getting started.")}</%block>
+                    <%block name="pagecontent">${page_content or _("Chào mừng bạn đến với CUSC Learning! Các điều khoản dưới đây quy định cách bạn sử dụng nền tảng và dịch vụ học trực tuyến của chúng tôi. Vui lòng đọc kỹ trước khi bắt đầu.")}</%block>
                 </p>
             </div>
             <div class="hero-graphic">
@@ -27,110 +27,112 @@
 
     <section class="container terms-content">
         <div class="terms-section">
-            <h2>1. Introduction</h2>
+            <h2>1. Giới thiệu</h2>
             <p>
-                CUSC Learning is an online learning platform operated by the Can Tho University Software Center (CUSC). 
-                By using our website, creating an account, or enrolling in a course, you agree to these Terms of Service and our Privacy Policy.
+                CUSC Learning là nền tảng học trực tuyến được vận hành bởi Trung tâm Phần mềm Đại học Cần Thơ (CUSC).  
+                Khi bạn sử dụng website, tạo tài khoản hoặc ghi danh vào khóa học, bạn đồng ý tuân thủ các Điều khoản sử dụng này cùng với Chính sách bảo mật của chúng tôi.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>2. Your Account</h2>
+             <h2>2. Tài khoản của bạn</h2>
             <p>
-                To access most features, you need to create an account with accurate and up-to-date information. 
-                You are responsible for keeping your password secure and for all activity under your account.
+                Để truy cập hầu hết các tính năng, bạn cần tạo tài khoản với thông tin chính xác và được cập nhật.  
+                Bạn chịu trách nhiệm bảo mật mật khẩu và mọi hoạt động diễn ra dưới tài khoản của mình.
             </p>
             <p>
-                If you believe your account has been compromised, please contact us immediately at 
+                Nếu nghi ngờ tài khoản bị xâm phạm, vui lòng liên hệ ngay qua email:
                 <a href="mailto:support@cusc.vn">info@cusc.vn</a>.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>3. Use of the Platform</h2>
+            <h2>3. Quy định sử dụng nền tảng</h2>
             <p>
-                You agree to use the platform responsibly and for learning purposes only. 
-                You must not:
+                Bạn đồng ý sử dụng nền tảng một cách có trách nhiệm và chỉ phục vụ cho mục đích học tập.  
+                Bạn không được phép:
             </p>
             <ul>
-                <li>Share your login credentials with others.</li>
-                <li>Upload or share offensive, harmful, or illegal content.</li>
-                <li>Disrupt the operation or security of the platform.</li>
-                <li>Copy, reproduce, or redistribute learning materials without permission.</li>
+                <li>Chia sẻ thông tin đăng nhập của mình cho người khác.</li>
+                <li>Tải lên hoặc chia sẻ nội dung có tính xúc phạm, gây hại hoặc vi phạm pháp luật.</li>
+                <li>Cản trở hoạt động hoặc ảnh hưởng đến bảo mật của hệ thống.</li>
+                <li>Sao chép, tái sử dụng hoặc phân phối tài liệu học tập khi chưa được phép.</li>
             </ul>
         </div>
 
         <div class="terms-section">
-            <h2>4. Course Content and Certificates</h2>
+           <h2>4. Nội dung khóa học và chứng chỉ</h2>
             <p>
-                All learning materials, videos, and resources are provided for educational purposes. 
-                Certificates of completion are awarded based on your course participation and performance.
+                Mọi tài liệu, video và nội dung học tập được cung cấp nhằm mục đích giáo dục.  
+                Chứng chỉ hoàn thành sẽ được cấp dựa trên mức độ tham gia và kết quả học tập của bạn.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>5. Payments and Refunds</h2>
+            <h2>5. Thanh toán và hoàn tiền</h2>
             <p>
-                Some courses may require payment. All prices are clearly stated before purchase. 
-                Refunds may be granted only under specific conditions (such as technical errors or duplicate payments) 
-                and are subject to approval by CUSC Learning.
+                Một số khóa học có thể yêu cầu thanh toán. Tất cả mức phí đều được hiển thị rõ ràng trước khi bạn xác nhận.  
+                Việc hoàn tiền chỉ áp dụng trong các trường hợp đặc biệt (ví dụ: lỗi kỹ thuật hoặc thanh toán trùng lặp)  
+                và cần được CUSC Learning xem xét, phê duyệt.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>6. Intellectual Property</h2>
+              <h2>6. Quyền sở hữu trí tuệ</h2>
             <p>
-                The design, logo, and all learning content on CUSC Learning are owned by the Can Tho University Software Center (CUSC) 
-                or its partners. You may not use, copy, or distribute any content without prior written consent.
+                Toàn bộ thiết kế, logo, nội dung và tài liệu học tập trên CUSC Learning thuộc quyền sở hữu của
+                Trung tâm Phần mềm Đại học Cần Thơ (CUSC) hoặc các đối tác liên kết.  
+                Bạn không được sử dụng, sao chép hoặc phân phối bất kỳ nội dung nào nếu chưa có sự đồng ý bằng văn bản.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>7. Privacy and Data Protection</h2>
+             <h2>7. Bảo mật và quyền riêng tư</h2>
             <p>
-                Your personal data is handled in accordance with our <a href="/privacy">Privacy Policy</a>. 
-                We use your information only to provide learning services and improve your experience on the platform.
+                Dữ liệu cá nhân của bạn được xử lý theo <a href="/privacy">Chính sách bảo mật</a> của chúng tôi.  
+                Chúng tôi chỉ sử dụng thông tin của bạn để cung cấp dịch vụ học tập và cải thiện trải nghiệm trên nền tảng.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>8. Suspension or Termination</h2>
+              <h2>8. Tạm ngưng hoặc chấm dứt tài khoản</h2>
             <p>
-                We may suspend or terminate your access if you violate these terms, misuse the platform, or engage in activities 
-                that may harm other learners or the system.
+                Chúng tôi có quyền tạm ngưng hoặc chấm dứt quyền truy cập của bạn nếu phát hiện hành vi vi phạm điều khoản,  
+                sử dụng sai mục đích hoặc gây ảnh hưởng đến người học khác và hệ thống.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>9. Disclaimer</h2>
+             <h2>9. Miễn trừ trách nhiệm</h2>
             <p>
-                CUSC Learning strives to provide a reliable and high-quality learning experience. 
-                However, we do not guarantee that all content will be free from errors or that the platform will be available at all times.
+                CUSC Learning luôn nỗ lực mang đến trải nghiệm học tập đáng tin cậy và chất lượng cao.  
+                Tuy nhiên, chúng tôi không đảm bảo rằng mọi nội dung đều hoàn toàn không có sai sót  
+                hoặc nền tảng sẽ luôn hoạt động liên tục không gián đoạn.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>10. Updates to These Terms</h2>
+             <h2>10. Cập nhật điều khoản</h2>
             <p>
-                We may revise these Terms of Service from time to time to reflect improvements or changes in our services. 
-                Any updates will be published on this page, and continued use of the platform indicates your acceptance of the revised terms.
+                Chúng tôi có thể điều chỉnh các Điều khoản sử dụng này theo thời gian để phản ánh sự thay đổi trong dịch vụ hoặc yêu cầu pháp lý.  
+                Mọi cập nhật sẽ được công bố tại trang này, và việc bạn tiếp tục sử dụng nền tảng đồng nghĩa với việc chấp nhận các điều khoản mới.
             </p>
         </div>
 
         <div class="terms-section">
-            <h2>11. Contact Us</h2>
+            <h2>11. Liên hệ</h2>
             <p>
-                If you have questions about these Terms or how we operate, please reach out to us:
+                Nếu bạn có thắc mắc hoặc góp ý liên quan đến Điều khoản sử dụng, vui lòng liên hệ:
             </p>
             <ul>
                 <li>Email: <a href="mailto:support@cusc.vn">info@cusc.vn</a></li>
-                <li>Phone: +84 292 3835 579</li>
-                <li>Address: 1 Ly Tu Trong St, Ninh Kieu District, Can Tho City, Vietnam</li>
+                <li>Điện thoại: +84 292 3835 579</li>
+                <li>Địa chỉ: 01 Lý Tự Trọng, Quận Ninh Kiều, TP. Cần Thơ, Việt Nam</li>
             </ul>
         </div>
 
         <div class="terms-last-update">
-            <p><strong>Last Updated:</strong> September 1, 2025</p>
+              <p><strong>Cập nhật lần cuối:</strong> 1/9/2025</p>
         </div>
     </section>
 </main>

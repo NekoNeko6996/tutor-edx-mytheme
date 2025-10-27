@@ -31,10 +31,10 @@
       <div class="powered-area">
         % if not hide_openedx_link:
         <ul class="logo-list">
-          <li>${_('Powered by:')}</li>
+          <li>${_('Được vận hành bởi:')}</li>
           <li>
             <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
-              <img src="${static.url('images/cusc-logo.png')}" alt="${_('Runs on Tutor')}" width="80"/>
+              <img src="${static.url('images/cusc-logo.png')}" alt="${_('Chạy trên nền tảng Tutor')}" width="80"/>
             </a>
           </li>
           <li>
@@ -49,27 +49,27 @@
       ## ---- Custom grid ----
       <div class="footer-grid" style="max-width:1200px;margin:2rem auto 0;display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));">
         <div class="footer-col">
-          <h4 style="margin:0 0 1rem 0;">${_('About CUSC')}</h4>
-          <p>${_('The Can Tho University Software Center provides online learning solutions and professional courses in programming, data science, and design.')}</p>
+          <h4 style="margin:0 0 1rem 0;">${_('Về CUSC')}</h4>
+          <p>${_('Trung tâm Phần mềm Đại học Cần Thơ (CUSC) cung cấp các giải pháp học trực tuyến và khóa học chuyên nghiệp trong lĩnh vực lập trình, khoa học dữ liệu và thiết kế.')}</p>
         </div>
         <div class="footer-col">
-          <h4 style="margin:0 0 1rem 0;">${_('Quick Links')}</h4>
-          <a href="/courses">${_('Courses')}</a>
-          <a href="/about">${_('About')}</a>
-          <a href="/tos">${_('Terms')}</a>
-          <a href="/privacy">${_('Privacy')}</a>
+          <h4 style="margin:0 0 1rem 0;">${_('Liên kết nhanh')}</h4>
+          <a href="/courses">${_('Khóa học')}</a>
+          <a href="/about">${_('Giới thiệu')}</a>
+          <a href="/tos">${_('Điều khoản sử dụng')}</a>
+          <a href="/privacy">${_('Chính sách bảo mật')}</a>
         </div>
         <div class="footer-col">
-          <h4 style="margin:0 0 1rem 0;">${_('Contact')}</h4>
+          <h4 style="margin:0 0 1rem 0;">${_('Liên hệ')}</h4>
           <p>Email: info@cusc.vn</p>
-          <p>Phone: +84 292 3835 579</p>
-          <p>Address: 1 Ly Tu Trong St, Ninh Kieu, Can Tho, Vietnam</p>
+          <p>Điện thoại: +84 292 3835 579</p>
+          <p>Địa chỉ: 01 Lý Tự Trọng, Quận Ninh Kiều, TP. Cần Thơ, Việt Nam</p>
         </div>
       </div>
       ## ----------------------
     </div>
 
-    <span class="copyright-site">Copyrights ©${datetime.now().year}. ${_('All Rights Reserved.')}</span>
+    <span class="copyright-site">Copyrights ©${datetime.now().year}. ${_('Mọi quyền được bảo lưu.')}</span>
 
     <div class="colophon" style="margin-top:1rem;">
       % if include_language_selector:

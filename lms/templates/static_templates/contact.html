@@ -3,17 +3,17 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Contact Us")}</%block>
+<%block name="pagetitle">${_("Liên hệ")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
   <section class="container about contact-page">
     <h1 class="contact-title">
-      <%block name="pageheader">${page_header or _("Contact")}</%block>
+      <%block name="pageheader">${page_header or _("Liên hệ")}</%block>
     </h1>
 
     <p class="contact-intro">
       <%block name="pagecontent">
-        ${page_content or _("Got a question or need support? Reach out using the form below or via the contact details on the right.")}
+        ${page_content or _("Bạn cần hỗ trợ hoặc có thắc mắc? Gửi tin nhắn bằng biểu mẫu bên dưới hoặc liên hệ trực tiếp bằng thông tin bên phải.")}
       </%block>
     </p>
 
@@ -21,7 +21,7 @@
       <!-- LEFT: Contact form -->
       <div class="contact-form-card" role="region" aria-labelledby="contact-form-title">
         <div class="card-head">
-          <h2 id="contact-form-title" class="section-title">${_("Send us a message")}</h2>
+          <h2 id="contact-form-title" class="section-title">${_("Gửi tin nhắn cho chúng tôi")}</h2>
           <span class="badge">CUSC</span>
         </div>
 
@@ -29,8 +29,8 @@
         <form class="contact-form" id="contactForm" novalidate>
           <div class="grid-2">
             <div class="field">
-              <label class="required" for="cf-name">${_("Full name")}</label>
-              <input id="cf-name" name="name" type="text" placeholder="${_('Your name')}" required />
+              <label class="required" for="cf-name">${_("Họ và tên")}</label>
+              <input id="cf-name" name="name" type="text" placeholder="${_('Tên của bạn')}" required />
               <small class="hint"></small>
             </div>
 
@@ -42,14 +42,14 @@
           </div>
 
           <div class="field">
-            <label for="cf-subject">${_("Subject")}</label>
-            <input id="cf-subject" name="subject" type="text" placeholder="${_('What is this about?')}" />
+            <label for="cf-subject">${_("Tiêu đề")}</label>
+            <input id="cf-subject" name="subject" type="text" placeholder="${_('Nội dung liên hệ về vấn đề gì?')}" />
             <small class="hint"></small>
           </div>
 
           <div class="field">
-            <label class="required" for="cf-message">${_("Message")}</label>
-            <textarea id="cf-message" name="message" rows="6" maxlength="1500" placeholder="${_('Write your message here...')}" required></textarea>
+            <label class="required" for="cf-message">${_("Nội dung tin nhắn")}</label>
+            <textarea id="cf-message" name="message" rows="6" maxlength="1500" placeholder="${_('Nhập nội dung bạn muốn trao đổi...')}" required></textarea>
             <div class="meta-row">
               <small class="hint"></small>
               <small id="msgCount" class="count">0/1500</small>
@@ -57,11 +57,11 @@
           </div>
 
           <button type="submit" class="btn primary" id="sendBtn">
-            <span> ${_("Send message")}</span>
+            <span> ${_("Gửi tin nhắn")}</span>
           </button>
 
           <p class="form-hint">
-            ${_("By sending this message, you agree to be contacted at the email you provided.")}
+            ${_("Bằng cách gửi tin nhắn, bạn đồng ý cho phép chúng tôi liên hệ lại qua email bạn đã cung cấp.")}
           </p>
 
           <!-- trạng thái gửi -->
@@ -71,13 +71,13 @@
 
       <!-- RIGHT: Contact info -->
       <aside class="contact-info-card" role="complementary" aria-labelledby="contact-info-title">
-        <h2 id="contact-info-title" class="section-title">${_("Contact information")}</h2>
+        <h2 id="contact-info-title" class="section-title">${_("Thông tin liên hệ")}</h2>
 
-        <ul class="contact-list" aria-label="${_('Contact details')}">
+        <ul class="contact-list" aria-label="${_('Chi tiết liên hệ')}">
           <li><span class="ci-label">${_("Email")}:</span> <a href="mailto:info@cusc.vn">info@cusc.vn</a></li>
-          <li><span class="ci-label">${_("Phone")}:</span> <a href="tel:+842922835579">+84 292 2835 579</a></li>
-          <li><span class="ci-label">${_("Address")}:</span> ${_("1 Ly Tu Trong St, Ninh Kieu, Can Tho, Vietnam")}</li>
-          <li><span class="ci-label">${_("Office hours")}:</span> ${_("Mon–Fri, 08:00–17:00 (GMT+7)")}</li>
+          <li><span class="ci-label">${_("Điện thoại")}:</span> <a href="tel:+842922835579">+84 292 2835 579</a></li>
+          <li><span class="ci-label">${_("Địa chỉ")}:</span> ${_("01 Lý Tự Trọng, Quận Ninh Kiều, TP. Cần Thơ, Việt Nam")}</li>
+          <li><span class="ci-label">${_("Giờ làm việc")}:</span> ${_("Thứ 2 – Thứ 6, 08:00–17:00 (GMT+7)")}</li>
         </ul>
 
         <div class="contact-social">
@@ -89,9 +89,9 @@
     </div>
 
     <!-- Map -->
-    <div class="contact-map" role="region" aria-label="${_('Location map')}">
+    <div class="contact-map" role="region" aria-label="${_('Bản đồ vị trí')}">
       <iframe
-        title="${_('CUSC location map')}"
+        title="${_('Bản đồ vị trí CUSC')}"
         loading="lazy"
         allowfullscreen
         referrerpolicy="no-referrer-when-downgrade"
@@ -149,18 +149,18 @@
     const emailOK = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
     const msgOK = !!msgEl.value.trim();
 
-    setValidity(nameEl, nameOK, nameOK ? "" : "${_('Please enter your name.')}");
-    setValidity(emailEl, emailOK, emailOK ? "" : "${_('Please enter a valid email.')}");
-    setValidity(msgEl, msgOK, msgOK ? "" : "${_('Message is required.')}");
+    setValidity(nameEl, nameOK, nameOK ? "" : "${_('Vui lòng nhập họ và tên.')}");
+    setValidity(emailEl, emailOK, emailOK ? "" : "${_('Vui lòng nhập email hợp lệ.')}");
+    setValidity(msgEl, msgOK, msgOK ? "" : "${_('Vui lòng nhập nội dung tin nhắn.')}");
 
     if (!(nameOK && emailOK && msgOK)) return;
 
     btnEl.disabled = true;
-    btnEl.innerText = "Sending...";
+    btnEl.innerText = "Đang gửi...";
 
     try {
       const fd = new FormData(formEl);
-      fd.append("_subject", "New message from CUSC LMS Contact Page");
+      fd.append("_subject", "Tin nhắn mới từ trang Liên hệ CUSC LMS");
       if (fd.get("email")) fd.append("_replyto", fd.get("email"));
 
       const resp = await fetch(FORM_ENDPOINT, {
@@ -176,13 +176,13 @@
 
       formEl.reset();
       updateCount();
-      showAlert("success", "✅ ${_('Message sent successfully. We’ll get back to you soon.')}");
+      showAlert("success", "✅ ${_('Gửi thành công. Chúng tôi sẽ phản hồi trong thời gian sớm nhất.')}");
     } catch (err) {
       console.error(err);
-      showAlert("error", "❌ ${_('Could not send your message. Please try again later.')}");
+      showAlert("error", "❌ ${_('Không thể gửi tin nhắn. Vui lòng thử lại sau.')}");
     } finally {
       btnEl.disabled = false;
-      btnEl.innerText = "${_('Send message')}";
+      btnEl.innerText = "${_('Gửi tin nhắn')}";
     }
   });
 </script>
