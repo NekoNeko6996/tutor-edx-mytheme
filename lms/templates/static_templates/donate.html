@@ -3,20 +3,35 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Donate")}</%block>
+<%block name="pagetitle">${_("Ủng hộ")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
     <section class="container about">
         <h1>
-            <%block name="pageheader">${page_header or _("Donate")}</%block>
+            <%block name="pageheader">${page_header or _("Ủng hộ CUSC Learning")}</%block>
         </h1>
         <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
+            <%block name="pagecontent">
+              ${page_content or _("Chúng tôi rất trân trọng sự đóng góp của bạn trong việc phát triển nền tảng học tập trực tuyến CUSC Learning. Mỗi khoản ủng hộ sẽ giúp chúng tôi duy trì, cải thiện chất lượng khóa học và mở rộng cơ hội học tập cho cộng đồng sinh viên, giảng viên và người học trên toàn quốc.")}
+            </%block>
         </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/donate.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/donate-dark.svg')}" alt="Runs on Tutor" />
+
+        <div class="donate-details" style="margin-top:1.5rem;">
+            <h2>${_("Thông tin ủng hộ")}</h2>
+            <p>${_("Nếu bạn muốn đóng góp, vui lòng liên hệ với chúng tôi qua email hoặc chuyển khoản theo thông tin bên dưới:")}</p>
+            <ul>
+                <li><strong>${_("Email")}</strong>: info@cusc.vn</li>
+                <li><strong>${_("Điện thoại")}</strong>: +84 292 3835 579</li>
+                <li><strong>${_("Ngân hàng")}</strong>: Vietcombank – Chi nhánh Cần Thơ</li>
+                <li><strong>${_("Số tài khoản")}</strong>: 0123456789 – <em>Trung tâm Phần mềm Đại học Cần Thơ (CUSC)</em></li>
+            </ul>
+            <p>${_("Mọi khoản đóng góp của bạn đều được sử dụng minh bạch và sẽ góp phần thúc đẩy chuyển đổi số trong giáo dục Việt Nam.")}</p>
+        </div>
+
+        <!-- Hình minh họa -->
+        <div class="graphic-img" style="margin-top:2rem;">
+            <img src="${static.url('images/donate.svg')}" alt="${_('Hình minh họa quyên góp')}" />
+            <img class="dark" src="${static.url('images/donate-dark.svg')}" alt="${_('Hình minh họa quyên góp (chế độ tối)')}" />
         </div>
     </section>
 </main>

@@ -3,7 +3,7 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Help")}</%block>
+<%block name="pagetitle">${_("Trợ giúp")}</%block>
 <%!
 import json
 from urllib.parse import urljoin
@@ -32,13 +32,13 @@ should_show_order_history = not enterprise_customer_portal
         <div class="help-hero">
             <div class="hero-text">
                 <h1>
-                    <%block name="pageheader">${page_header or _("Need Help?")}</%block>
+                    <%block name="pageheader">${page_header or _("Cần hỗ trợ?")}</%block>
                 </h1>
                 <p class="lead">
-                    <%block name="pagecontent">${page_content or _("We’re here to guide you. Find quick answers, tutorials, and contact support below.")}</%block>
+                    <%block name="pagecontent">${page_content or _("Chúng tôi luôn sẵn sàng giúp bạn. Dưới đây là các hướng dẫn nhanh, tài liệu và cách liên hệ với bộ phận hỗ trợ.")}</%block>
                 </p>
                 <div class="help-buttons">
-                    <a href="/contact" class="btn primary">Contact Support</a>
+                    <a href="/contact" class="btn primary">Liên hệ hỗ trợ</a>
                 </div>
             </div>
             <div class="hero-graphic">
@@ -49,18 +49,18 @@ should_show_order_history = not enterprise_customer_portal
 
         <div class="help-sections">
             <div class="help-card">
-                <h3>📘 Getting Started</h3>
-                <p>Learn how to enroll in courses, access content, and track your learning progress.</p>
-                <a href="/courses" class="link">Learn more →</a>
+                <h3>📘 Bắt đầu học tập</h3>
+                <p>Tìm hiểu cách đăng ký khóa học, truy cập nội dung và theo dõi tiến độ học tập của bạn.</p>
+                <a href="/courses" class="link">Xem hướng dẫn →</a>
             </div>
             <div class="help-card">
-                <h3>🔐 Account & Login</h3>
-                <p>Having trouble signing in? Reset your password or update your profile information here.</p>
-                <a href="${urljoin(settings.PROFILE_MICROFRONTEND_URL, f'{user.username}')}" class="link">View help →</a>
+                <h3>🔐 Tài khoản & Đăng nhập</h3>
+                <p>Gặp sự cố khi đăng nhập? Bạn có thể đặt lại mật khẩu hoặc cập nhật thông tin hồ sơ tại đây.</p>
+                <a href="${urljoin(settings.PROFILE_MICROFRONTEND_URL, f'{user.username}')}" class="link">Xem chi tiết →</a>
             </div>
             <div class="help-card">
-                <h3>🎓 Courses & Certificates</h3>
-                <p>Understand how to access course materials and download your completion certificates.</p>
+                <h3>🎓 Khóa học & Chứng chỉ</h3>
+                <p>Tìm hiểu cách truy cập tài liệu khóa học và tải chứng chỉ hoàn thành sau khi hoàn tất.</p>
                 <a href="/dashboard" class="link">Explore →</a>
             </div>
         </div>
