@@ -1,59 +1,62 @@
-// Include custom discover
+/* =========================
+   DISCOVER COURSES – MERGED
+   ========================= */
+
+/* ===== Layout khung trang ===== */
 .window-wrap #content.content-wrapper {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100%;
 
-    @include media-breakpoint-up(lg) {
-        margin-top: 64px !important;
-    }
+  @include media-breakpoint-up(lg) {
+    margin-top: 64px !important;
+  }
 }
-#main{
-    margin: 0;
-        @include media-breakpoint-up(md) {
-        margin: 0 150px;
-    }
+#main {
+  margin: 0;
+  @include media-breakpoint-up(md) {
+    margin: 0 150px;
+  }
 }
 
+/* ===== Heading intro ===== */
 .course-heading-area {
-    margin: 0 0 20px;
-    font-size: 14px;
-    color: #515661;
+  margin: 0 0 20px;
+  font-size: 14px;
+  color: #515661;
+
+  @include media-breakpoint-up(md) {
+    margin: 0 0 30px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  h2 {
+    color: #111827;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    margin: 0 0 8px;
 
     @include media-breakpoint-up(md) {
-        margin: 0 0 30px;
-        font-size: 16px;
-        line-height: 20px;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 12px;
     }
+  }
 
-    h2 {
-        color: #111827;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 30px;
-        margin: 0 0 8px;
-
-        @include media-breakpoint-up(md) {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 0 12px;
-        }
-    }
-
-    p {
-        margin: 0;
-    }
+  p { margin: 0; }
 }
 
+/* ===== Khối find-courses + container ===== */
 .find-courses {
   padding-bottom: 0 !important;
 
   .courses-container {
     padding: 25px 0;
 
-    @include media-breakpoint-up(md) {
-      padding: 30px 0;
-    }
+    @include media-breakpoint-up(md) { padding: 60px 0; }
+    @include media-breakpoint-down(md) { padding: 90px 0; }
   }
 
   .course-holder {
@@ -62,33 +65,20 @@
   }
 }
 
-// .courses-container .courses .courses-listing li {
-//   margin-bottom: 60px !important;
-//   box-sizing: border-box !important;
-//   vertical-align: top !important;
-// }
-// @media (min-width: 576px) and (max-width: 991.98px) {
-//   .courses-container .courses .courses-listing li:nth-child(n+3) {
-//     margin-top: 40px !important;
-//   }
-// }
-// @media (min-width: 992px) {
-//   .courses-container .courses .courses-listing li:nth-child(n+4) {
-//     margin-top: 40px !important;
-//   }
-// }
-
+/* ===== Nút Learn more & date về vị trí tự nhiên ===== */
 .courses-container .courses .courses-listing li .course .course-info .learn-more,
 .courses-container .courses .courses-listing li .course .course-info .course-date {
   position: static !important;
   float: none !important;
   clear: none !important;
 }
+
+/* ===== Style nút Learn more (phiên bản sáng) ===== */
 .courses-container .courses .courses-listing li .course .course-info a.learn-more,
 .courses-container .courses .courses-listing li .course .course-info .learn-more {
   display: block !important;
-  width: 90% !important;          /* rộng 80% card */
-  margin: 10px auto 0 !important; /* canh giữa */
+  width: 90% !important;
+  margin: 10px auto 0 !important;
   box-sizing: border-box !important;
   background: $primary !important;
   color: #fff !important;
@@ -100,25 +90,23 @@
   padding: 10px 8px !important;
   border: 1px solid transparent !important;
   box-shadow: none !important;
-  border-radius: 8px !important;  /* bo góc nhẹ cho nút */
+  border-radius: 8px !important;
 }
 
+/* ===== Thông tin card ===== */
 .courses-container .courses .courses-listing li .course .course-info {
   font-size: 15px !important;
   line-height: 22px !important;
   padding: 0 20px;
 }
-// .courses-container .courses .course .course-info .course-title {
-//   height: 5px;
-// }
 
+/* ===== Tiêu đề khóa học (clamp 2 dòng) ===== */
 .courses-container .courses .courses-listing li .course .course-info .course-title,
 .courses-container .courses .courses-listing li .course .course-info .course-title a {
   color: black !important;
   text-decoration: none !important;
   font-weight: 500 !important;
 }
-
 .courses-container .courses .courses-listing li .course .course-info .course-title a:hover,
 .courses-container .courses .courses-listing li .course .course-info .course-title a:focus,
 .courses-container .courses .courses-listing li .course .course-info .course-title a:active,
@@ -127,132 +115,27 @@
   text-decoration: none !important;
   font-weight: 500 !important;
 }
+.courses-container .courses .course .course-info .course-title {
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  line-height: 1.35 !important;
+  margin: 4px 0 8px !important;
 
-// /* =========================
-//    AUTO-FIT ẢNH TRONG THẺ KHOÁ HỌC (không ảnh hưởng phần khác)
-//    ========================= */
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: anywhere !important;
 
-// /* Khung ảnh 16:9, ẩn phần thừa để ảnh luôn gọn khung */
-// .courses-container .courses .courses-listing li .course .course-image,
-// .courses-container .courses .course .course-image {
-//   position: relative !important;
-//   width: 100% !important;
-//   aspect-ratio: 16 / 9;
-//   overflow: hidden !important;
-//   background: #0b1220;
-// }
+  height: calc(1.35em * 2) !important;
+  max-height: calc(1.35em * 2) !important;
+}
 
-// /* Ảnh phủ kín khung, không méo; cắt phần thừa nếu cần */
-// .courses-container .courses .courses-listing li .course .course-image img,
-// .courses-container .courses .course .course-image img,
-// .courses-container .courses .courses-listing li .course .course-image picture img {
-//   position: absolute !important;
-//   inset: 0 !important;
-//   width: 100% !important;
-//   height: 100% !important;
-//   display: block !important;
-//   object-fit: cover !important;
-//   object-position: center !important;
-//   max-width: none !important;
-//   border: 0 !important;
-// }
-
-// /* Nếu theme dùng figure/cover-image khác tag img, vẫn áp dụng */
-// .courses-container .courses .courses-listing li .course .course-image > a,
-// .courses-container .courses .courses-listing li .course .course-image > figure,
-// .courses-container .courses .course .course-image > a,
-// .courses-container .courses .course .course-image > figure {
-//   position: absolute !important;
-//   inset: 0 !important;
-//   width: 100% !important;
-//   height: 100% !important;
-// }
-
-// /* Fallback cho trình duyệt chưa hỗ trợ aspect-ratio */
-// @supports not (aspect-ratio: 16 / 9) {
-//   .courses-container .courses .courses-listing li .course .course-image,
-//   .courses-container .courses .course .course-image {
-//     height: auto !important;
-//   }
-//   .courses-container .courses .courses-listing li .course .course-image::before,
-//   .courses-container .courses .course .course-image::before {
-//     content: "" !important;
-//     display: block !important;
-//     padding-top: 56.25% !important; /* 16:9 */
-//   }
-//   .courses-container .courses .courses-listing li .course .course-image img,
-//   .courses-container .courses .course .course-image img {
-//     position: absolute !important;
-//     top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-//     width: 100% !important;
-//     height: 100% !important;
-//     object-fit: cover !important;
-//   }
-// }
-
-// /* Khi hover card, giữ ảnh không nhảy layout */
-// .courses-container .courses .courses-listing li .course:hover .course-image img,
-// .courses-container .courses .course:hover .course-image img {
-//   transform: none !important;
-// }
-
-// /* =========================
-//    FIX: ẨN PLACEHOLDER ::BEFORE CỦA COVER-IMAGE
-//    ========================= */
-// .cover-image::before,
-// .course .cover-image::before,
-// .courses .course .cover-image::before,
-// .courses-listing .course .cover-image::before {
-//   content: none !important;
-//   display: none !important;
-//   background: none !important;
-//   padding: 0 !important;
-//   height: 0 !important;
-// }
-
-// /* Gỡ mọi bo góc & giữ ảnh phủ kín, không khe trắng */
-// .courses-host .course {
-//   overflow: hidden !important;
-//   background: var(--card, #fff) !important;
-// }
-// .courses-host .course .cover-image {
-//   position: relative !important;
-//   margin: 0 !important;
-//   padding: 0 !important;
-//   border: 0 !important;
-//   overflow: hidden !important;
-//   line-height: 0 !important;
-//   background: transparent !important;
-// }
-// .courses-host .course .cover-image img {
-//   display: block !important;
-//   width: 100% !important;
-//   height: 100% !important;
-//   object-fit: cover !important;
-//   object-position: center !important;
-//   border: 0 !important;
-// }
-
-// /* Nếu theme có placeholder ::before thì tắt luôn để không đội khung */
-// .courses-host .cover-image::before {
-//   content: none !important;
-//   display: none !important;
-//   padding: 0 !important;
-//   height: 0 !important;
-//   background: none !important;
-// }
-
-// /* Bản rút gọn (không bo góc) – đảm bảo đồng nhất */
-// .courses-container .courses .courses-listing li .course .cover-image::before,
-// .courses-container .courses .course .cover-image::before {
-//   content: none !important;
-//   display: none !important;
-//   padding: 0 !important;
-//   height: 0 !important;
-//   background: none !important;
-// }
-
-/* === BO GÓC CARD (nhẹ) === */
+/* ===== Card bo góc + hover ===== */
 .courses-container .courses .courses-listing li .course,
 .courses-host .course {
   border-radius: 12px !important;
@@ -266,27 +149,20 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
 }
 
-
-
-
-/* === Canh giữa icon lịch và chữ + canh hàng ngang với Learn More === */
+/* ===== Dòng ngày bắt đầu ===== */
 .course-date {
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
   line-height: 1.4 !important;
   vertical-align: middle !important;
-  width: 90% !important;            
-  margin: 3px auto 12px !important;  /* canh giữa */
+  width: 90% !important;
+  margin: 3px auto 12px !important;
   padding: 0 20px !important;
 }
-
 @media (max-width: 576px) {
-  .course-date {
-    width: 95% !important;           /* mobile rộng hơn chút cho dễ đọc */
-  }
+  .course-date { width: 95% !important; }
 }
-
 .course-date svg {
   flex-shrink: 0 !important;
   width: 18px !important;
@@ -296,454 +172,45 @@
   top: 0 !important;
 }
 
-
-
-
+/* =========================
+   Search bar + Filters (UI)
+   ========================= */
 .saerch-bar-discover {
-    margin: 0 0 25px;
-    display: flex;
+  margin: 0 0 25px;
+  display: flex;
+  gap: 12px;
 
-    @include media-breakpoint-up(md) {
-        margin: 0 0 30px;
-    }
+  @include media-breakpoint-up(lg) { flex-direction: row; }
+  @include media-breakpoint-down(lg) { flex-direction: column; }
+  @include media-breakpoint-up(md) { margin: 0 0 30px; }
 
-    &:after {
-        display: block;
-        clear: both;
-        content: "";
-    }
+  &:after { display: block; clear: both; content: ""; }
 
-    .filters {
-        .filters-inner {
-            border: none;
-
-            .clear-filters {
-                display: none;
-            }
-
-            ul {
-                li {
-                    padding: 0;
-                    margin: 0 7px 5px 0;
-                    background: none;
-
-                    button {
-                        padding: 2px 10px;
-                        border-radius: 12px;
-                        background: $primary !important;
-                        color: #fff;
-                        font-size: 14px;
-                        line-height: 20px;
-                        margin-bottom: 4px !important; 
-                    }
-                }
-            }
-        }
-    }
-
-    .discover-search {
-        width: 100%;
-
-        .wrapper-search-context {
-            .wrapper-search-input {
-                float: none;
-                display: flex;
-                margin: 0;
-                width: auto;
-
-                &:after {
-                    display: block;
-                    clear: both;
-                    content: "";
-                }
-
-                .button-holder {
-                    float: right;
-
-                    button {
-                        position: static;
-                        margin: 0 0 0 16px;
-                        min-width: 90px;
-                        color: #fff;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 26px;
-                        text-align: center;
-                        padding: 6px;
-                        height: 38px;
-                        border-radius: 6px;
-                        background: $primary;
-                        font-family: $font-family-title;
-                        border: none;
-                        box-shadow: none !important;
-
-                        @include media-breakpoint-up(sm) {
-                            min-width: 100px;
-                        }
-
-                        &:hover {
-                            background: $primary;
-                            opacity: .8;
-                        }
-                    }
-                }
-
-                .input-holder {
-                    flex-grow: 1;
-                    border-radius: 6px;
-                    background: $primary-light;
-                    padding: 0 0 0 33px;
-                    position: relative;
-
-                    svg {
-                        position: absolute;
-                        left: 12px;
-                        font-size: 20px;
-                        top: 10px;
-
-                        path {
-                            fill: #4a5564;
-                        }
-                    }
-
-                    input {
-                        border: none;
-                        box-shadow: none;
-                        height: 38px;
-                        width: 100%;
-                        background: none;
-                        outline: none;
-                        font-size: 14px;
-                        line-height: 20px;
-                        padding: 9px 10px;
-
-                        &::placeholder {
-                            color: #4a5564;
-                        }
-                    }
-                }
-            }
-        }
-
-        .search-status-label {
+  .filters {
+    .filters-inner {
+      border: none;
+      .clear-filters { display: none; }
+      ul {
+        li {
+          padding: 0;
+          margin: 0 7px 5px 0;
+          background: none;
+          button {
+            padding: 2px 10px;
+            border-radius: 12px;
+            background: $primary !important;
+            color: #fff;
             font-size: 14px;
             line-height: 20px;
-            padding: 10px 0 0;
-            height: auto;
-            min-height: auto;
-            width: 100%;
-            float: none;
-            color: #515661;
+            margin-bottom: 4px !important;
+          }
         }
+      }
     }
-}
+  }
 
-.filter-block {
-    flex: 0 0 80px;
-    position: relative;
-    z-index: 9;
-
-    @include media-breakpoint-up(sm) {
-        flex: 0 0 130px;
-    }
-
-    &.show {
-        .dropdown-menu {
-            display: block;
-        }
-    }
-
-    >a {
-        display: block;
-        background-color: $primary-light;
-        text-decoration: none !important;
-        font-size: 14px;
-        line-height: 20px;
-        margin: 0 16px 0 0;
-        font-weight: 500;
-        padding: 8px 10px;
-        border-radius: 6px;
-        color: #4B5563;
-
-        &:hover {
-            text-decoration: none;
-            color: #4B5563;
-        }
-
-        svg {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        span {
-            padding: 0 3px;
-            display: none;
-
-            @include media-breakpoint-up(sm) {
-                display: inline;
-            }
-        }
-    }
-
-    .dropdown-menu {
-        display: none;
-        width: 200px;
-        left: 0;
-        top: 48px !important;
-        transform: none !important;
-        border-radius: 6px;
-        background: $primary-light;
-        padding: 10px 10px 0;
-        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
-    }
-
-    .search-facets {
-        float: none;
-        width: 100%;
-        margin: 0;
-        box-shadow: none;
-        background: none;
-
-        h2 {
-            display: none;
-        }
-
-        .search-facets-lists {
-            h3 {
-                border: none;
-                padding: 0;
-                margin: 0 0 10px;
-                color: #191B23;
-                font-size: 14px;
-                font-weight: 700;
-            }
-
-            ul.facet-list {
-                padding: 0 0 0 25px;
-                max-height: 100px;
-                overflow-y: auto;
-
-                li {
-                    height: auto;
-                    margin: 0 0 10px;
-
-                    button.facet-option {
-                        position: relative;
-                        float: none;
-                        width: auto;
-                        background: none !important;
-                        padding: 0 0 0 24px;
-                        font-size: 14px;
-                        line-height: 20px;
-                        color: #191B23;
-
-                        &.selected {
-                            .count {
-                                background: $primary;
-                                border-color: $primary;
-
-                                &:before {
-                                    content: "\f00c";
-                                    width: auto;
-                                    top: 0;
-                                    left: 2px;
-                                    display: block;
-                                    font-size: 10px;
-                                    line-height: 14px;
-                                    color: #fff;
-                                }
-                            }
-                        }
-
-                        .count {
-                            position: absolute;
-                            left: 0;
-                            right: auto;
-                            top: 2px;
-                            width: 16px;
-                            height: 16px;
-                            border-radius: 4px;
-                            border: 1px solid #C4C7CF;
-                            background: #fff;
-
-                            .count-number {
-                                display: none;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-body.indigo-dark-theme {
-    .course-heading-area {
-        color: $text-color-primary;
-
-        h2 {
-            color: $text-color-d;
-        }
-    }
-
-    .saerch-bar-discover {
-        .filters {
-            .filters-inner {
-                ul {
-                    li {
-                        button {
-                            background: $primary-d !important;
-                            color: $btn-color-d;
-                        }
-                    }
-                }
-            }
-        }
-
-        .discover-search {
-            .wrapper-search-context {
-                .wrapper-search-input {
-                    .button-holder {
-                        button {
-                            background: $primary-d;
-                            color: $btn-color-d;
-
-                            &:hover {
-                                background: $primary-d;
-                                color: $btn-color-d;
-                            }
-                        }
-                    }
-
-                    .input-holder {
-                        background: $primary-light-d;
-
-                        svg {
-                            path {
-                                color: $text-color-d;
-                            }
-                        }
-
-                        input {
-                            color: $text-color-d;
-                        }
-                    }
-                }
-            }
-
-            .search-status-label {
-                color: $text-color-primary;
-            }
-        }
-
-        .filter-block {
-
-            >a {
-                background-color: $primary-light-d;
-                color: $text-color-d;
-
-                &:hover {
-                    color: $text-color-d;
-                }
-
-                svg {
-                    fill: transparent;
-                    stroke: $text-color-d;
-
-                    &.arrow {
-                        fill: $text-color-d;
-                        stroke: none;
-                    }
-                }
-            }
-
-            .dropdown-menu {
-                background: $primary-light-d;
-            }
-
-            .search-facets {
-                .search-facets-lists {
-                    h3 {
-                        color: $text-color-d;
-                    }
-
-                    ul.facet-list {
-                        li {
-                            button.facet-option {
-                                color: $text-color-d;
-
-                                &.selected {
-                                    .count {
-                                        background: $primary-d;
-                                        border-color: $primary-d;
-
-                                        &:before {
-                                            color: $btn-color-d;
-                                        }
-                                    }
-                                }
-
-                                .count {
-                                    border: 1px solid $text-color-d;
-                                    background: $text-color-d;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .courses-container {
-        .courses {
-            .courses-listing {
-                li {
-                    .course {
-                        box-shadow: none;
-                        border: 1px solid $border-color-d;
-                        background: $primary-light-d;
-
-                        .course-info {
-                            .course-title {
-                                color: $text-color-d;
-                            }
-
-                            .course-organization {
-                                color: $text-color-primary;
-                            }
-
-                            .learn-more {
-                                background: $primary-d;
-                                color: $btn-color-d;
-                            }
-
-                            .course-date {
-                                border-top: 1px solid $border-color-d;
-                                color: $text-color-primary;
-                                background: $light-overlay-d;
-
-                                svg {
-                                    path {
-                                        fill: $text-color-primary;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-/* === Enhancement: Modern round search bar & filter alignment === */
-/* giữ nguyên mọi style cũ, chỉ thêm hiệu ứng bo tròn, gradient và căn giữa */
-.saerch-bar-discover {
-  gap: 12px;
-  
-  // Filter button tinh chỉnh nhẹ cho giống hình
+  /* Toggle filters button */
   .filter-block {
-    padding: 6px;
     > a {
       display: inline-flex;
       align-items: center;
@@ -757,139 +224,230 @@ body.indigo-dark-theme {
       transition: background 0.2s ease;
       border: 1px solid #e5e7eb;
 
-      &:hover {
-        background-color: #e5e7eb;
-      }
-
-      svg {
-        stroke: #9ca3af;
-        width: 18px;
-        height: 18px;
-      }
-
-      .arrow {
-        fill: #9ca3af;
-      }
+      &:hover { background-color: #e5e7eb; }
+      svg { stroke: #9ca3af; width: 18px; height: 18px; }
+      .arrow { fill: #9ca3af; }
     }
   }
 
-  // Thanh search chỉnh giống bản mockup
+  /* Ô tìm kiếm */
   .discover-search {
+    width: 100%;
+
     .wrapper-search-context {
       .wrapper-search-input {
+        float: none;
+        display: flex;
+        margin: 0;
+        width: auto;
+
         align-items: center;
         border: 1px solid #e5e7eb;
-        border-radius: 9999px; // full bo tròn
-        overflow: hidden; // giúp nút search liền khối
+        border-radius: 9999px;
+        overflow: hidden;
         background: #fff;
         height: 46px;
         padding: 0;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         transition: box-shadow 0.2s ease;
 
+        &:after { display: block; clear: both; content: ""; }
         &:focus-within {
           border-color: #10b981;
           box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
         }
 
-        // Icon + input
-        .input-holder {
-          flex-grow: 1;
-          position: relative;
-          background: none;
-          border: none;
-
-          svg {
-            position: absolute;
-            top: 50%;
-            left: 14px;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            path {
-              fill: #9ca3af;
-            }
-          }
-
-          input {
-            width: 100%;
-            height: 46px;
-            border: none;
-            background: transparent;
-            outline: none;
-            padding: 0 12px 0 42px;
-            font-size: 15px;
-            color: #111827;
-            font-family: "Inter", "Segoe UI", sans-serif;
-
-            &::placeholder {
-              color: #9ca3af;
-              font-weight: 400;
-            }
-          }
-        }
-
-        // Nút Search gradient tròn
         .button-holder {
           flex-shrink: 0;
           margin: 0 !important;
 
+          background-color: #F2F7F8;
+
           button {
-            border: none;
-            border-radius: 9999px;
+            position: static;
+            min-width: 100px;
             height: 46px;
             padding: 0 26px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: none;
+            box-shadow: none !important;
+
+            color: #fff;
             font-size: 15px;
             font-weight: 600;
             line-height: 46px;
-            color: #fff;
+            text-align: center;
             font-family: "Inter", "Segoe UI", sans-serif;
             background: linear-gradient(135deg, #10b981, #0056a1);
-            cursor: pointer;
             transition: all 0.2s ease;
 
-            &:hover {
-              opacity: 0.9;
-              transform: translateY(-1px);
-            }
-            &:active {
-              transform: translateY(0);
-            }
+            &:active { transform: translateY(0); }
+          }
+        }
+
+        .input-holder {
+          flex-grow: 1;
+          position: relative;
+          border-radius: 6px 0 0 6px;
+          background: $primary-light;
+          padding: 0 0 0 33px;
+
+          svg {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px; height: 18px;
+            path { fill: #9ca3af; }
+          }
+
+          input {
+            border: none;
+            box-shadow: none;
+            height: 46px;
+            width: 100%;
+            background: transparent;
+            outline: none;
+            font-size: 15px;
+            padding: 0 12px 0 42px;
+            color: #111827;
+            font-family: "Inter", "Segoe UI", sans-serif;
+
+            &::placeholder { color: #9ca3af; font-weight: 400; }
           }
         }
       }
 
-      // Dòng "Viewing X course(s)"
       .search-status-label {
-        text-align: center;
-        color: #6b7280;
         font-size: 14px;
-        margin-top: 10px;
+        line-height: 20px;
+        padding: 10px 0 0;
+        color: #6b7280;
+        text-align: center;
+        height: auto;
+        min-height: auto;
+        width: 100%;
+        float: none;
       }
     }
   }
 }
-/*TRUONG-chinh sửa bị chồng card khóa học*/
 
+/* ===== Dropdown facets ===== */
+.filter-block {
+  position: relative;
+  z-index: 9;
 
-/* === Dark mode support (không thay màu cũ, chỉ tinh chỉnh ánh sáng) === */
+  .dropdown-toggle {
+    height: 30px;
+    @include media-breakpoint-up(sm) { min-width: 100px; }
+  }
+
+  &.show { .dropdown-menu { display: block; } }
+
+  .dropdown-menu {
+    display: none;
+    width: 200px;
+    left: 0;
+    top: 53px !important;
+    transform: none !important;
+    border-radius: 6px;
+    background: $primary-light;
+    padding: 10px 10px 0;
+    box-shadow:
+      0px 0px 0px 1px rgba(0, 0, 0, 0.05),
+      0px 4px 6px -2px rgba(0, 0, 0, 0.05),
+      0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-facets {
+    float: none;
+    width: 100% !important;
+    margin: 0;
+    box-shadow: none;
+    background: none;
+
+    h2 { display: none; }
+
+    .search-facets-lists {
+      h3 {
+        border: none;
+        padding: 0;
+        margin: 0 0 10px;
+        color: #191b23;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      ul.facet-list {
+        padding: 0 0 0 25px;
+        max-height: 100px;
+        overflow-y: auto;
+
+        li {
+          height: auto;
+          margin: 0 0 10px;
+
+          button.facet-option {
+            position: relative;
+            float: none;
+            width: auto;
+            background: none !important;
+            padding: 0 0 0 24px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #191b23;
+
+            &.selected {
+              .count {
+                background: $primary;
+                border-color: $primary;
+
+                &:before {
+                  content: "\f00c";
+                  width: auto;
+                  top: 0; left: 2px;
+                  display: block;
+                  font-size: 10px;
+                  line-height: 14px;
+                  color: #fff;
+                }
+              }
+            }
+
+            .count {
+              position: absolute;
+              left: 0; right: auto; top: 2px;
+              width: 16px; height: 16px;
+              border-radius: 4px;
+              border: 1px solid #c4c7cf;
+              background: #fff;
+
+              .count-number { display: none; }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* =========================
+   Dark theme (Indigo)
+   ========================= */
 body.indigo-dark-theme {
+  .course-heading-area {
+    color: $text-color-primary;
+    h2 { color: $text-color-d; }
+  }
+
   .saerch-bar-discover {
-    .filter-block > a {
-      background: #1e293b;
-      color: #e2e8f0;
-      border: 1px solid #334155;
-
-      &:hover {
-        background: #334155;
-      }
-
-      svg {
-        stroke: #94a3b8;
-      }
-      .arrow {
-        fill: #94a3b8;
-      }
+    .filters .filters-inner ul li button {
+      background: $primary-d !important;
+      color: $btn-color-d;
     }
 
     .discover-search {
@@ -897,92 +455,66 @@ body.indigo-dark-theme {
         background: #1e293b;
         border-color: #334155;
 
-        input {
-          color: #e2e8f0;
-          &::placeholder {
-            color: #94a3b8;
-          }
-        }
-
-        svg path {
-          fill: #94a3b8;
-        }
-
-        button {
+        .button-holder button {
           background: linear-gradient(135deg, #10b981, #0284c7);
           color: #fff;
         }
+
+        .input-holder {
+          background: $primary-light-d;
+
+          svg path { color: $text-color-d; }
+          input { color: $text-color-d; }
+        }
+      }
+
+      .search-status-label { color: $text-color-primary; }
+    }
+
+    .filter-block > a {
+      background-color: $primary-light-d;
+      color: $text-color-d;
+      border: 1px solid #334155;
+
+      &:hover { color: $text-color-d; background: #334155; }
+      svg { fill: transparent; stroke: $text-color-d; }
+      .arrow { fill: $text-color-d; stroke: none; }
+    }
+
+    .filter-block .dropdown-menu { background: $primary-light-d; }
+    .filter-block .search-facets .search-facets-lists h3 { color: $text-color-d; }
+    .filter-block .search-facets .search-facets-lists ul.facet-list li button.facet-option {
+      color: $text-color-d;
+      &.selected .count {
+        background: $primary-d; border-color: $primary-d;
+        &:before { color: $btn-color-d; }
+      }
+      .count { border: 1px solid $text-color-d; background: $text-color-d; }
+    }
+  }
+
+  .courses-container .courses .courses-listing li .course {
+    box-shadow: none;
+    border: 1px solid $border-color-d;
+    background: $primary-light-d;
+
+    .course-info {
+      .course-title { color: $text-color-d; }
+      .course-organization { color: $text-color-primary; }
+      .learn-more { background: $primary-d; color: $btn-color-d; }
+      .course-date {
+        border-top: 1px solid $border-color-d;
+        color: $text-color-primary;
+        background: $light-overlay-d;
+        svg path { fill: $text-color-primary; }
       }
     }
   }
 }
-.courses-container .courses .course .course-info .course-title {
-  font-size: 0.95rem !important;
-  font-weight: 600 !important;
-  color: #111827 !important;
-  line-height: 1.35 !important;
-  margin: 4px 0 8px !important;
 
-  /* Giới hạn 2 dòng */
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical !important;
-  -webkit-line-clamp: 2 !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: normal !important;
-  word-wrap: break-word !important;
-  overflow-wrap: anywhere !important;
-
-  /* KHÓA vùng hiển thị để không làm giãn card */
-  height: calc(1.35em * 2) !important; /* 2 dòng chuẩn */
-  max-height: calc(1.35em * 2) !important;
-}
-
-/* === FIX RESPONSIVE CHỒNG CARD (TƯƠNG THÍCH INDIGO) === */
-
-/* Reset toàn bộ cơ chế float/inline-block cũ */
-.courses-container .courses .courses-listing {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-  gap: 32px !important;
-  width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0 16px 64px !important;
-  list-style: none !important;
-  box-sizing: border-box !important;
-  clear: both !important;
-}
-
-.courses-container .courses .courses-listing > li {
-  float: none !important;
-  display: block !important;
-  width: 100% !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-  vertical-align: unset !important;
-}
-
-/* Reset margin thủ công gây chồng */
-@media (min-width: 576px) and (max-width: 991.98px),
-       (min-width: 992px) {
-  .courses-container .courses .courses-listing li:nth-child(n+3),
-  .courses-container .courses .courses-listing li:nth-child(n+4) {
-    margin-top: 0 !important;
-  }
-}
-
-/* Card setup: đảm bảo luôn full chiều rộng ô grid */
-.courses-container .courses .courses-listing li .course {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  height: 100% !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Giữ tỉ lệ ảnh */
-/* === FIX ẢNH KHÔNG BỊ VIỀN ĐEN, VẪN FIT KHUNG === */
+/* =========================
+   Ảnh cover course
+   ========================= */
 .courses-container .courses .courses-listing li .course .course-image {
   position: relative !important;
   width: 100% !important;
@@ -991,47 +523,85 @@ body.indigo-dark-theme {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-
-/* tự động chiều cao ~55–60% card, không ép aspect cố định */
 .courses-container .courses .courses-listing li .course .course-image img {
   width: 100% !important;
   height: auto !important;
-  max-height: 240px !important;  /* hoặc 250px nếu muốn cao hơn */
+  max-height: 240px !important;
   object-fit: cover !important;
   object-position: center center !important;
   display: block !important;
   margin: 0 auto !important;
-  background-color: #000 !important; /* fallback nền đen nếu có viền */
+  background-color: #000 !important;
   transition: none !important;
 }
-
-/* loại bỏ hoàn toàn hover */
 .courses-container .courses .courses-listing li .course:hover .course-image img {
   transform: none !important;
   filter: none !important;
   opacity: 1 !important;
 }
 
+/* =========================
+   FIX RESPONSIVE CHỒNG CARD
+   (DÙNG FLEX – KHÔNG DÙNG GRID)
+   ========================= */
+$course-gap: 20px;
 
-/* === Responsive: Tự động co giãn === */
-@media (max-width: 992px) {
-  .courses-container .courses .courses-listing {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
-    gap: 28px !important;
+.courses-container .courses .courses-listing {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: $course-gap !important;
+
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 16px 64px !important;
+  list-style: none !important;
+  box-sizing: border-box !important;
+  clear: both !important;
+
+  /* Đảm bảo mọi rule grid cũ không còn tác dụng */
+  grid-template-columns: unset !important;
+}
+
+/* Mặc định (mobile): 1 cột */
+.courses-container .courses .courses-listing > li {
+  float: none !important;
+  margin: 0 !important;
+  list-style: none !important;
+  box-sizing: border-box !important;
+  vertical-align: top !important;
+
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  width: auto !important;
+}
+
+/* ≥ md: 2 cột */
+@include media-breakpoint-up(md) {
+  .courses-container .courses .courses-listing > li {
+    flex: 0 0 calc(50% - #{$course-gap} / 2) !important;
+    max-width: calc(50% - #{$course-gap} / 2) !important;
   }
 }
-@media (max-width: 576px) {
-  .courses-container .courses .courses-listing {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    padding: 0 12px 64px !important;
+
+/* ≥ xl: 3 cột */
+@include media-breakpoint-up(xl) {
+  .courses-container .courses .courses-listing > li {
+    flex: 0 0 calc(33.333% - (#{$course-gap} * 2 / 3)) !important;
+    max-width: calc(33.333% - (#{$course-gap} * 2 / 3)) !important;
   }
 }
-/* === TINH CHỈNH CARD SAU KHI ĐÃ ỔN === */
 
-/* Bỏ nền xám trên mã khóa học */
+/* Card bên trong fill full chiều ngang item */
+.courses-container .courses .courses-listing > li .course {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Một số tinh chỉnh nhỏ trên card */
 .courses-container .courses .courses-listing li .course .course-info .course-code {
   background: none !important;
   color: #6b7280 !important;
@@ -1040,13 +610,9 @@ body.indigo-dark-theme {
   margin-bottom: 2px !important;
   display: block !important;
 }
-
-/* Giãn khoảng cách giữa course-org và Learn More */
 .courses-container .courses .courses-listing li .course .course-info .course-organization {
   margin-bottom: 6px !important;
 }
-
-/* Nút Learn More: hạ thấp nhẹ, font nhỏ hơn 1px */
 .courses-container .courses .courses-listing li .course .course-info .learn-more {
   margin-top: 6px !important;
   font-size: 13.5px !important;
@@ -1055,8 +621,6 @@ body.indigo-dark-theme {
   border-radius: 8px !important;
   background: #0b3472 !important;
 }
-
-/* Dòng ngày bắt đầu — căn trái nhẹ, font dịu màu hơn */
 .courses-container .courses .courses-listing li .course .course-info .course-date {
   font-size: 13px !important;
   color: #6b7280 !important;
@@ -1067,8 +631,6 @@ body.indigo-dark-theme {
   padding-left: 20px !important;
   margin-top: 8px !important;
 }
-
-/* Icon calendar nhỏ hơn */
 .courses-container .courses .courses-listing li .course .course-info .course-date svg {
   width: 15px !important;
   height: 15px !important;
@@ -1076,17 +638,85 @@ body.indigo-dark-theme {
   margin-right: 4px !important;
 }
 
-/* Responsive nhỏ – tăng padding để không dính sát mép */
+/* Mobile spacing */
 @media (max-width: 576px) {
   .courses-container .courses .courses-listing li .course .course-info {
     padding: 14px 18px !important;
   }
 }
 
-
-
-/* Giữ footer luôn nằm dưới */
-footer, .site-footer {
+/* ===== Footer luôn dưới ===== */
+footer,
+.site-footer {
   position: relative !important;
   z-index: 2 !important;
 }
+
+/* =========================
+   Layout 2 cột: Sidebar facet
+   ========================= */
+@include media-breakpoint-up(xl) {
+  .courses-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-column-gap: 24px;
+    align-items: start;
+  }
+
+  .hide-large { display: none !important; }
+
+  .filters-sidebar {
+    display: block;
+    position: sticky;
+    top: 96px;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    padding: 12px;
+    border-right: 1px solid #e5e7eb;
+  }
+
+  .filters-sidebar .search-facets {
+    box-shadow: none !important;
+    background: transparent !important;
+    margin: 0 !important;
+  }
+
+  .filters-sidebar .search-facets .search-facets-lists h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #191b23;
+  }
+
+  .filters-sidebar .search-facets .search-facets-lists ul.facet-list {
+    padding-left: 25px;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .saerch-bar-discover { grid-column: 2 / -1; }
+  .course-holder { grid-column: 2 / -1; }
+}
+
+/* Dark mode cho sidebar */
+body.indigo-dark-theme {
+  @include media-breakpoint-up(xl) {
+    .filters-sidebar {
+      background: $primary-light-d;
+      border: 1px solid $border-color-d;
+    }
+    .filters-sidebar .search-facets .search-facets-lists h3 { color: $text-color-d; }
+    .filters-sidebar .search-facets .search-facets-lists ul.facet-list li button.facet-option {
+      color: $text-color-d;
+    }
+  }
+}
+
+/* Toggle filter ở mobile */
+.filter-block > a { display: inline-flex; }
+.filter-block .dropdown-menu { display: none; }
+.filter-block.show .dropdown-menu { display: block; }
+
+/* Khi facets đã chuyển sang sidebar thì ẩn toggle */
+body.facet-sidebar-active .filter-block > a { display: none; }
+body.facet-sidebar-active .filter-block .dropdown-menu { display: none; }
