@@ -15,7 +15,7 @@ from django.utils.translation import gettext as _
   ) and settings.FEATURES.get('SHOW_REGISTRATION_LINKS', True)
 %>
 
-<nav class="nav-right" aria-label=${_("Account actions")}>
+<nav class="nav-right" aria-label=${_("Thao tác tài khoản")}>
 
 
   % if allows_login:
@@ -26,7 +26,7 @@ from django.utils.translation import gettext as _
           <path fill="currentColor" d="M15 14c2.67 0 8 1.34 8 4v3h-8v-3c0-2.66-4.67-4-7-4s-7 1.34-7 4v3H1v-3c0-3.31 5.33-6 12-6zM12 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zm9-1V9h-2V7h-2v2h-2v2h2v2h2v-2h2z"/>
         </svg>
 
-        <span>${_("Register for Free")}</span>
+        <span>${_("Đăng ký miễn phí")}</span>
       </a>
     % endif
 
@@ -35,7 +35,7 @@ from django.utils.translation import gettext as _
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
         <path fill="currentColor" d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-3.33 0-10 1.34-10 4v2h20v-2c0-2.66-6.67-4-10-4"/>
       </svg>
-      <span>${_("Sign In")}</span>
+      <span>${_("Đăng nhập")}</span>
     </a>
   % endif
 </nav>
