@@ -41,10 +41,48 @@ is_secure_safe = 'is_secure' in locals() and is_secure or False
     <!-- Tab chỉ dành cho khách -->
     % if not user.is_authenticated:
   <%
-    current_path = request.path if 'request' in locals() else ''
-    active_class = 'active' if current_path.startswith('/courses') else ''
-  %>
-  <a href="/courses" class="nav-discover ${active_class}">Discover Courses</a>
+  current_path = request.path if 'request' in locals() else ''
+  home_path = '/'   # Trang chủ luôn là trang public
+  is_home_active = current_path == home_path
+  active_home = 'active' if is_home_active else ''
+  active_courses = 'active' if current_path.startswith('/courses') else ''
+  active_about = 'active' if current_path.startswith('/about') else ''
+  active_contact = 'active' if current_path.startswith('/contact') else ''
+  active_help = 'active' if '/help' in current_path or '/support' in current_path else ''
+%>
+
+
+% if is_home_active:
+  <span class="nav-discover ${active_home}" aria-current="page">Trang chủ</span>
+% else:
+  <a href="${home_path}" class="nav-discover ${active_home}">Trang chủ</a>
+% endif
+
+<div class="cusc-hover-dd">
+  <a href="/courses" class="nav-discover ${active_courses} cusc-hover-dd-trigger">
+    Khám phá khóa học
+    <svg class="cusc-hover-dd-caret" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"/>
+    </svg>
+  </a>
+
+  <ul class="cusc-hover-dd-menu" role="menu">
+    <li role="none">
+      <a class="cusc-hover-dd-item" role="menuitem" href="/courses">Tất cả khóa học</a>
+    </li>
+    <li role="none">
+      <a class="cusc-hover-dd-item" role="menuitem" href="/path">Lộ trình</a>
+    </li>
+    <li role="none">
+      <a class="cusc-hover-dd-item" role="menuitem" href="/topics">Chuyên đề</a>
+    </li>
+  </ul>
+</div>
+
+<a href="/about" class="nav-discover ${active_about}">Giới thiệu</a>
+<a href="/contact" class="nav-discover ${active_contact}">Liên hệ</a>
+
+
 % endif
 
   % endif
