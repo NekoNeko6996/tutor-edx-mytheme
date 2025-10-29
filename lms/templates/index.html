@@ -78,55 +78,246 @@ from openedx.core.djangolib.markup import HTML, Text
   .searchbar select{flex:1 1 45%}
   .searchbar button{flex:1 1 45%}
 }
+
+/* =========================
+   COURSES LIST – FLEX WRAP
+   Áp dụng cho cả homepage & discover
+   ========================= */
+
+/* UL (container) */
+.courses-listing{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  list-style:none;
+  padding:0;
+  margin:1rem 0 0;
+  box-sizing:border-box;
+}
+
+/* LI (item) – mặc định 1 cột */
+.courses-listing > li,
+.courses-listing-item{
+  float:none !important;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  flex:0 0 100%;
+  max-width:100%;
+  width:auto;
+  vertical-align:top;
+}
+
+/* ≥768px: 2 cột */
+@media (min-width:768px){
+  .courses-listing > li,
+  .courses-listing-item{
+    flex:0 0 calc(50% - 10px);
+    max-width:calc(50% - 10px);
+  }
+}
+
+/* ≥1200px: 3 cột */
+@media (min-width:1200px){
+  .courses-listing > li,
+  .courses-listing-item{
+    flex:0 0 calc(33.333% - 13.333px);
+    max-width:calc(33.333% - 13.333px);
+  }
+}
+
+/* Card fill full chiều ngang item */
+.courses-listing > li .course,
+.courses-listing-item .course{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  height:100%;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.courses-listing > li .course:hover,
+.courses-listing-item .course:hover{
+  transform:translateY(-4px);
+  box-shadow:0 6px 20px rgba(0,0,0,.12);
+}
+
+/* Ảnh cover gọn gàng, không giãn */
+.courses-listing .course .course-image{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  background:#000;
+  display:flex;align-items:center;justify-content:center;
+  background-color: white !important;
+  border:none !important;
+}
+.courses-listing .course .course-image img{
+  width:100%;
+  height:160px;
+  max-height:240px;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  margin:0;
+  margin-bottom:5px;
+}
+
+/* Nội dung + title clamp 2 dòng */
+.courses-listing .course .course-info{padding:0 20px}
+.courses-listing .course .course-info .course-title{
+  font-size:1rem;font-weight:600;color:#111827;line-height:1.35;margin:4px 0 8px;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
+  overflow:hidden;text-overflow:ellipsis;height:calc(1.35em * 2);max-height:calc(1.35em * 2);
+}
+.courses-listing .course .course-info .course-code{
+  background:none;color:#6b7280;font-weight:600;font-size:13px;margin-bottom:2px;display:block;
+}
+.courses-listing .course .course-info .course-organization{margin-bottom:6px}
+
+/* Nút Learn more */
+.courses-listing .course .course-info .learn-more{
+  display:block;background:#0b3472;color:#fff;
+  text-align:center;font-weight:600;font-size:13.5px;line-height:22px;padding:10px 8px;border-radius:8px;
+  margin: 0 !important;
+}
+
+/* Ngày bắt đầu */
+.courses-listing .course .course-info .course-date{
+  display:flex;align-items:center;gap:6px;font-size:13px;color:#6b7280;opacity:.9;
+  justify-content:flex-start;margin:8px 0 12px;
+  padding: 0 !important;
+}
+.courses-listing .course .course-info .course-date svg{
+  width:15px;height:15px;flex-shrink:0;margin-right:4px;
+}
+
+.course-meta {
+  padding: 8px 0 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex-direction: row;
+}
+
+.course-meta span {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.learn-more {
+  background: radial-gradient(900px 420px at 80% -10%, rgba(16,185,129,.18), transparent 60%),
+    radial-gradient(900px 420px at -10% 20%, rgba(0,86,161,.20), transparent 60%),
+    linear-gradient(135deg, #0c62ad, #12b07f) !important;
+}
+
+.course-org {
+  background: radial-gradient(900px 420px at 80% -10%, rgba(16,185,129,.18), transparent 60%),
+    radial-gradient(900px 420px at -10% 20%, rgba(0,86,161,.20), transparent 60%),
+    linear-gradient(135deg, #0c62ad, #12b07f) !important;
+  
+  color: white;
+  font-weight: bold;
+  font-size: 16px !important;
+}
+
+/* Mobile padding trong card */
+@media (max-width:576px){
+  .courses-listing .course .course-info{padding:14px 18px}
+}
+
+/* === Tinh chỉnh riêng dải 770–1000px === */
+@media (min-width: 770px) and (max-width: 999.98px) {
+  /* giảm gap để không “cấn” ở tablet */
+  .courses-listing { gap: 16px !important; }
+
+  /* vẫn 2 cột nhưng trừ đúng nửa gap mới */
+  .courses-listing > li,
+  .courses-listing-item {
+    flex: 0 0 calc(50% - 8px) !important;
+    max-width: calc(50% - 8px) !important;
+  }
+
+  /* gọn padding & ảnh thấp hơn chút cho cân đối */
+  .courses-listing .course .course-info { padding: 0 16px !important; }
+  .courses-listing .course .course-image img { max-height: 220px !important; }
+}
+
+/* (tuỳ chọn) cố định 2 cột cho dải 992–1199px để không “nhảy” 3 cột quá sớm */
+@media (min-width: 992px) and (max-width: 1060px) {
+  .courses-listing > li,
+  .courses-listing-item {
+    flex: 0 0 calc(50% - 10px) !important;
+    max-width: calc(50% - 10px) !important;
+  }
+}
+
+@media (min-width: 770px) and (max-width: 1060px) {
+  .courses-listing { justify-content: center !important; }
+  #main {
+    margin: 0 !important;
+  }
+}
+
+@media (min-width: 1060px) {
+  #main {
+    margin: 0 !important;
+  }
+}
 </style>
 
 <div class="page">
-  <main id="main" aria-label="${_('Nội dung')}" tabindex="-1">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container inner">
-        <div class="badge">${_('Dành cho học viên và giảng viên')}</div>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container inner">
+      <div class="badge">${_('Dành cho học viên và giảng viên')}</div>
 
-        <div class="heading-group" style="margin-top:.6rem">
-          % if homepage_overlay_html:
-            ${homepage_overlay_html | n, decode.utf8}
-          % else:
-            <h1 class="hero-title">${_('Khám phá các khóa học')}</h1>
-            <p class="lead">
-              ${_('Học lập trình, dữ liệu, thiết kế và nhiều lĩnh vực khác với lộ trình rõ ràng và nội dung chất lượng cao.')}
-            </p>
-          % endif
-        </div>
-
-        % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
-        <form class="search-wrap" role="search" aria-label="${_('Tìm kiếm khóa học')}" method="get" action="/courses">
-          <div class="searchbar" role="group">
-            <div class="icon" aria-hidden="true">🔎</div>
-            <div class="input">
-              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 20 20" style="margin-left:.4rem">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M8 4C5.79 4 4 5.79 4 8s1.79 4 4 4 4-1.79 4-4S10.21 4 8 4Zm-6 4a6 6 0 1 1 10.89 3.48l4.82 4.82a1 1 0 0 1-1.42 1.42l-4.82-4.82A6 6 0 0 1 2 8Z"
-                  fill="#9CA3AF"/>
-              </svg>
-              <input name="search_query" type="search" placeholder="${_('Tìm kiếm khóa học...')}" aria-label="${_('Search for a course')}"/>
-            </div>
-            <select aria-label="${_('Bộ lọc')}">
-              <option value="all">${_('Tất cả')}</option>
-              <option value="courses">${_('Khóa học')}</option>
-            </select>
-            <button type="submit">${_('Tìm kiếm')}</button>
-          </div>
-        </form>
+      <div class="heading-group" style="margin-top:.6rem">
+        % if homepage_overlay_html:
+          ${homepage_overlay_html | n, decode.utf8}
+        % else:
+          <h1 class="hero-title">${_('Khám phá các khóa học')}</h1>
+          <p class="lead">
+            ${_('Học lập trình, dữ liệu, thiết kế và nhiều lĩnh vực khác với lộ trình rõ ràng và nội dung chất lượng cao.')}
+          </p>
         % endif
-
-        <div class="ctas">
-          <a class="btn primary" href="/courses">${_('Bắt đầu học')}</a>
-          <a class="btn" href="/dashboard">${_('Bảng điều khiển của tôi')}</a>
-        </div>
       </div>
-    </section>
 
+      % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+      <form class="search-wrap" role="search" aria-label="${_('Tìm kiếm khóa học')}" method="get" action="/courses">
+        <div class="searchbar" role="group">
+          <div class="icon" aria-hidden="true">🔎</div>
+          <div class="input">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 20 20" style="margin-left:.4rem">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M8 4C5.79 4 4 5.79 4 8s1.79 4 4 4 4-1.79 4-4S10.21 4 8 4Zm-6 4a6 6 0 1 1 10.89 3.48l4.82 4.82a1 1 0 0 1-1.42 1.42l-4.82-4.82A6 6 0 0 1 2 8Z"
+                fill="#9CA3AF"/>
+            </svg>
+            <input name="search_query" type="search" placeholder="${_('Tìm kiếm khóa học...')}" aria-label="${_('Search for a course')}"/>
+          </div>
+          <select aria-label="${_('Bộ lọc')}">
+            <option value="all">${_('Tất cả')}</option>
+            <option value="courses">${_('Khóa học')}</option>
+          </select>
+          <button type="submit">${_('Tìm kiếm')}</button>
+        </div>
+      </form>
+      % endif
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="/courses">${_('Bắt đầu học')}</a>
+        <a class="btn" href="/dashboard">${_('Bảng điều khiển của tôi')}</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" aria-label="${_('Nội dung')}" tabindex="-1">
     % if show_homepage_promo_video:
       <section class="section-gap">
         <div class="container">
@@ -144,7 +335,7 @@ from openedx.core.djangolib.markup import HTML, Text
         </div>
 
         <div class="courses-host">
-          <div class="courses-container">
+          <div class="courses-container_">
             <%include file="${courses_list}" />
           </div>
         </div>
@@ -166,127 +357,4 @@ from openedx.core.djangolib.markup import HTML, Text
     % endfor
   % endif
 
-<style>
-/* Lưới 1→2→3 cột */
-.courses-container .courses-listing{
-  list-style:none;margin:0;padding:0;display:grid;
-  grid-template-columns:repeat(1,minmax(0,1fr));gap:24px;
-}
-@media (min-width:768px){ .courses-container .courses-listing{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media (min-width:1200px){ .courses-container .courses-listing{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; } }
-.courses-container .courses-listing>li{ margin:0 !important; display:flex; }
-
-/* Card tối giản + hover */
-.courses-container .course{
-  background:#fff;border:1px solid #e5e7eb;border-radius:14px;
-  box-shadow:0 6px 14px rgba(16,24,40,.05);
-  display:flex;flex-direction:column;width:100%;overflow:hidden;
-  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.courses-container .course:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px rgba(2,8,23,.12);
-  border-color:#cbd5e1;
-}
-
-/* === ẢNH: đè mọi rule cũ (aspect-ratio/padding-top) và tăng chiều cao === */
-.courses-host .courses-container .courses-listing li article.course > header.course-image{
-  aspect-ratio:auto !important;
-  padding-top:0 !important;
-  min-height:0 !important;
-  height: clamp(220px, 26vw, 360px) !important;   /* TO RÕ */
-  background-repeat:no-repeat !important;
-  background-position:center center !important;
-  background-size:cover !important;
-  background-color:#0b1220 !important;
-  border-radius:14px 14px 0 0;
-  overflow:hidden !important;
-  display:block !important;
-}
-
-/* Nếu ảnh được set trên phần tử bất kỳ bằng inline style */
-.courses-container .course [style*="background-image"]{
-  aspect-ratio:auto !important;
-  padding-top:0 !important;
-  min-height:0 !important;
-  height: clamp(220px, 26vw, 360px) !important;
-  background-repeat:no-repeat !important;
-  background-position:center center !important;
-  background-size:cover !important;
-  display:block !important;
-}
-
-.courses-container .course .course-info,
-.courses-container .course .course-overview,
-.courses-container .course .course-details,
-.courses-container .course .content,
-.courses-container .course .wrapper,
-.courses-container .course .course-about{
-  padding:16px 18px !important;background:#fff;flex:1 1 auto;
-}
-.courses-container .course .course-info::after{
-  content:"";display:block;height:1px;background:#eef2f7;margin:14px -18px 0 -18px;
-}
-
-.courses-container .course .course-footer,
-.courses-container .course .course-meta{
-  display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;
-  padding:12px 18px 16px;background:#fff;
-}
-
-.courses-container .course .btn,
-.courses-container .course a.button,
-.courses-container .course .button,
-.courses-container .course a[href*="course"]{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:38px;padding:.55rem 1rem;border-radius:10px;
-  font-weight:800;text-decoration:none;border:1px solid #0e4e96;
-  background:#134fa8;color:#fff !important;
-  transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-  box-shadow:0 3px 10px rgba(13,42,148,.16);
-}
-.courses-container .course .btn:hover,
-.courses-container .course a.button:hover,
-.courses-container .course .button:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.04);
-  box-shadow:0 8px 18px rgba(13,42,148,.22);
-}
-
-/* Mobile */
-@media (max-width:576px){
-  .courses-host .courses-container .courses-listing li article.course > header.course-image,
-  .courses-container .course [style*="background-image"]{
-    height:200px !important;
-  }
-  .courses-container .courses-listing{ gap:20px; }
-}
-</style>
-
-<!-- ÉP INLINE HEIGHT (đề phòng CSS compiled vẫn ghi đè) -->
-<script>
-(function(){
-  const H_DESK = 360, H_TAB = 300, H_MOB = 200;
-  function targetHeight(){
-    const w = window.innerWidth;
-    return (w >= 1200) ? H_DESK : (w >= 768 ? H_TAB : H_MOB);
-  }
-  function apply(){
-    const h = targetHeight();
-    document.querySelectorAll(
-      '.courses-host .courses-container .courses-listing li article.course > header.course-image,'
-      + '.courses-container .course [style*="background-image"]'
-    ).forEach(function(el){
-      el.style.setProperty('aspect-ratio','auto','important');
-      el.style.setProperty('padding-top','0','important');
-      el.style.setProperty('min-height','0','important');
-      el.style.setProperty('height', h + 'px','important');
-      el.style.setProperty('backgroundSize','cover','important');
-      el.style.setProperty('backgroundPosition','center center','important');
-      el.style.setProperty('display','block','important');
-    });
-  }
-  document.addEventListener('DOMContentLoaded', apply);
-  window.addEventListener('resize', apply);
-})();
-</script>
+</div>
