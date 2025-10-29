@@ -51,7 +51,7 @@ enterprise_customer_link = get_enterprise_learner_portal(request)
     current_path = request.path if 'request' in locals() else ''
     active_class = 'active' if current_path.startswith('/courses') else ''
   %>
-  <a href="/courses" class="nav-discover ${active_class}">Discover Courses</a>
+  <a href="/courses" class="nav-discover ${active_class}">Khám phá khóa học</a>
 % endif
   % endif
 
