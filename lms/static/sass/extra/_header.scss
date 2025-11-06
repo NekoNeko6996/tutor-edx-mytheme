@@ -56,6 +56,7 @@ header.global-header {
 
     .main {
       margin: 0 0 0 38px;
+      margin-left: 20px;
 
       .nav-tab {
         a {
@@ -156,9 +157,17 @@ header.global-header {
     border: 0;
     padding: 0;
     box-shadow: none;
+    position: relative;
+    display: inline-block;
+      cursor: pointer;
+       z-index: 1100;
 
     .line {
       height: 2px;
+        position: absolute;
+      left: 0; right: 0;
+        background: #1f2937; // MÀU VẠCH Ở LIGHT MODE
+      border-radius: 2px;
 
       &:nth-child(2),
       &:nth-child(3) {
@@ -172,33 +181,59 @@ header.global-header {
   }
 }
 
-.mobile-menu {
-  position: absolute;
-  left: 0;
-  top: 54px;
-  z-index: 9999;
-  margin: 0;
-  border: none;
-  border-bottom: 2px solid $primary;
-  width: 100%;
 
-  .mobile-nav-link {
-    a {
-      font-weight: normal;
-      padding: 16px;
-      font-size: 14px;
-      line-height: 20px;
-      color: $light-dark;
-      border: none;
 
-      &:hover,
-      &.active {
-        background: $primary-light;
-        color: $dark;
-      }
-    }
+/* Breakpoint: ≤991.98px coi là mobile */
+@media (max-width: 991.98px) {
+  /* Ẩn cụm link desktop để khỏi “xổ” lung tung */
+  header.global-header .nav-links,
+  header.global-header .nav-right,
+  header.global-header .header-logo .cusc-hover-dd,
+  header.global-header .header-logo a.nav-discover,
+  header.global-header .header-logo a[href="/about"],
+  header.global-header .header-logo a[href="/contact"] {
+    display: none !important;
+  }
+
+  /* Panel mobile */
+  .mobile-menu {
+    display: block;               /* panel sẵn sàng, toggle qua class .hidden */
+    position: absolute;
+    left: 0; right: 0;
+    top: 60px;
+    z-index: 1050;
+    margin: 0;
+    background: #fff;
+    border: 0;
+    border-bottom: 2px solid #0F59C9;
+    box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  }
+  .mobile-menu.hidden { display: none !important; }
+
+  /* Khoá scroll khi panel mở */
+  body.lock-scroll { overflow: hidden; }
+
+  /* Item trong panel */
+  .mobile-menu .mobile-nav-link a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #1f2937;
+    text-decoration: none;
+  }
+  .mobile-menu .mobile-nav-link a:hover,
+  .mobile-menu .mobile-nav-link a.active {
+    background: #F3F6FB;
+    color: #0056A1;
   }
 }
+
+/* ≥992px: ẩn hamburger, dùng menu desktop bình thường */
+@media (min-width: 992px) {
+  .hamburger-menu { display: none !important; }
+}
+
 
 .header-container {
   margin: 0 auto;
@@ -473,7 +508,7 @@ header.global-header .header-logo {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start;
-  gap: 30px !important;
+  // gap: 30px !important;
 }
 
 header.global-header .header-logo a {
@@ -544,54 +579,54 @@ header.global-header .btn-auth span {
   line-height: 1;
 }
 
-/* = Register button (outline green) */
-header.global-header .btn-register {
-  background: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
-  font-weight: 800;
-  font-size: 15px;
-}
+// /* = Register button (outline green) */
+// header.global-header .btn-register {
+//   background: transparent;
+//   border-color: var(--accent);
+//   color: var(--accent);
+//   font-weight: 800;
+//   font-size: 15px;
+// }
 
-header.global-header .btn-register:hover {
-  background: #ECFDF5;
-  border-color: var(--accent-strong);
-  color: var(--accent-strong);
-  box-shadow: 0 4px 10px rgba(16, 185, 129, .25);
-  transform: translateY(-2px);
-}
+// header.global-header .btn-register:hover {
+//   background: #ECFDF5;
+//   border-color: var(--accent-strong);
+//   color: var(--accent-strong);
+//   box-shadow: 0 4px 10px rgba(16, 185, 129, .25);
+//   transform: translateY(-2px);
+// }
 
-header.global-header .btn-register:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(16, 185, 129, .2);
-}
+// header.global-header .btn-register:active {
+//   transform: translateY(0);
+//   box-shadow: 0 2px 5px rgba(16, 185, 129, .2);
+// }
 
-/* = Sign in button (solid blue) */
-header.global-header .btn-signin {
-  background: var(--cusc-blue);
-  border-color: var(--cusc-blue);
-  color: #fff;
-  font-weight: 800;
-  font-size: 15px;
-}
+// /* = Sign in button (solid blue) */
+// header.global-header .btn-signin {
+//   background: var(--cusc-blue);
+//   border-color: var(--cusc-blue);
+//   color: #fff;
+//   font-weight: 800;
+//   font-size: 15px;
+// }
 
-header.global-header .btn-signin:hover {
-  background: var(--cusc-blue-hover);
-  border-color: var(--cusc-blue-hover);
-  box-shadow: 0 4px 10px rgba(0, 86, 161, .3);
-  transform: translateY(-2px);
-}
+// header.global-header .btn-signin:hover {
+//   background: var(--cusc-blue-hover);
+//   border-color: var(--cusc-blue-hover);
+//   box-shadow: 0 4px 10px rgba(0, 86, 161, .3);
+//   transform: translateY(-2px);
+// }
 
-header.global-header .btn-signin:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0, 86, 161, .25);
-  background: #00498C;
-}
+// header.global-header .btn-signin:active {
+//   transform: translateY(0);
+//   box-shadow: 0 2px 5px rgba(0, 86, 161, .25);
+//   background: #00498C;
+// }
 
-header.global-header .btn-signin:focus-visible {
-  outline: 2px solid rgba(0, 86, 161, .5);
-  outline-offset: 2px;
-}
+// header.global-header .btn-signin:focus-visible {
+//   outline: 2px solid rgba(0, 86, 161, .5);
+//   outline-offset: 2px;
+// }
 
 /* = Optional: sr-only utility */
 .sr-only,
@@ -712,7 +747,7 @@ header.global-header .nav-links {
 header.global-header .nav-links .main {
   display: flex;
   align-items: center;
-  gap: 18px;
+  // gap: 18px;
 }
 
 header.global-header .nav-links .secondary {
@@ -913,9 +948,9 @@ header.global-header .main-header {
 }
 
 
-header.global-header .header-logo {
-  gap: 20px !important;
-}
+// header.global-header .header-logo {
+//   gap: 20px !important;
+// }
 
 header.global-header .header-logo a {
   white-space: nowrap !important;
@@ -1009,10 +1044,288 @@ header.global-header .nav-tab--discover .nav-discover.active::after {
 
 /* === Unified spacing: brand ↔ Discover (guest + auth) === */
 :root {
-  --discover-gap: 54px;
+  --discover-gap: 40px;
 }
 
 /* Guest */
 header.global-header .nav-discover {
   margin-left: var(--discover-gap) !important;
+}
+
+/* ===== Dropdown hover riêng cho "Khám phá khóa học" (fixed alignment & hover gap) ===== */
+
+header.global-header .cusc-hover-dd {
+  position: relative;
+  display: inline-block;
+}
+
+/* Giữ icon mũi tên sát chữ */
+header.global-header .cusc-hover-dd .cusc-hover-dd-caret {
+  margin-left: 0px;
+  margin-top: 1px;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+header.global-header .cusc-hover-dd .cusc-hover-dd-caretsecond {
+  margin-left: 6px;
+  margin-top: -1px;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+
+/* Dropdown menu */
+header.global-header .cusc-hover-dd .cusc-hover-dd-menu {
+  position: absolute;
+  top: 120%;                  /* không có gap giữa tab và menu */
+  left: 0;
+  min-width: 140px;
+  background: #fff;
+  border: 1px solid var(--line, #e5e7eb);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  padding: .5rem;
+  margin: 0;
+  list-style: none;
+  z-index: 3000;
+
+  /* ẩn mặc định */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  pointer-events: none;
+
+  left: 19%;
+  transform: translate(-50%, 6  px);
+
+}
+
+/* Khi hover container hoặc menu vẫn mở */
+header.global-header .cusc-hover-dd:hover .cusc-hover-dd-menu,
+header.global-header .cusc-hover-dd:focus-within .cusc-hover-dd-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Item trong dropdown */
+header.global-header .cusc-hover-dd .cusc-hover-dd-item {
+  display: block;
+  padding: .5rem .75rem;
+  border-radius: 6px;
+  color: var(--txt, #1f2937);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition: background .15s ease, color .15s ease;
+}
+
+/* Hover item */
+header.global-header .cusc-hover-dd .cusc-hover-dd-item:hover {
+  background: #F3F6FB;
+  color: var(--cusc-blue, #0056A1);
+}
+
+/* Giữ menu không bị tắt khi rê nhanh */
+header.global-header .cusc-hover-dd::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 8px;                 /* tạo vùng đệm ảo giữa tab và menu */
+  width: 100%;
+  background: transparent;
+}
+
+
+//* ===== Nút Sign In tối giản + hover nền lam nhạt ===== */
+header.global-header .btn-auth.btn-signin {
+  background-color: transparent !important;   /* nền trong suốt mặc định */
+  color: #0056A1 !important;                  /* chữ xanh lam CUSC */
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.2;
+  border: none !important;                    /* bỏ viền */
+  border-radius: 20px;
+  padding: 1px 16px;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover: tô nhẹ nền lam nhạt */
+header.global-header .btn-auth.btn-signin:hover {
+  background-color: rgba(0, 86, 161, 0.12) !important;  /* lam nhạt phủ dưới chữ */
+  color: #00458E !important;                            /* lam đậm hơn chút */
+  box-shadow: none !important;
+}
+
+/* Active (bấm xuống giữ chuột) */
+header.global-header .btn-auth.btn-signin:active {
+  background-color: rgba(0, 86, 161, 0.18) !important;
+  color: #003971 !important;
+  box-shadow: none !important;
+  transition: background-color 0.08s ease;
+}
+
+/* Focus bằng bàn phím (Tab vào) */
+header.global-header .btn-auth.btn-signin:focus-visible {
+  outline: 2px solid rgba(0, 86, 161, 0.3);
+  outline-offset: 2px;
+}
+
+
+/* ===== Nút Register for Free (nền xanh lá, hover đảo màu) ===== */
+header.global-header .btn-auth.btn-register {
+  background-color: #10B981 !important;    /* xanh lá CUSC */
+  color: #ffffff !important;               /* chữ trắng */
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid #10B981 !important;    /* cùng màu với nền */
+  border-radius: 20px;
+  // padding: 6px 18px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Hover: đảo màu → nền trắng, chữ xanh lá, viền xanh lá */
+header.global-header .btn-auth.btn-register:hover {
+  background-color: #ffffff !important;
+  color: #009C4C !important;
+  border-color: #009C4C !important;
+}
+
+/* Active: khi click giữ chuột */
+header.global-header .btn-auth.btn-register:active {
+  background-color: #007F3F !important;   /* xanh lá đậm hơn nhẹ */
+  color: #ffffff !important;
+  border-color: #007F3F !important;
+  transition: background-color 0.1s ease;
+}
+
+/* Focus bằng bàn phím */
+header.global-header .btn-auth.btn-register:focus-visible {
+  outline: 2px solid rgba(0,156,76,0.4);
+  outline-offset: 2px;
+}
+
+
+/* ==================== CUSC Mobile Nav (clean) ==================== */
+
+/* Dark mode: vạch sáng hơn (không đổi nền) */
+body.indigo-dark-theme .hamburger-menu-mobile .line { background: #e5e7eb; }
+
+/* Diệt mọi box-shadow/viền “thừa” kế thừa từ theme */
+.global-header .hamburger-menu-mobile,
+.global-header .hamburger-menu-mobile:hover,
+.global-header .hamburger-menu-mobile:active,
+.global-header .hamburger-menu-mobile:focus,
+.global-header .hamburger-menu-mobile::before,
+.global-header .hamburger-menu-mobile::after,
+.global-header .hamburger-menu-mobile .line {
+  box-shadow: none !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+/* ====== Mobile (<= 991.98px) ====== */
+@media (max-width: 991.98px) {
+  /* Layout header: hamburger trái, brand giữa */
+  header.global-header .main-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-menu-mobile {
+    display: inline-block !important;
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    background: transparent !important;
+    border: 0; width: 30px; height: 25px; padding: 0;
+    cursor: pointer; z-index: 2000 !important;
+  }
+  .hamburger-menu-mobile .line {
+    display: block; height: 3px; margin: 4px 0; border-radius: 2px;
+    background: #1f2937; transition: background .2s ease; /* mặc định đen */
+  }
+  /* Đang mở panel: vạch xanh lam */
+  .hamburger-menu-mobile[aria-expanded="true"] .line { background: #0B5ED7; }
+
+  /* Brand/Logo luôn giữa, co gọn chữ trên mobile */
+  header.global-header .header-logo {
+    flex: 1 1 auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; min-width: 0;
+    padding: 0 !important; text-align: center;
+  }
+  header.global-header .header-logo,
+  header.global-header .header-logo a,
+  header.global-header .header-logo .site-name,
+  header.global-header .header-logo .brand-title {
+    font-size: 18px; line-height: 1.1;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 90vw;
+  }
+
+  /* Ẩn nav desktop trên mobile để tránh đẩy layout */
+  header.global-header .nav-right,
+  header.global-header .nav-links,
+  header.global-header .cusc-hover-dd {
+    display: none !important;
+  }
+
+  /* Home (guest): ẩn “Trang chủ” nếu phần tử mang class này */
+  header.global-header.guest .nav-home.hide-mobile-home { display: none !important; }
+
+  /* Panel mobile */
+  .mobile-menu-custom {
+    display: block;
+    position: fixed; left: 0; right: 0; top: 56px;
+    max-height: calc(100vh - 56px); overflow: auto;
+    background: #fff; border-bottom: 2px solid #0F59C9;
+    box-shadow: 0 10px 24px rgba(0,0,0,.08); z-index: 1050;
+  }
+  .mobile-menu-custom.hidden { display: none !important; }
+
+  .mobile-menu-custom .mobile-nav-link a,
+  .mobile-menu-custom .mobile-nav-link {
+    display: block;
+    padding: 12px 20px; font-size: 16px; line-height: 1.3;
+    color: #1f2937; text-decoration: none;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .mobile-menu-custom .mobile-nav-link a:hover,
+  .mobile-menu-custom .mobile-nav-link a:focus {
+    background: #F3F6FB; color: #0073e6; border-color: #0073e6;
+  }
+  .mobile-menu-custom .mobile-nav-link a:active { background: #e0e7ff; color: #003366; }
+
+  /* Khóa cuộn khi mở menu */
+  body.lock-scroll { overflow: hidden; }
+}
+
+/* ====== Desktop (>= 992px) ====== */
+@media (min-width: 992px) {
+  .hamburger-menu-mobile { display: none !important; visibility: hidden !important; }
+}
+
+
+/* Body chừa chỗ cho header khi mobile */
+@media (max-width: 991.98px) {
+  body.cusc-has-fixed-header { padding-top: var(--cusc-header-h, 56px); }
+}
+
+/* Panel mobile dùng đúng chiều cao header, không hardcode 56px */
+@media (max-width: 991.98px) {
+  .mobile-menu-custom {
+    top: var(--cusc-header-h, 56px);
+    max-height: calc(100vh - var(--cusc-header-h, 56px));
+  }
 }

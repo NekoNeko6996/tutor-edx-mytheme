@@ -1,64 +1,67 @@
-## mako
-
 <%page expression_filter="h" args="online_help_token"/>
-
 <%namespace name='static' file='../static_content.html'/>
-<%namespace file='../main.html' import="login_query"/>
 <%!
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
+from lms.djangoapps.branding import api as branding_api
 %>
 
 <%
-  show_explore_courses = settings.FEATURES.get('COURSES_ARE_BROWSABLE')
-  self.real_user = getattr(user, 'real_user', user)
-  enable_help_link = settings.FEATURES.get('ENABLE_HELP_LINK')
+  # đường dẫn hiện tại để set trạng thái active
+  current_path = request.path if 'request' in locals() else ''
 
-  support_link = configuration_helpers.get_value('SUPPORT_SITE_LINK', settings.SUPPORT_SITE_LINK)
-  doc_link = get_online_help_info(online_help_token)['doc_url']
+  home_path = '/dashboard' if user.is_authenticated else '/'
+  # nếu bạn muốn Trang chủ luôn là "/", đổi dòng trên thành: home_path = '/'
 
-  if online_help_token == "instructor":
-    help_link = doc_link
-  elif support_link:
-    help_link = support_link
-  else:
-    help_link = doc_link
+  is_home_active = (current_path == home_path) or (current_path == '/')
+  active_home = 'active' if is_home_active else ''
+
+  active_courses = 'active' if current_path.startswith('/courses') else ''
+  active_about = 'active' if current_path.startswith('/about') else ''
+  active_contact = 'active' if current_path.startswith('/contact') else ''
+  active_help = 'active' if ('/help' in current_path or '/support' in current_path) else ''
 %>
 
 <div class="nav-links">
+  <!-- Cụm menu chính bên trái -->
   <div class="main">
-    % if show_dashboard_tabs:
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-        <a class="${'active ' if reverse('dashboard') == request.path else ''}tab-nav-link" href="${reverse('dashboard')}"
-             aria-current="${'page' if reverse('dashboard') == request.path else 'false'}">
-             ${_("My Courses")}
-        </a>
-      </div>
-      % if show_program_listing:
-        <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-          <a class="${'active ' if reverse('program_listing_view') in request.path else ''}tab-nav-link" href="${reverse('program_listing_view')}"
-             aria-current="${'page' if reverse('program_listing_view') == request.path else 'false'}">
-             ${_("Programs")}
-          </a>
-        </div>
-      % endif
-    % endif
-  % if show_explore_courses:
-  <div class="mobile-nav-item hidden-mobile nav-item nav-tab nav-tab--discover">
-    <a
-      class="nav-discover ${'active' if '/courses' in request.path else ''}"
-      href="${marketing_link('COURSES')}"
-      aria-current="${'page' if '/courses' in request.path else 'false'}"
-    >
-      ${_('Khám phá khóa học')}
-    </a>
-  </div>
-% endif
 
+    % if is_home_active:
+      <span class="nav-discover ${active_home}" aria-current="page">Trang chủ</span>
+    % else:
+      <a href="${home_path}" class="nav-discover ${active_home}">Trang chủ</a>
+    % endif
+
+    <!-- Dropdown Khám phá khóa học -->
+    <div class="cusc-hover-dd">
+      <a href="/courses" class="nav-discover ${active_courses} cusc-hover-dd-trigger">
+        Khám phá khóa học
+        <svg class="cusc-hover-dd-caretsecond" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"/>
+        </svg>
+      </a>
+
+      <ul class="cusc-hover-dd-menu" role="menu">
+        <li role="none">
+          <a class="cusc-hover-dd-item" role="menuitem" href="/courses">Tất cả khóa học</a>
+        </li>
+        <li role="none">
+          <a class="cusc-hover-dd-item" role="menuitem" href="/path">Lộ trình</a>
+        </li>
+        <li role="none">
+          <a class="cusc-hover-dd-item" role="menuitem" href="/topics">Chuyên đề</a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="/about" class="nav-discover ${active_about}">Giới thiệu</a>
+    <a href="/contact" class="nav-discover ${active_contact}">Liên hệ</a>
+    <a href="/help" class="nav-discover ${active_help}">Trợ giúp</a>
   </div>
-  <div class="secondary d-flex align-items-center">
-    <%include file="user_dropdown.html"/>
+
+  <!-- Cụm thông tin tài khoản bên phải -->
+  <div class="secondary">
+    <%include file="user_dropdown.html" args="online_help_token=online_help_token"/>
   </div>
-  
 </div>
