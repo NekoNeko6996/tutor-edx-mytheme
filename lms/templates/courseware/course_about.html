@@ -4,6 +4,7 @@
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
 from django.urls import reverse
+from urllib.parse import urlencode, quote
 from lms.djangoapps.courseware.courses import get_course_about_section
 from django.conf import settings
 from common.djangoapps.edxmako.shortcuts import marketing_link
@@ -11,7 +12,27 @@ from openedx.core.djangolib.js_utils import js_escaped_string
 from openedx.core.djangolib.markup import clean_dangerous_html, HTML, Text
 from openedx.core.lib.courses import course_image_url
 %>
+<!--
+<%
+  course_id_str = str(course.id)
+  about_path = reverse('about_course', args=[course_id_str])
+  # biến 'request' có trong context của LMS -> tạo absolute URL
+  about_url = request.build_absolute_uri(about_path)
 
+  pay_base = "http://localhost:3000/checkout"  # đổi theo server của bạn
+  params = {
+    'course_id': course_id_str,
+    'user': user.username if user.is_authenticated else '',
+    'next': about_url,   # <-- ABSOLUTE
+  }
+  pay_url = f"{pay_base}?{urlencode(params)}"
+
+  if not user.is_authenticated:
+      login_url = reverse('login')
+      pay_url = f"{login_url}?next={quote(pay_url)}"
+%>
+<a class="btn btn-primary" href="${pay_url}">Upgrade Now</a>
+-->
 <style>
 :root {
   --cusc-blue: #0056A1;
@@ -267,7 +288,6 @@ from openedx.core.lib.courses import course_image_url
 <%block name="pagetitle">${course.display_name_with_default}</%block>
 
 <section class="course-info about container">
-
   <%block name="course_about_header">
   <!-- Course profile header is updated inclusive of course heading and course image. -->
   <header class="course-profile">
@@ -284,7 +304,7 @@ from openedx.core.lib.courses import course_image_url
         <div class="media">
           <div class="hero">
             <!-- NEW IN INDIGO: Add fallback image in case of no course-image using onerror -->
-<img src="${course_image_urls['large']}" onerror="this.src='/theming/asset/images/no_course_image.png';" alt="" aria-hidden="true" />
+            <img src="${course_image_urls['large']}" onerror="this.src='/theming/asset/images/no_course_image.png';" alt="" aria-hidden="true" />
           </div>
         </div>
         % endif
@@ -325,6 +345,7 @@ from openedx.core.lib.courses import course_image_url
             </a>
           %endif
         %else:
+          <!--
           <%
             if ecommerce_checkout:
               reg_href = ecommerce_checkout_link
@@ -335,9 +356,32 @@ from openedx.core.lib.courses import course_image_url
             else:
               href_class = "register"
           %>
+          -->
+          <%
+            course_id_str = str(course.id)
+            about_path = reverse('about_course', args=[course_id_str])
+            # biến 'request' có trong context của LMS -> tạo absolute URL
+            about_url = request.build_absolute_uri(about_path)
+
+            pay_base = "http://localhost:3000/checkout"  # đổi theo server của bạn
+            params = {
+              'course_id': course_id_str,
+              'user': user.username if user.is_authenticated else '',
+              'next': about_url,   # <-- ABSOLUTE
+            }
+            pay_url = f"{pay_base}?{urlencode(params)}"
+
+            if not user.is_authenticated:
+                login_url = reverse('login')
+                pay_url = f"{login_url}?next={quote(pay_url)}"
+          %>
+
+          <!--
           <a href="${reg_href}" class="${href_class}">
             ${_("Enroll Now")}
           </a>
+          -->
+          <a class="btn btn-primary" href="${pay_url}">Upgrade Now</a>
           <div id="register_error"></div>
         %endif
         </div>
