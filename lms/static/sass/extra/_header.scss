@@ -157,9 +157,17 @@ header.global-header {
     border: 0;
     padding: 0;
     box-shadow: none;
+    position: relative;
+    display: inline-block;
+      cursor: pointer;
+       z-index: 1100;
 
     .line {
       height: 2px;
+        position: absolute;
+      left: 0; right: 0;
+        background: #1f2937; // MÀU VẠCH Ở LIGHT MODE
+      border-radius: 2px;
 
       &:nth-child(2),
       &:nth-child(3) {
@@ -173,33 +181,59 @@ header.global-header {
   }
 }
 
-.mobile-menu {
-  position: absolute;
-  left: 0;
-  top: 54px;
-  z-index: 9999;
-  margin: 0;
-  border: none;
-  border-bottom: 2px solid $primary;
-  width: 100%;
 
-  .mobile-nav-link {
-    a {
-      font-weight: normal;
-      padding: 16px;
-      font-size: 14px;
-      line-height: 20px;
-      color: $light-dark;
-      border: none;
 
-      &:hover,
-      &.active {
-        background: $primary-light;
-        color: $dark;
-      }
-    }
+/* Breakpoint: ≤991.98px coi là mobile */
+@media (max-width: 991.98px) {
+  /* Ẩn cụm link desktop để khỏi “xổ” lung tung */
+  header.global-header .nav-links,
+  header.global-header .nav-right,
+  header.global-header .header-logo .cusc-hover-dd,
+  header.global-header .header-logo a.nav-discover,
+  header.global-header .header-logo a[href="/about"],
+  header.global-header .header-logo a[href="/contact"] {
+    display: none !important;
+  }
+
+  /* Panel mobile */
+  .mobile-menu {
+    display: block;               /* panel sẵn sàng, toggle qua class .hidden */
+    position: absolute;
+    left: 0; right: 0;
+    top: 60px;
+    z-index: 1050;
+    margin: 0;
+    background: #fff;
+    border: 0;
+    border-bottom: 2px solid #0F59C9;
+    box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  }
+  .mobile-menu.hidden { display: none !important; }
+
+  /* Khoá scroll khi panel mở */
+  body.lock-scroll { overflow: hidden; }
+
+  /* Item trong panel */
+  .mobile-menu .mobile-nav-link a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #1f2937;
+    text-decoration: none;
+  }
+  .mobile-menu .mobile-nav-link a:hover,
+  .mobile-menu .mobile-nav-link a.active {
+    background: #F3F6FB;
+    color: #0056A1;
   }
 }
+
+/* ≥992px: ẩn hamburger, dùng menu desktop bình thường */
+@media (min-width: 992px) {
+  .hamburger-menu { display: none !important; }
+}
+
 
 .header-container {
   margin: 0 auto;
@@ -1179,4 +1213,119 @@ header.global-header .btn-auth.btn-register:active {
 header.global-header .btn-auth.btn-register:focus-visible {
   outline: 2px solid rgba(0,156,76,0.4);
   outline-offset: 2px;
+}
+
+
+/* ==================== CUSC Mobile Nav (clean) ==================== */
+
+/* Dark mode: vạch sáng hơn (không đổi nền) */
+body.indigo-dark-theme .hamburger-menu-mobile .line { background: #e5e7eb; }
+
+/* Diệt mọi box-shadow/viền “thừa” kế thừa từ theme */
+.global-header .hamburger-menu-mobile,
+.global-header .hamburger-menu-mobile:hover,
+.global-header .hamburger-menu-mobile:active,
+.global-header .hamburger-menu-mobile:focus,
+.global-header .hamburger-menu-mobile::before,
+.global-header .hamburger-menu-mobile::after,
+.global-header .hamburger-menu-mobile .line {
+  box-shadow: none !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+/* ====== Mobile (<= 991.98px) ====== */
+@media (max-width: 991.98px) {
+  /* Layout header: hamburger trái, brand giữa */
+  header.global-header .main-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-menu-mobile {
+    display: inline-block !important;
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    background: transparent !important;
+    border: 0; width: 30px; height: 25px; padding: 0;
+    cursor: pointer; z-index: 2000 !important;
+  }
+  .hamburger-menu-mobile .line {
+    display: block; height: 3px; margin: 4px 0; border-radius: 2px;
+    background: #1f2937; transition: background .2s ease; /* mặc định đen */
+  }
+  /* Đang mở panel: vạch xanh lam */
+  .hamburger-menu-mobile[aria-expanded="true"] .line { background: #0B5ED7; }
+
+  /* Brand/Logo luôn giữa, co gọn chữ trên mobile */
+  header.global-header .header-logo {
+    flex: 1 1 auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; min-width: 0;
+    padding: 0 !important; text-align: center;
+  }
+  header.global-header .header-logo,
+  header.global-header .header-logo a,
+  header.global-header .header-logo .site-name,
+  header.global-header .header-logo .brand-title {
+    font-size: 18px; line-height: 1.1;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 90vw;
+  }
+
+  /* Ẩn nav desktop trên mobile để tránh đẩy layout */
+  header.global-header .nav-right,
+  header.global-header .nav-links,
+  header.global-header .cusc-hover-dd {
+    display: none !important;
+  }
+
+  /* Home (guest): ẩn “Trang chủ” nếu phần tử mang class này */
+  header.global-header.guest .nav-home.hide-mobile-home { display: none !important; }
+
+  /* Panel mobile */
+  .mobile-menu-custom {
+    display: block;
+    position: fixed; left: 0; right: 0; top: 56px;
+    max-height: calc(100vh - 56px); overflow: auto;
+    background: #fff; border-bottom: 2px solid #0F59C9;
+    box-shadow: 0 10px 24px rgba(0,0,0,.08); z-index: 1050;
+  }
+  .mobile-menu-custom.hidden { display: none !important; }
+
+  .mobile-menu-custom .mobile-nav-link a,
+  .mobile-menu-custom .mobile-nav-link {
+    display: block;
+    padding: 12px 20px; font-size: 16px; line-height: 1.3;
+    color: #1f2937; text-decoration: none;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .mobile-menu-custom .mobile-nav-link a:hover,
+  .mobile-menu-custom .mobile-nav-link a:focus {
+    background: #F3F6FB; color: #0073e6; border-color: #0073e6;
+  }
+  .mobile-menu-custom .mobile-nav-link a:active { background: #e0e7ff; color: #003366; }
+
+  /* Khóa cuộn khi mở menu */
+  body.lock-scroll { overflow: hidden; }
+}
+
+/* ====== Desktop (>= 992px) ====== */
+@media (min-width: 992px) {
+  .hamburger-menu-mobile { display: none !important; visibility: hidden !important; }
+}
+
+
+/* Body chừa chỗ cho header khi mobile */
+@media (max-width: 991.98px) {
+  body.cusc-has-fixed-header { padding-top: var(--cusc-header-h, 56px); }
+}
+
+/* Panel mobile dùng đúng chiều cao header, không hardcode 56px */
+@media (max-width: 991.98px) {
+  .mobile-menu-custom {
+    top: var(--cusc-header-h, 56px);
+    max-height: calc(100vh - var(--cusc-header-h, 56px));
+  }
 }
