@@ -40,12 +40,13 @@ active_help     = 'active' if '/help' in current_path or '/support' in current_p
   % else:
     <!-- Logo kép: CUSC + CTU -->
     <a href="${branding_api.get_home_url()}"
-       class="brand-link d-inline-flex align-center"
-       title="${_("{platform_name} Trang chủ").format(platform_name=static.get_platform_name())}">
-      <img src="${static.url('images/logo_cusc.png')}" alt="CUSC Logo" class="logo logo-cusc" />
+      class="brand-link d-inline-flex align-center"
+      title="${_("{platform_name} Trang chủ").format(platform_name=static.get_platform_name())}">
+      <img src="${static.url('images/logo_cusc.png')}" alt="${static.get_platform_name()} Logo" class="logo logo-cusc" />
       <img src="${static.url('images/logo_ctu.png')}" alt="CTU Logo" class="logo logo-ctu" />
-      <span class="brand-text">CUSC Learning</span>
+      <span class="brand-text">${static.get_platform_name()}</span>
     </a>
+
 
     <!-- Tabs cho khách -->
     % if not user.is_authenticated:
