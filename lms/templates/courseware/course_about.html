@@ -3,7 +3,7 @@
 <%!
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
-from django.urls import reverse
+from django.urls import reverse, NoReverseMatch
 from urllib.parse import urlencode, quote
 from lms.djangoapps.courseware.courses import get_course_about_section
 from django.conf import settings
@@ -11,28 +11,61 @@ from common.djangoapps.edxmako.shortcuts import marketing_link
 from openedx.core.djangolib.js_utils import js_escaped_string
 from openedx.core.djangolib.markup import clean_dangerous_html, HTML, Text
 from openedx.core.lib.courses import course_image_url
-%>
-<!--
-<%
-  course_id_str = str(course.id)
-  about_path = reverse('about_course', args=[course_id_str])
-  # biến 'request' có trong context của LMS -> tạo absolute URL
-  about_url = request.build_absolute_uri(about_path)
 
-  pay_base = "http://localhost:3000/checkout"  # đổi theo server của bạn
-  params = {
-    'course_id': course_id_str,
-    'user': user.username if user.is_authenticated else '',
-    'next': about_url,   # <-- ABSOLUTE
-  }
-  pay_url = f"{pay_base}?{urlencode(params)}"
+def safe_reverse(name, args=None, default="/"):
+    try:
+        return reverse(name, args=args or [])
+    except NoReverseMatch:
+        return default
 
-  if not user.is_authenticated:
-      login_url = reverse('login')
-      pay_url = f"{login_url}?next={quote(pay_url)}"
+def abs_url(request, path_or_url):
+    if path_or_url.startswith(("http://", "https://")):
+        return path_or_url
+    return request.build_absolute_uri(path_or_url)
 %>
-<a class="btn btn-primary" href="${pay_url}">Upgrade Now</a>
--->
+
+<%!
+from common.djangoapps.course_modes.models import CourseMode
+
+def get_paid_info(course):
+    """
+    Trả về (is_paid, amount, currency)
+    - is_paid: True nếu có mode 'verified' với min_price > 0
+    - amount: số tiền (float/int)
+    - currency: mã tiền tệ (VD: VND, USD)
+    """
+    try:
+        mode = (
+            CourseMode.objects
+            .filter(course_id=course.id, mode_slug='verified')
+            .order_by('min_price')
+            .first()
+        )
+        if mode and (mode.min_price or 0) > 0:
+            return True, mode.min_price, (mode.currency or '').upper()
+    except Exception:
+        pass
+    return False, None, None
+
+def format_price(amount, currency):
+    # format VND: 900.000 ₫
+    try:
+        amt = float(amount)
+    except Exception:
+        return ''
+    cur = (currency or '').upper()
+    if cur in ('VND', 'VNĐ', 'VN'):
+        return f"{int(round(amt)):,}".replace(',', '.') + " ₫"
+    symbols = {'USD': '$', 'EUR': '€', 'GBP': '£', 'JPY': '¥'}
+    if cur in symbols:
+        return f"{symbols[cur]}{amt:,.2f}"
+    # fallback chung
+    if amt.is_integer():
+        return f"{int(amt):,} {cur}".replace(',', ',')
+    return f"{amt:,.2f} {cur}"
+%>
+
+
 <style>
 :root {
   --cusc-blue: #0056A1;
@@ -46,7 +79,6 @@ from openedx.core.lib.courses import course_image_url
   position: relative;
   z-index: 1;
   --bg-card: rgba(255,255,255,0.95);
-  
 }
 
 .course-profile .info-profile {
@@ -244,11 +276,8 @@ from openedx.core.lib.courses import course_image_url
 }
 </style>
 
-
 <%inherit file="../main.html" />
 <%block name="headextra">
-  ## OG (Open Graph) title and description added below to give social media info to display
-  ## (https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags)
   <meta property="og:title" content="${course.display_name_with_default}" />
   <meta property="og:description" content="${get_course_about_section(request, course, 'short_description')}" />
 </%block>
@@ -274,128 +303,143 @@ from openedx.core.lib.courses import course_image_url
         location.replace("${reverse('signin_user') | n, js_escaped_string}?next=" + encodeURIComponent("${request.path | n, js_escaped_string}"));
       } else {
         $('#register_error').text(
-            (xhr.responseText ? xhr.responseText : "${_("An error occurred. Please try again later.") | n, js_escaped_string}")
+            (xhr.responseText ? xhr.responseText : "${_("Có lỗi xãy ra, vui lòng thử lại sau.") | n, js_escaped_string}")
         ).css("display", "block");
       }
     });
-
   })(this)
   </script>
 
   <script src="${static.url('js/course_info.js')}"></script>
+
+ <%
+    is_paid_js, _amt_tmp, _cur_tmp = get_paid_info(course)
+  %>
+  % if user.is_authenticated and request.GET.get('checkout') == '1' and is_paid_js:
+    <%
+      course_id_str = str(course.id)
+      about_path = safe_reverse('about_course', args=[course_id_str], default=f"/courses/{course_id_str}/about")
+      about_url  = abs_url(request, about_path)
+      # pay_base   = "http://localhost:3000/checkout"
+      pay_base = getattr(settings, "CUSC_CHECKOUT_URL", "http://localhost:3000/checkout")
+      params     = {'course_id': course_id_str, 'user': user.username, 'next': about_url}
+      pay_url_auth = f"{pay_base}?{urlencode(params)}"
+    %>
+    <script>window.location.replace("${pay_url_auth | n, js_escaped_string}");</script>
+  % endif
+
+
 </%block>
 
 <%block name="pagetitle">${course.display_name_with_default}</%block>
 
 <section class="course-info about container">
   <%block name="course_about_header">
-  <!-- Course profile header is updated inclusive of course heading and course image. -->
   <header class="course-profile">
     <div class="intro-inner-wrapper">
       <div class="profile-top">
         % if get_course_about_section(request, course, "video"):
         <a href="#video-modal" class="media" rel="leanModal">
           <div class="hero">
-            <img  src="${course_image_urls['large']}" alt="" aria-hidden="true" />
+            <img src="${course_image_urls['large']}" alt="" aria-hidden="true" />
             <div class="play-intro"></div>
           </div>
         </a>
-        %else:
+        % else:
         <div class="media">
           <div class="hero">
-            <!-- NEW IN INDIGO: Add fallback image in case of no course-image using onerror -->
             <img src="${course_image_urls['large']}" onerror="this.src='/theming/asset/images/no_course_image.png';" alt="" aria-hidden="true" />
           </div>
         </div>
         % endif
         <div class="info-profile">
-          <h1>
-            ${course.display_name_with_default}
-          </h1>
-          
+          <h1>${course.display_name_with_default}</h1>
           <span class="org">${course.display_org_with_default}</span>
         </div>
       </div>
+
+      <%
+        is_paid, paid_amount, paid_currency = get_paid_info(course)
+        price_text = format_price(paid_amount, paid_currency) if is_paid else ''
+      %>
+
+
       <div class="main-cta">
-        %if user.is_authenticated and registered:
-        <span class="register disabled">${_("Already Enrolled")}</span>
-          %if show_courseware_link:
-            <a href="${course_target}">
-          %endif
-          %if show_courseware_link:
-            <strong>${_("View Course")}</strong>
-            </a>
-          %endif
+        % if user.is_authenticated and registered:
+          <span class="register disabled">${_("Đã đăng ký")}</span>
+          % if show_courseware_link:
+            <a href="${course_target}"><strong>${_("Xem khóa học")}</strong></a>
+          % endif
 
         % elif is_course_full:
-          <span class="register disabled">
-            ${_("Course is full")}
-          </span>
+          <span class="register disabled">${_("Khóa học đã hết chổ")}</span>
+
         % elif invitation_only and not can_enroll:
-          <span class="register disabled">${_("Enrollment in this course is by invitation only")}</span>
-        ## Shib courses need the enrollment button to be displayed even when can_enroll is False,
-        ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
-        ## so that they can register and become a real user that can enroll.
+          <span class="register disabled">${_("Việc đăng ký khóa học này chỉ được thực hiện thông qua lời mời")}</span>
+
         % elif not is_shib_course and not can_enroll:
-        <span class="register closed disabled"><i class="fa fa-lock" aria-hidden="true"></i> ${_("Enrollment is Closed")}</span>
-        %elif allow_anonymous:
-          %if show_courseware_link:
-            <a href="${course_target}">
-            <strong>${_("View Course")}</strong>
-            </a>
-          %endif
-        %else:
-          <!--
+          <span class="register closed disabled"><i class="fa fa-lock" aria-hidden="true"></i> ${_("Đã đóng tuyển sinh")}</span>
+
+        % elif allow_anonymous:
+          % if show_courseware_link:
+            <a href="${course_target}"><strong>${_("Xem khóa học")}</strong></a>
+          % endif
+
+        % else:
           <%
-            if ecommerce_checkout:
-              reg_href = ecommerce_checkout_link
-            else:
-              reg_href="#"
-            if single_paid_mode:
-              href_class = "add-to-cart"
-            else:
-              href_class = "register"
-          %>
-          -->
-          <%
+            # URL about tuyệt đối để quay lại sau khi thanh toán
             course_id_str = str(course.id)
-            about_path = reverse('about_course', args=[course_id_str])
-            # biến 'request' có trong context của LMS -> tạo absolute URL
-            about_url = request.build_absolute_uri(about_path)
+            about_path = safe_reverse('about_course', args=[course_id_str], default=f"/courses/{course_id_str}/about")
+            about_url  = abs_url(request, about_path)
 
-            pay_base = "http://localhost:3000/checkout"  # đổi theo server của bạn
+            # URL checkout Node (đổi khi deploy)
+            # pay_base = "http://localhost:3000/checkout"
+            pay_base = getattr(settings, "CUSC_CHECKOUT_URL", "http://localhost:3000/checkout")
             params = {
-              'course_id': course_id_str,
-              'user': user.username if user.is_authenticated else '',
-              'next': about_url,   # <-- ABSOLUTE
+                'course_id': course_id_str,
+                'user': user.username if user.is_authenticated else '',
+                'next': about_url,
             }
-            pay_url = f"{pay_base}?{urlencode(params)}"
+            pay_url_auth = f"{pay_base}?{urlencode(params)}"  # dùng khi đã đăng nhập
 
+            # URL hiển thị trên nút (cta_url): nếu chưa đăng nhập => đi qua trang signin nội bộ
+            cta_url = pay_url_auth
             if not user.is_authenticated:
-                login_url = reverse('login')
-                pay_url = f"{login_url}?next={quote(pay_url)}"
+                login_url = None
+                for name in ('signin_user', 'login'):
+                    try:
+                        login_url = reverse(name)
+                        break
+                    except NoReverseMatch:
+                        pass
+                if not login_url:
+                    login_url = getattr(settings, 'LOGIN_URL', '/login')
+
+                # next = about nội bộ + cờ checkout=1 (tuyệt đối)
+                login_next = abs_url(request, f"{about_path}?checkout=1")
+                login_url  = abs_url(request, login_url)
+                from urllib.parse import quote  # phòng khi chưa import
+                cta_url = f"{login_url}?next={quote(login_next, safe='')}"
           %>
 
-          <!--
-          <a href="${reg_href}" class="${href_class}">
-            ${_("Enroll Now")}
-          </a>
-          -->
-          <a class="btn btn-primary" href="${pay_url}">Upgrade Now</a>
-          <div id="register_error"></div>
-        %endif
-        </div>
+          % if is_paid:
+            <a class="btn btn-primary" href="${cta_url}">${_("Mua khóa học này")}</a>
+          % else:
+            <a href="#" class="register">${_("Đăng ký ngay")}</a>
+            <div id="register_error"></div>
+          % endif
+        % endif
       </div>
+    </div>
   </header>
   </%block>
 
   <div class="about-content">
-
     <%block name="course_about_details">
     <div class="details">
       % if staff_access and studio_url is not None:
         <div class="wrap-instructor-info studio-view">
-          <a class="instructor-info-action" href="${studio_url}">${_("View About Page in studio")}</a>
+          <a class="instructor-info-action" href="${studio_url}">${_("Xem Trang Giới thiệu trong studio")}</a>
         </div>
       % endif
 
@@ -405,132 +449,148 @@ from openedx.core.lib.courses import course_image_url
     </div>
     </%block>
 
-    <!-- NEW IN INDIGO sidebar is improved with better icons -->
-
     <div class="course-sidebar">
       <div class="course-summary">
-        <h2>Course Summary</h2>
+        <h2>Tóm tắt khóa học</h2>
         <%block name="course_about_important_dates">
+          <%
+            is_paid_sb, amt_sb, cur_sb = get_paid_info(course)
+            price_text_sb = format_price(amt_sb, cur_sb) if is_paid_sb else ''
+          %>
         <ol class="important-dates">
-<li class="important-dates-item">
+          <li class="important-dates-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L1 9L5 11.18V17.18L12 21L19 17.18V11.18L21 10.09V17H23V9L12 3ZM18.8201 8.99997L12.0001 12.72L5.18007 8.99997L12.0001 5.27997L18.8201 8.99997ZM12 18.72L17 15.99V12.27L12 15L7 12.27V15.99L12 18.72Z" fill="#9CA3AF"/>
-              </svg>
-            <p class="important-dates-item-title">${_("Course Number")}</p><span class="important-dates-item-text course-number">${course.display_number_with_default}</span></li>
+            </svg>
+            <p class="important-dates-item-title">${_("Số khóa học")}</p>
+            <span class="important-dates-item-text course-number">${course.display_number_with_default}</span>
+          </li>
+
           % if not course.start_date_is_still_default:
-              <%
-                  course_start_date = course.advertised_start or course.start
-              %>
+            <%
+              course_start_date = course.advertised_start or course.start
+            %>
             <li class="important-dates-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H19C20.1 4 21 4.9 21 6V20C21 21.1 20.1 22 19 22H5C3.89 22 3 21.1 3 20L3.01 6C3.01 4.9 3.89 4 5 4H6V2H8V4H16V2H18V4ZM5 10V20H19V10H5ZM19 8H5V6H19V8ZM17 13H12V18H17V13Z" fill="#9CA3AF"/>
-                </svg>
-              <p class="important-dates-item-title">${_("Classes Start")}</p>
+              </svg>
+              <p class="important-dates-item-title">${_("Lớp học bắt đầu")}</p>
               % if isinstance(course_start_date, str):
-                  <span class="important-dates-item-text start-date">${course_start_date}</span>
+                <span class="important-dates-item-text start-date">${course_start_date}</span>
               % else:
-                  <%
-                     course_date_string = course_start_date.strftime('%Y-%m-%dT%H:%M:%S%z')
-                  %>
-                  <span class="important-dates-item-text start-date localized_datetime" data-format="shortDate" data-datetime="${course_date_string}" data-language="${LANGUAGE_CODE}"></span>
+                <%
+                  course_date_string = course_start_date.strftime('%Y-%m-%dT%H:%M:%S%z')
+                %>
+                <span class="important-dates-item-text start-date localized_datetime"
+                      data-format="shortDate"
+                      data-datetime="${course_date_string}"
+                      data-language="${LANGUAGE_CODE}"></span>
               % endif
             </li>
           % endif
-            ## We plan to ditch end_date (which is not stored in course metadata),
-            ## but for backwards compatibility, show about/end_date blob if it exists.
-            % if course.end:
-                <%
-                    course_end_date = course.end
-                %>
 
+          % if course.end:
+            <%
+              course_end_date = course.end
+            %>
             <li class="important-dates-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H19C20.1 4 21 4.9 21 6V20C21 21.1 20.1 22 19 22H5C3.89 22 3 21.1 3 20L3.01 6C3.01 4.9 3.89 4 5 4H6V2H8V4H16V2H18V4ZM5 10V20H19V10H5ZM19 8H5V6H19V8ZM17 13H12V18H17V13Z" fill="#9CA3AF"/>
-                </svg>
-                <p class="important-dates-item-title">${_("Classes End")}</p>
-                  % if isinstance(course_end_date, str):
-                      <span class="important-dates-item-text final-date">${course_end_date}</span>
-                  % else:
-                    <%
-course_date_string = course_end_date.strftime('%Y-%m-%dT%H:%M:%S%z')
-                    %>
-                    <span class="important-dates-item-text final-date localized_datetime" data-format="shortDate" data-datetime="${course_date_string}" data-language="${LANGUAGE_CODE}"></span>
-                  % endif
+              </svg>
+              <p class="important-dates-item-title">${_("Lớp học kết thúc")}</p>
+              % if isinstance(course_end_date, str):
+                <span class="important-dates-item-text final-date">${course_end_date}</span>
+              % else:
+                <%
+                  course_date_string = course_end_date.strftime('%Y-%m-%dT%H:%M:%S%z')
+                %>
+                <span class="important-dates-item-text final-date localized_datetime"
+                      data-format="shortDate"
+                      data-datetime="${course_date_string}"
+                      data-language="${LANGUAGE_CODE}"></span>
+              % endif
             </li>
-            % endif
-
-          % if get_course_about_section(request, course, "effort"):
-            <li class="important-dates-item"><span class="icon fa fa-pencil" aria-hidden="true"></span><p class="important-dates-item-title">${_("Estimated Effort")}</p><span class="important-dates-item-text effort">${get_course_about_section(request, course, "effort")}</span></li>
           % endif
 
-          ##<li class="important-dates-item"><span class="icon fa fa-clock-o" aria-hidden="true"></span><p class="important-dates-item-title">${_('Course Length')}</p><span class="important-dates-item-text course-length">${_('{number} weeks').format(number=15)}</span></li>
+          % if get_course_about_section(request, course, "effort"):
+            <li class="important-dates-item">
+              <span class="icon fa fa-pencil" aria-hidden="true"></span>
+              <p class="important-dates-item-title">${_("Nỗ lực ước tính")}</p>
+              <span class="important-dates-item-text effort">${get_course_about_section(request, course, "effort")}</span>
+            </li>
+          % endif
 
-          %if course_price and (is_cosmetic_price_enabled):
+          % if is_paid_sb and price_text_sb:
             <li class="important-dates-item">
               <span class="icon fa fa-money" aria-hidden="true"></span>
-              <p class="important-dates-item-title">${_("Price")}</p>
-              <span class="important-dates-item-text">${course_price}</span>
+              <p class="important-dates-item-title">${_("Giá")}</p>
+              <span class="important-dates-item-text">${price_text_sb}</span>
             </li>
-          %endif
+          % endif
+
 
           % if pre_requisite_courses:
-          <% prc_target = reverse('about_course', args=[str(pre_requisite_courses[0]['key'])]) %>
-          <li class="prerequisite-course important-dates-item">
-            <span class="icon fa fa-list-ul" aria-hidden="true"></span>
-            <p class="important-dates-item-title">${_("Prerequisites")}</p>
-            ## Multiple pre-requisite courses are not supported on frontend that's why we are pulling first element
-            <span class="important-dates-item-text pre-requisite"><a href="${prc_target}">${pre_requisite_courses[0]['display']}</a></span>
-            <p class="tip">
-            ${Text(_("You must successfully complete {link_start}{prc_display}{link_end} before you begin this course.")).format(
-              link_start=HTML('<a href="{}">').format(prc_target),
-              link_end=HTML('</a>'),
-              prc_display=pre_requisite_courses[0]['display'],
-            )}
-            </p>
-          </li>
+            <%
+              prc_key = str(pre_requisite_courses[0]['key'])
+              prc_target = safe_reverse('about_course', args=[prc_key], default=f"/courses/{prc_key}/about")
+            %>
+            <li class="prerequisite-course important-dates-item">
+              <span class="icon fa fa-list-ul" aria-hidden="true"></span>
+              <p class="important-dates-item-title">${_("Điều kiện tiên quyết")}</p>
+              <span class="important-dates-item-text pre-requisite">
+                <a href="${prc_target}">${pre_requisite_courses[0]['display']}</a>
+              </span>
+              <p class="tip">
+              ${Text(_("Bạn phải hoàn thành thành công {link_start}{prc_display}{link_end} trước khi bắt đầu hóa học này.")).format(
+                link_start=HTML('<a href="{}">').format(prc_target),
+                link_end=HTML('</a>'),
+                prc_display=pre_requisite_courses[0]['display'],
+              )}
+              </p>
+            </li>
           % endif
 
           % if get_course_about_section(request, course, "prerequisites"):
-            <li class="important-dates-item"><span class="icon fa fa-book" aria-hidden="true"></span><p class="important-dates-item-title">${_("Requirements")}</p><span class="important-dates-item-text prerequisites">${get_course_about_section(request, course, "prerequisites")}</span></li>
+            <li class="important-dates-item">
+              <span class="icon fa fa-book" aria-hidden="true"></span>
+              <p class="important-dates-item-title">${_("Yêu cầu")}</p>
+              <span class="important-dates-item-text prerequisites">${get_course_about_section(request, course, "prerequisites")}</span>
+            </li>
           % endif
         </ol>
         </%block>
         <%include file="course_about_sidebar_header.html" />
-    </div>
-
-      ## For now, ocw links are the only thing that goes in additional resources
-      % if get_course_about_section(request, course, "ocw_links"):
-<div class="additional-resources">
-        <header>
-          <h1>${_("Additional Resources")}</h1>
       </div>
 
+      % if get_course_about_section(request, course, "ocw_links"):
+      <div class="additional-resources">
+        <header>
+          <h1>${_("Tài nguyên bổ sung")}</h1>
+        </header>
         <div>
-          ## "MITOpenCourseware" should *not* be translated
           <h2 class="opencourseware">MITOpenCourseware</h2>
-             ${get_course_about_section(request, course, "ocw_links")}
+          ${get_course_about_section(request, course, "ocw_links")}
         </div>
-    </div>
-      %endif
-
-    % if sidebar_html_enabled:
-      % if get_course_about_section(request, course, "about_sidebar_html"):
-        <section class="about-sidebar-html">
-          ${get_course_about_section(request, course, "about_sidebar_html")}
-        </section>
+      </div>
       % endif
-    %endif
-  </div>
 
+      % if sidebar_html_enabled:
+        % if get_course_about_section(request, course, "about_sidebar_html"):
+          <section class="about-sidebar-html">
+            ${get_course_about_section(request, course, "about_sidebar_html")}
+          </section>
+        % endif
+      % endif
+    </div>
   </div>
-</div>
+</section>
 
-## Need to put this hidden form on the page so that the registration button works.
-## Since it's no harm to display a hidden form, we display it with the most permissive conditional
-## which is when the student is not registered.
-%if active_reg_button or is_shib_course:
+% if active_reg_button or is_shib_course:
+  <%
+    change_enroll_url = safe_reverse('change_enrollment', default="/change_enrollment")
+  %>
   <div style="display: none;">
-    <form id="class_enroll_form" method="post" data-remote="true" action="${reverse('change_enrollment')}">
+    <form id="class_enroll_form" method="post" data-remote="true" action="${change_enroll_url}">
       <fieldset class="enroll_fieldset">
         <legend class="sr">${pgettext("self","Enroll")}</legend>
         <input name="course_id" type="hidden" value="${course.id}">
@@ -541,7 +601,7 @@ course_date_string = course_end_date.strftime('%Y-%m-%dT%H:%M:%S%z')
       </div>
     </form>
   </div>
-%endif
+% endif
 
 <%include file="../video_modal.html" />
 

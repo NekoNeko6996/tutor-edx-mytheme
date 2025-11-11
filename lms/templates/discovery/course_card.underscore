@@ -12,7 +12,7 @@
                 <span class="course-organization"><%- org %></span>
             </h2>
             <a href="/courses/<%- course %>/about" class="learn-more" aria-label="">
-              <%- gettext("Learn More") %>
+              <%- gettext("Tìm hiểu thêm") %>
               <span class="sr-only">about <%- content.display_name %></span>
             </a>
             <div class="course-date" aria-hidden="true">
