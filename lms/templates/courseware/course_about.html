@@ -240,11 +240,11 @@ def format_price(amount, currency):
   margin-top: 2rem;
   background: var(--bg-card);
   border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   color: #000;
   position: relative;
   overflow: hidden;
+
+  border: none !important;
 }
 .about-content::before {
   content: "";
@@ -252,7 +252,6 @@ def format_price(amount, currency):
   inset: 0;
   padding: 2px;
   border-radius: 12px;
-  background: var(--hero-gradient);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -262,6 +261,33 @@ def format_price(amount, currency):
 .about-content:hover::before {
   opacity: 1;
 }
+
+
+.registered-mute-btn {
+  padding: 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.animation-gradien-background {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite !important;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 
 @media (max-width: 992px) {
   .course-header-wrapper {
@@ -366,7 +392,7 @@ def format_price(amount, currency):
 
       <div class="main-cta">
         % if user.is_authenticated and registered:
-          <span class="register disabled">${_("Đã đăng ký")}</span>
+          <span class="registered-mute-btn animation-gradien-background">${_("Đã đăng ký")}</span>
           % if show_courseware_link:
             <a href="${course_target}"><strong>${_("Xem khóa học")}</strong></a>
           % endif
@@ -382,7 +408,7 @@ def format_price(amount, currency):
 
         % elif allow_anonymous:
           % if show_courseware_link:
-            <a href="${course_target}"><strong>${_("Xem khóa học")}</strong></a>
+            <a href="${course_target}" class="main-btn"><strong>${_("Xem khóa học")}</strong></a>
           % endif
 
         % else:
@@ -433,6 +459,8 @@ def format_price(amount, currency):
     </div>
   </header>
   </%block>
+
+  <hr/>
 
   <div class="about-content">
     <%block name="course_about_details">

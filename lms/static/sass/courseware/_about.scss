@@ -18,7 +18,7 @@
                 padding: 0 0 20px;
             }
             @include media-breakpoint-up(lg) {
-                padding: 36px 0 60px;
+                // padding: 36px 0 60px;
             }
         }
     }
@@ -406,11 +406,10 @@ body.indigo-dark-theme {
                 background: $primary-light-d;
             }
         }
-        .about-content {
+        .about-content {    
             .details {
                 .about, .prerequisites, .course-staff, .faq {
                     color: $text-color-d;
-                    border: 1px solid $primary-light-d;
                     border-left: 14px solid $primary-light-d;
                     h2 {
                         color: $text-color-d;
